@@ -143,16 +143,51 @@
 
     <!-- Tela de Entrada (Splash Screen) -->
     <div id="splash-screen" class="fixed inset-0 z-[100] flex flex-col items-center justify-center text-white transition-opacity duration-500 ease-in-out">
-      <div class="text-center w-full h-full flex flex-col items-center justify-center" style="background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 mx-auto mb-4 text-blue-400 animate-pulse" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM7.16 16l.84-2h7.5a2 2 0 0 0 1.93-1.45l3.24-10.36A1 1 0 0 0 19.5 2H5.21l-.94-2H1v2h2l3.6 7.59-1.35 2.44A2 2 0 0 0 5 15a2 2 0 0 0 2.16 1zM6.16 13l1.25-2.25L7.16 13zm2.84-2h7.5l-2.1 6.36A1 1 0 0 1 13.5 18h-6.34l1.84-3.36z" />
-        </svg>
-        <h1 class="text-4xl md:text-6xl font-bold mt-2">SuperMarket</h1>
-        <p class="text-lg md:text-xl mt-2">Qualidade e economia perto de você!</p>
-        <button id="enter-btn" class="mt-8 bg-gradient-to-r from-blue-400 to-blue-600 text-white font-bold py-3 px-10 rounded-full text-lg transition duration-300 transform hover:scale-105 shadow-xl border-2 border-blue-700">
-          Ver Ofertas
-        </button>
-      </div>
+            <div class="text-center w-full h-full flex flex-col items-center justify-center backdrop-blur-lg bg-blue-900/70 border-4 border-blue-700 shadow-2xl rounded-xl" style="background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="h-40 w-40 mx-auto mb-6 animate-bounce-slow" style="filter: drop-shadow(0 12px 32px #2563eb99);">
+                                            <defs>
+                                                <linearGradient id="cartBody" x1="0" y1="0" x2="0" y2="1">
+                                                    <stop offset="0%" stop-color="#4f8cff" />
+                                                    <stop offset="100%" stop-color="#1e40af" />
+                                                </linearGradient>
+                                                <radialGradient id="cartWheel" cx="50%" cy="50%" r="50%">
+                                                    <stop offset="0%" stop-color="#fff" />
+                                                    <stop offset="80%" stop-color="#2563eb" />
+                                                    <stop offset="100%" stop-color="#1e40af" />
+                                                </radialGradient>
+                                            </defs>
+                                            <!-- Carrinho premium -->
+                                            <rect x="10" y="18" width="44" height="20" rx="6" fill="url(#cartBody)" stroke="#1e40af" stroke-width="2" />
+                                            <rect x="14" y="22" width="36" height="12" rx="4" fill="#fff" opacity="0.8" />
+                                            <rect x="18" y="12" width="28" height="10" rx="5" fill="#2563eb" stroke="#fff" stroke-width="1.5" />
+                                            <rect x="22" y="8" width="20" height="6" rx="3" fill="#1e40af" />
+                                            <circle cx="18" cy="44" r="6" fill="url(#cartWheel)" stroke="#1e40af" stroke-width="2" />
+                                            <circle cx="46" cy="44" r="6" fill="url(#cartWheel)" stroke="#1e40af" stroke-width="2" />
+                                            <ellipse cx="18" cy="51" rx="5" ry="2" fill="#1e40af" opacity="0.25" />
+                                            <ellipse cx="46" cy="51" rx="5" ry="2" fill="#1e40af" opacity="0.25" />
+                                            <rect x="10" y="18" width="44" height="5" rx="2.5" fill="#fff" opacity="0.12" />
+                                            <rect x="18" y="12" width="28" height="3" rx="1.5" fill="#fff" opacity="0.18" />
+                                            <!-- Alça -->
+                                            <rect x="8" y="16" width="48" height="4" rx="2" fill="#2563eb" />
+                                            <rect x="8" y="16" width="48" height="2" rx="1" fill="#fff" opacity="0.18" />
+                                        </svg>
+                <h1 class="text-5xl md:text-7xl font-extrabold mt-2 tracking-tight text-white drop-shadow-lg">SuperMarket</h1>
+                <p class="text-xl md:text-2xl mt-4 font-semibold text-blue-100 drop-shadow">Qualidade e economia perto de você!</p>
+                <p class="text-base md:text-lg mt-2 text-blue-200 italic">Seu mercadinho de confiança, agora online!</p>
+                <button id="enter-btn" class="mt-10 bg-gradient-to-r from-yellow-400 via-blue-500 to-blue-700 text-white font-bold py-4 px-12 rounded-full text-xl flex items-center gap-3 transition duration-300 transform hover:scale-105 shadow-2xl border-2 border-blue-700 hover:brightness-110">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7A2 2 0 008.48 18h7.02a2 2 0 001.83-1.18L19 13M7 13V6h13" /></svg>
+                    Ver Ofertas
+                </button>
+                <style>
+                    @keyframes bounce-slow {
+                        0%, 100% { transform: translateY(0); }
+                        50% { transform: translateY(-18px); }
+                    }
+                    .animate-bounce-slow {
+                        animation: bounce-slow 2.2s infinite;
+                    }
+                </style>
+            </div>
     </div>
 
     <!-- Cabeçalho -->
