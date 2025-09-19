@@ -609,66 +609,6 @@
     <span class="ml-3 text-yellow-900 font-bold text-lg">Válido sábado e domingo!</span>
     </div>
 
-    <!-- Tela de Entrada (Splash Screen) -->
-    <div id="splash-screen" class="fixed inset-0 z-[100] flex flex-col items-center justify-center text-white transition-opacity duration-500 ease-in-out">
-            <div class="text-center w-full h-full flex flex-col items-center justify-center backdrop-blur-lg bg-blue-900/70 border-4 border-blue-700 shadow-2xl rounded-xl" style="background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="h-40 w-40 mx-auto mb-6 animate-bounce-slow" style="filter: drop-shadow(0 12px 32px #2563eb99);">
-                                            <defs>
-                                                <linearGradient id="cartBody" x1="0" y1="0" x2="0" y2="1">
-                                                    <stop offset="0%" stop-color="#4f8cff" />
-                                                    <stop offset="100%" stop-color="#1e40af" />
-                                                </linearGradient>
-                                                <radialGradient id="cartWheel" cx="50%" cy="50%" r="50%">
-                                                    <stop offset="0%" stop-color="#fff" />
-                                                    <stop offset="80%" stop-color="#2563eb" />
-                                                    <stop offset="100%" stop-color="#1e40af" />
-                                                </radialGradient>
-                                            </defs>
-                                            <!-- Carrinho premium -->
-                                            <rect x="10" y="18" width="44" height="20" rx="6" fill="url(#cartBody)" stroke="#1e40af" stroke-width="2" />
-                                            <rect x="14" y="22" width="36" height="12" rx="4" fill="#fff" opacity="0.8" />
-                                            <rect x="18" y="12" width="28" height="10" rx="5" fill="#2563eb" stroke="#fff" stroke-width="1.5" />
-                                            <rect x="22" y="8" width="20" height="6" rx="3" fill="#1e40af" />
-                                            <circle cx="18" cy="44" r="6" fill="url(#cartWheel)" stroke="#1e40af" stroke-width="2" />
-                                            <circle cx="46" cy="44" r="6" fill="url(#cartWheel)" stroke="#1e40af" stroke-width="2" />
-                                            <ellipse cx="18" cy="51" rx="5" ry="2" fill="#1e40af" opacity="0.25" />
-                                            <ellipse cx="46" cy="51" rx="5" ry="2" fill="#1e40af" opacity="0.25" />
-                                            <rect x="10" y="18" width="44" height="5" rx="2.5" fill="#fff" opacity="0.12" />
-                                            <rect x="18" y="12" width="28" height="3" rx="1.5" fill="#fff" opacity="0.18" />
-                                            <!-- Alça -->
-                                            <rect x="8" y="16" width="48" height="4" rx="2" fill="#2563eb" />
-                                            <rect x="8" y="16" width="48" height="2" rx="1" fill="#fff" opacity="0.18" />
-                                        </svg>
-                <h1 class="text-5xl md:text-7xl font-extrabold mt-2 tracking-tight drop-shadow-lg" 
-                    style="color: #1f2937; text-shadow: 2px 2px 4px rgba(255,255,255,0.9), 0 0 15px rgba(255,255,255,0.7);">
-                    SuperMarket
-                </h1>
-                <p class="text-xl md:text-2xl mt-4 font-semibold drop-shadow" 
-                   style="color: #374151; text-shadow: 1px 1px 3px rgba(255,255,255,0.9); 
-                          background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(248,250,252,0.7) 100%); 
-                          padding: 0.5rem 1rem; border-radius: 0.5rem; display: inline-block;">
-                    Qualidade e economia perto de você!
-                </p>
-                <p class="text-base md:text-lg mt-2 italic" 
-                   style="color: #4b5563; text-shadow: 1px 1px 2px rgba(255,255,255,0.8);">
-                    Seu Mercado de confiança, agora online!
-                </p>
-                <button id="enter-btn" class="mt-10 bg-gradient-to-r from-yellow-400 via-blue-500 to-blue-700 text-white font-bold py-4 px-12 rounded-full text-xl flex items-center gap-3 transition duration-300 transform hover:scale-105 shadow-2xl border-2 border-blue-700 hover:brightness-110">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7A2 2 0 008.48 18h7.02a2 2 0 001.83-1.18L19 13M7 13V6h13" /></svg>
-                    Ver Ofertas
-                </button>
-                <style>
-                    @keyframes bounce-slow {
-                        0%, 100% { transform: translateY(0); }
-                        50% { transform: translateY(-18px); }
-                    }
-                    .animate-bounce-slow {
-                        animation: bounce-slow 2.2s infinite;
-                    }
-                </style>
-            </div>
-    </div>
-
     <!-- Cabeçalho -->
     <header class="bg-gradient-to-r from-blue-700 via-blue-600 to-green-600 shadow-xl sticky top-0 z-50 border-b-4 border-yellow-400">
         <!-- Barra superior com informações -->
@@ -1277,22 +1217,6 @@
             }
         `;
         document.head.appendChild(style);
-
-        // Script para a tela de entrada (splash screen)
-        const splashScreen = document.getElementById('splash-screen');
-        const enterBtn = document.getElementById('enter-btn');
-
-        // Impede o scroll da página enquanto o splash estiver visível
-        document.body.style.overflow = 'hidden';
-
-        enterBtn.addEventListener('click', () => {
-            splashScreen.classList.add('opacity-0');
-            // Libera o scroll e remove a tela após a transição
-            setTimeout(() => {
-                splashScreen.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }, 500); // Deve ser igual à duração da transição do CSS (duration-500)
-        });
 
         // PWA - Service Worker Registration
         if ('serviceWorker' in navigator) {
