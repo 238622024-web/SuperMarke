@@ -255,90 +255,228 @@
                 line-height: 1.2;
             }
             
-            /* Cards mobile */
-            .grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-                padding: 0 0.75rem;
+            /* Cards mobile OTIMIZADOS - VERSÃO PREMIUM */
+            @media (max-width: 640px) {
+                /* Container principal mobile */
+                #ofertas .container {
+                    padding-left: 0.75rem;
+                    padding-right: 0.75rem;
+                }
+                
+                /* Grid mobile com espaçamento perfeito */
+                .grid {
+                    grid-template-columns: 1fr;
+                    gap: 1.5rem;
+                    padding: 0 0.5rem;
+                    margin-top: 1rem;
+                }
+                
+                /* Cards mobile redesenhados com visual premium */
+                .oferta-card {
+                    background: linear-gradient(145deg, #ffffff 0%, #f9fafb 100%);
+                    border-radius: 1.5rem;
+                    overflow: hidden;
+                    box-shadow: 
+                        0 8px 30px rgba(0,0,0,0.12),
+                        0 1px 3px rgba(0,0,0,0.08);
+                    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                    border: 1px solid rgba(255,255,255,0.8);
+                    margin-bottom: 0;
+                }
+                
+                /* Efeito hover/touch mobile melhorado */
+                .oferta-card:active {
+                    transform: translateY(-8px) scale(1.02);
+                    box-shadow: 
+                        0 12px 40px rgba(0,0,0,0.18),
+                        0 4px 15px rgba(34, 197, 94, 0.2);
+                }
+                
+                /* Imagens mobile MAIORES e mais atrativas */
+                .oferta-card img {
+                    height: 220px;
+                    width: 100%;
+                    object-fit: cover;
+                    transition: transform 0.3s ease;
+                    border-radius: 0;
+                }
+                
+                .oferta-card:active img {
+                    transform: scale(1.05);
+                }
+                
+                /* Conteúdo dos cards mobile com mais espaço */
+                .oferta-card .p-6 {
+                    padding: 1.25rem 1.5rem 1.5rem 1.5rem;
+                }
+                
+                /* Títulos mobile mais legíveis */
+                .oferta-card h3 {
+                    font-size: 1.2rem;
+                    line-height: 1.3;
+                    margin-bottom: 0.75rem;
+                    font-weight: 800;
+                    color: #111827;
+                    letter-spacing: -0.025em;
+                }
+                
+                /* Descrições mobile otimizadas */
+                .oferta-card p.text-gray-600 {
+                    font-size: 0.95rem;
+                    line-height: 1.5;
+                    margin-bottom: 1rem;
+                    color: #6b7280;
+                    font-weight: 400;
+                }
+                
+                /* Container preço/botão com design especial */
+                .oferta-card .flex.items-center.justify-between {
+                    flex-direction: column;
+                    align-items: stretch;
+                    gap: 1rem;
+                    margin-top: 1rem;
+                    padding: 1.25rem;
+                    background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+                    border-radius: 1.25rem;
+                    border: 2px solid #d1fae5;
+                }
+                
+                /* Preços mobile destacados com gradiente */
+                .oferta-card .text-green-600 {
+                    font-size: 1.8rem;
+                    font-weight: 900;
+                    text-align: center;
+                    background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+                    background-clip: text;
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    text-shadow: 0 2px 4px rgba(5, 150, 105, 0.2);
+                    margin-bottom: 0.5rem;
+                }
+                
+                /* Subpreços mobile (/100g) */
+                .oferta-card .text-green-600 .text-sm {
+                    font-size: 0.9rem;
+                    color: #6b7280;
+                    font-weight: 600;
+                    -webkit-text-fill-color: #6b7280;
+                }
+                
+                /* Botões WhatsApp mobile PREMIUM */
+                .oferta-card a[href*="whatsapp"] {
+                    width: 100%;
+                    background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+                    color: white;
+                    padding: 1rem 1.5rem;
+                    border-radius: 1.25rem;
+                    font-weight: 700;
+                    font-size: 1rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 0.75rem;
+                    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                    box-shadow: 
+                        0 4px 20px rgba(37, 211, 102, 0.35),
+                        inset 0 1px 0 rgba(255,255,255,0.3);
+                    text-decoration: none;
+                    position: relative;
+                    overflow: hidden;
+                }
+                
+                /* Efeito ripple no botão WhatsApp */
+                .oferta-card a[href*="whatsapp"]:before {
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    width: 0;
+                    height: 0;
+                    border-radius: 50%;
+                    background: rgba(255,255,255,0.4);
+                    transition: width 0.6s, height 0.6s, top 0.6s, left 0.6s;
+                    transform: translate(-50%, -50%);
+                    z-index: 0;
+                }
+                
+                .oferta-card a[href*="whatsapp"]:active:before {
+                    width: 300px;
+                    height: 300px;
+                }
+                
+                .oferta-card a[href*="whatsapp"]:active {
+                    transform: scale(0.98);
+                    box-shadow: 
+                        0 2px 12px rgba(37, 211, 102, 0.4),
+                        inset 0 1px 0 rgba(255,255,255,0.3);
+                }
+                
+                /* Texto do botão WhatsApp com z-index */
+                .oferta-card a[href*="whatsapp"] span,
+                .oferta-card a[href*="whatsapp"] svg {
+                    position: relative;
+                    z-index: 1;
+                }
+                
+                /* SVG dos botões mobile maiores */
+                .oferta-card a[href*="whatsapp"] svg {
+                    width: 1.5rem;
+                    height: 1.5rem;
+                }
+                
+                /* Etiquetas de promoção mobile melhoradas */
+                .etiqueta-promo {
+                    font-size: 0.8rem;
+                    padding: 0.5rem 1rem;
+                    top: 1rem;
+                    left: -5px;
+                    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+                    box-shadow: 0 3px 12px rgba(239, 68, 68, 0.4);
+                    z-index: 10;
+                    font-weight: 800;
+                    letter-spacing: 0.5px;
+                    border-radius: 0 0.75rem 0.75rem 0;
+                }
+                
+                /* Espaçamento entre cards otimizado */
+                .oferta-card + .oferta-card {
+                    margin-top: 0;
+                }
+                
+                /* Animação de entrada suave */
+                .oferta-card {
+                    animation: slideInUp 0.6s ease-out;
+                }
+                
+                @keyframes slideInUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(30px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
             }
-            
-            .oferta-card {
-                margin-bottom: 1rem;
+        
+        /* Tablet específico - cards menores */
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
             }
             
             .oferta-card img {
                 height: 200px;
-                object-fit: cover;
             }
             
-            /* Footer mobile */
-            footer {
-                width: 100%;
-                text-align: center;
-                padding: 1.5rem 0.75rem;
+            .oferta-card h3 {
+                font-size: 1.125rem;
             }
             
-            /* Botões mobile */
-            .btn-animate {
-                font-size: 0.875rem;
-                padding: 0.5rem 1rem;
-            }
-            
-            /* Hero section mobile */
-            .hero-bg h1 {
-                font-size: 2rem;
-                line-height: 1.2;
-                margin-bottom: 1rem;
-            }
-            
-            .hero-bg p {
-                font-size: 1rem;
-                margin-bottom: 1.5rem;
-            }
-            
-            /* Menu mobile melhorado */
-            #mobile-menu {
-                width: 100%;
-                left: 0;
-                right: 0;
-            }
-            
-            /* Busca mobile */
-            #mobile-menu input {
-                width: 100%;
-                margin-bottom: 1rem;
-            }
-            
-            /* Seções mobile */
-            section {
-                padding: 2rem 0;
-            }
-            
-            /* Sobre nós mobile */
-            #sobre .flex {
-                flex-direction: column;
-                gap: 2rem;
-            }
-            
-            /* Contato mobile */
-            #contato .grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                text-align: left;
-            }
-        }
-        
-        /* Tablet específico */
-        @media (min-width: 641px) and (max-width: 1024px) {
-            .grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        /* Desktop */
-        @media (min-width: 1025px) {
-            .grid {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            .oferta-card .text-green-600 {
+                font-size: 1.75rem;
             }
         }
         
@@ -599,13 +737,14 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
                     <!-- Produto Mussarela KG -->
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
+                        <div class="etiqueta-promo">OFERTA!</div>
                         <img src="QueijoMussarela.jpeg" alt="Mussarela KG" class="w-full h-48 object-cover" loading="lazy">
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="font-bold text-xl mb-2 text-gray-800">MUSSARELA KG</h3>
-                            <p class="text-gray-600 mb-4 flex-grow">100g por apenas R$ 4,49</p>
+                            <p class="text-gray-600 mb-4 flex-grow">Queijo mussarela fresco, ideal para sanduíches e receitas</p>
                             <div class="flex items-center justify-between mt-4">
-                                <span class="text-green-600 font-bold text-2xl">R$ 4,49/100g</span>
-                                <a href="https://api.whatsapp.com/send?text=Oferta%20no%20Mercadinho%20SuperMarket%3A%20MUSSARELA%20KG%20por%20R%24%204%2C49%20(100g)" target="_blank" rel="noopener noreferrer" title="Compartilhar no WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
+                                <span class="text-green-600 font-bold text-2xl">R$ 4,49<span class="text-sm text-gray-500">/100g</span></span>
+                                <a href="https://wa.me/5511969724824?text=Olá!%20Tenho%20interesse%20na%20MUSSARELA%20KG%20por%20R$%204,49%20(100g).%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
                                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WhatsApp"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.42 1.32 4.84l-1.45 5.32 5.45-1.44a9.88 9.88 0 0 0 4.6 1.18h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.92-9.91zM17.13 14.5c-.21-.11-.9-1.04-1.32-1.16-.13-.04-.26-.06-.39.06-.13.11-.5.63-.61.75-.11.13-.22.14-.42.04-.21-.11-1.02-.38-1.9-1.18-.7-.63-1.16-1.41-1.31-1.66-.14-.24-.02-.38.1-.5.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4s.04-.3-.02-.41c-.06-.11-.39-1.05-.53-1.43-.14-.38-.3-.32-.42-.32h-.37c-.12 0-.31.04-.48.24-.17.19-.65.63-.65 1.54 0 .9.67 1.79.76 1.91.1.13 1.27 1.96 3.07 2.7.43.18.76.29 1.02.37.42.13.8.11.96.06.19-.06.9-1.04 1.13-1.43.23-.38.23-.7.16-.79l-.08-.02z"/></svg>
                                 </a>
                             </div>
@@ -613,13 +752,14 @@
                     </div>
                     <!-- Card 1 -->
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
+                        <div class="etiqueta-promo">PROMOÇÃO!</div>
                         <img src="MolhoTomatePomodoro.jpg" alt="Molho Pomodoro 300g trad" class="w-full h-48 object-cover" loading="lazy">
                         <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="font-bold text-xl mb-2 text-gray-800">MOLHO POMODORO 300g trad</h3>
-                            <p class="text-gray-600 mb-4 flex-grow">Sabor tradicional para suas receitas.</p>
+                            <h3 class="font-bold text-xl mb-2 text-gray-800">MOLHO POMODORO 300g</h3>
+                            <p class="text-gray-600 mb-4 flex-grow">Molho de tomate tradicional, sabor caseiro para suas receitas</p>
                             <div class="flex items-center justify-between mt-4">
                                 <span class="text-green-600 font-bold text-2xl">R$ 1,49</span>
-                                <a href="https://api.whatsapp.com/send?text=Oferta%20no%20Mercadinho%20SuperMarket%3A%20MOLHO%20POMODORO%20300g%20trad%20por%20R%24%201%2C49" target="_blank" rel="noopener noreferrer" title="Compartilhar no WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
+                                <a href="https://wa.me/5511969724824?text=Olá!%20Tenho%20interesse%20no%20MOLHO%20POMODORO%20300g%20por%20R$%201,49.%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
                                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WhatsApp"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.42 1.32 4.84l-1.45 5.32 5.45-1.44a9.88 9.88 0 0 0 4.6 1.18h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.92-9.91zM17.13 14.5c-.21-.11-.9-1.04-1.32-1.16-.13-.04-.26-.06-.39.06-.13.11-.5.63-.61.75-.11.13-.22.14-.42.04-.21-.11-1.02-.38-1.9-1.18-.7-.63-1.16-1.41-1.31-1.66-.14-.24-.02-.38.1-.5.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4s.04-.3-.02-.41c-.06-.11-.39-1.05-.53-1.43-.14-.38-.3-.32-.42-.32h-.37c-.12 0-.31.04-.48.24-.17.19-.65.63-.65 1.54 0 .9.67 1.79.76 1.91.1.13 1.27 1.96 3.07 2.7.43.18.76.29 1.02.37.42.13.8.11.96.06.19-.06.9-1.04 1.13-1.43.23-.38.23-.7.16-.79l-.08-.02z"/></svg>
                                 </a>
                             </div>
@@ -1077,9 +1217,10 @@
             }, 500); // Deve ser igual à duração da transição do CSS (duration-500)
         });
     </script>
-
 </body>
 </html>
+
+
 
 
 
