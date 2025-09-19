@@ -195,30 +195,115 @@
     </div>
 
     <!-- Cabeçalho -->
-    <header class="bg-white shadow-md sticky top-0 z-50">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-blue-700">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 inline-block mr-2 text-blue-300" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M7 18a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm10 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM7.16 16l.84-2h7.5a2 2 0 0 0 1.93-1.45l3.24-10.36A1 1 0 0 0 19.5 2H5.21l-.94-2H1v2h2l3.6 7.59-1.35 2.44A2 2 0 0 0 5 15a2 2 0 0 0 2.16 1zM6.16 13l1.25-2.25L7.16 13zm2.84-2h7.5l-2.1 6.36A1 1 0 0 1 13.5 18h-6.34l1.84-3.36z" />
-                </svg>
-                Mercado SuperMarket
-            </a>
-            <div class="hidden md:flex space-x-6">
-                <a href="#ofertas" class="text-gray-600 hover:text-green-600 transition duration-300">Ofertas</a>
-                <a href="#sobre" class="text-gray-600 hover:text-green-600 transition duration-300">Sobre Nós</a>
-                <a href="#contato" class="text-gray-600 hover:text-green-600 transition duration-300">Contato</a>
+    <header class="bg-gradient-to-r from-blue-700 via-blue-600 to-green-600 shadow-xl sticky top-0 z-50 border-b-4 border-yellow-400">
+        <!-- Barra superior com informações -->
+        <div class="bg-white/10 backdrop-blur-sm border-b border-white/20">
+            <div class="container mx-auto px-6 py-2 flex justify-between items-center text-white text-sm">
+                <div class="flex items-center gap-6">
+                    <span class="flex items-center gap-2">
+                        📞 <strong>(11) 11969724824</strong>
+                    </span>
+                    <span class="hidden sm:flex items-center gap-2">
+                        📍 Rua Rio Negro, 151 - Guarulhos/SP
+                    </span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <span id="status-funcionamento" class="flex items-center gap-2 bg-green-500 px-3 py-1 rounded-full text-xs font-bold">
+                        🟢 ABERTO
+                    </span>
+                </div>
             </div>
-            <div class="md:hidden">
-                <button id="menu-btn" class="text-gray-600 hover:text-green-600 focus:outline-none">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                </button>
+        </div>
+        
+        <!-- Navegação principal -->
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-12 h-12 bg-white rounded-full p-2 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
+                    <img src="logo.SuperMarket.jpg" alt="Logo SuperMarket" class="w-full h-full object-cover rounded-full">
+                </div>
+                <div class="text-white">
+                    <h1 class="text-2xl font-bold leading-tight">SuperMarket</h1>
+                    <p class="text-blue-100 text-sm font-medium">Qualidade & Economia</p>
+                </div>
+            </a>
+            
+            <!-- Menu Desktop -->
+            <div class="hidden lg:flex items-center space-x-8">
+                <a href="#ofertas" class="text-white hover:text-yellow-300 transition duration-300 font-semibold px-3 py-2 rounded-lg hover:bg-white/10">
+                    🏷️ Ofertas
+                </a>
+                <a href="#sobre" class="text-white hover:text-yellow-300 transition duration-300 font-semibold px-3 py-2 rounded-lg hover:bg-white/10">
+                    ℹ️ Sobre Nós
+                </a>
+                <a href="#contato" class="text-white hover:text-yellow-300 transition duration-300 font-semibold px-3 py-2 rounded-lg hover:bg-white/10">
+                    📞 Contato
+                </a>
+                
+                <!-- Busca -->
+                <div class="relative hidden md:block">
+                    <input 
+                        type="text" 
+                        id="search-input"
+                        placeholder="Buscar produtos..." 
+                        class="bg-white/20 backdrop-blur-sm text-white placeholder-blue-100 px-4 py-2 pl-10 rounded-full border border-white/30 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 w-48"
+                    >
+                    <svg class="w-5 h-5 text-blue-100 absolute left-3 top-1/2 transform -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </div>
+            </div>
+            
+            <!-- Call to Action + Menu Mobile -->
+            <div class="flex items-center gap-4">
+                <!-- Botão WhatsApp destacado -->
+                <a href="https://wa.me/5511969724824" target="_blank" 
+                   class="hidden sm:flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold px-4 py-2 rounded-full transition duration-300 transform hover:scale-105 shadow-lg">
+                    💬 WhatsApp
+                </a>
+                
+                <!-- Menu Mobile -->
+                <div class="lg:hidden">
+                    <button id="menu-btn" class="text-white hover:text-yellow-300 focus:outline-none bg-white/10 p-2 rounded-lg">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
             </div>
         </nav>
-        <!-- Menu Mobile -->
-        <div id="mobile-menu" class="md:hidden hidden px-6 pb-4">
-            <a href="#ofertas" class="block py-2 text-gray-600 hover:text-green-600">Ofertas</a>
-            <a href="#sobre" class="block py-2 text-gray-600 hover:text-green-600">Sobre Nós</a>
-            <a href="#contato" class="block py-2 text-gray-600 hover:text-green-600">Contato</a>
+        
+        <!-- Menu Mobile Expandido -->
+        <div id="mobile-menu" class="lg:hidden hidden bg-white/10 backdrop-blur-sm border-t border-white/20">
+            <div class="container mx-auto px-6 py-4 space-y-3">
+                <!-- Busca Mobile -->
+                <div class="relative mb-4">
+                    <input 
+                        type="text" 
+                        placeholder="Buscar produtos..." 
+                        class="w-full bg-white/20 text-white placeholder-blue-100 px-4 py-3 pl-10 rounded-lg border border-white/30 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                    >
+                    <svg class="w-5 h-5 text-blue-100 absolute left-3 top-1/2 transform -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </div>
+                
+                <a href="#ofertas" class="block text-white hover:text-yellow-300 font-semibold py-3 px-4 rounded-lg hover:bg-white/10 transition">
+                    🏷️ Ofertas
+                </a>
+                <a href="#sobre" class="block text-white hover:text-yellow-300 font-semibold py-3 px-4 rounded-lg hover:bg-white/10 transition">
+                    ℹ️ Sobre Nós
+                </a>
+                <a href="#contato" class="block text-white hover:text-yellow-300 font-semibold py-3 px-4 rounded-lg hover:bg-white/10 transition">
+                    📞 Contato
+                </a>
+                
+                <!-- WhatsApp Mobile -->
+                <a href="https://wa.me/5511969724824" target="_blank" 
+                   class="block bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg text-center transition">
+                    💬 Falar no WhatsApp
+                </a>
+            </div>
         </div>
     </header>
 
@@ -539,6 +624,106 @@
             });
         });
 
+        // Funcionalidade de busca
+        const searchInputs = document.querySelectorAll('#search-input, input[placeholder="Buscar produtos..."]');
+        searchInputs.forEach(input => {
+            input.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                const products = document.querySelectorAll('.oferta-card');
+                
+                products.forEach(product => {
+                    const productName = product.querySelector('h3').textContent.toLowerCase();
+                    const productDescription = product.querySelector('p').textContent.toLowerCase();
+                    
+                    if (productName.includes(searchTerm) || productDescription.includes(searchTerm)) {
+                        product.style.display = 'block';
+                        product.style.animation = 'fadeIn 0.3s ease';
+                    } else {
+                        product.style.display = searchTerm === '' ? 'block' : 'none';
+                    }
+                });
+                
+                // Mostrar mensagem se nenhum produto for encontrado
+                const visibleProducts = Array.from(products).filter(p => p.style.display !== 'none');
+                let noResultsMsg = document.querySelector('.no-results-message');
+                
+                if (visibleProducts.length === 0 && searchTerm !== '') {
+                    if (!noResultsMsg) {
+                        noResultsMsg = document.createElement('div');
+                        noResultsMsg.className = 'no-results-message text-center py-8 col-span-full';
+                        noResultsMsg.innerHTML = `
+                            <div class="text-gray-500">
+                                <svg class="w-16 h-16 mx-auto mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                </svg>
+                                <h3 class="text-xl font-semibold mb-2">Nenhum produto encontrado</h3>
+                                <p>Tente buscar por outro termo ou confira todas as nossas ofertas abaixo.</p>
+                            </div>
+                        `;
+                        products[0].parentNode.appendChild(noResultsMsg);
+                    }
+                    noResultsMsg.style.display = 'block';
+                } else if (noResultsMsg) {
+                    noResultsMsg.style.display = 'none';
+                }
+            });
+        });
+
+        // Controle do status de funcionamento
+        function updateStoreStatus() {
+            const now = new Date();
+            const hour = now.getHours();
+            const day = now.getDay(); // 0 = domingo, 6 = sábado
+            const statusElement = document.getElementById('status-funcionamento');
+            
+            let isOpen = false;
+            
+            if (day === 0) { // Domingo
+                isOpen = hour >= 7 && hour < 14;
+            } else if (day >= 1 && day <= 6) { // Segunda a Sábado
+                isOpen = hour >= 7 && hour < 20;
+            }
+            
+            if (isOpen) {
+                statusElement.innerHTML = '🟢 ABERTO';
+                statusElement.className = 'flex items-center gap-2 bg-green-500 px-3 py-1 rounded-full text-xs font-bold animate-pulse';
+            } else {
+                statusElement.innerHTML = '🔴 FECHADO';
+                statusElement.className = 'flex items-center gap-2 bg-red-500 px-3 py-1 rounded-full text-xs font-bold';
+            }
+        }
+        
+        // Atualizar status a cada minuto
+        updateStoreStatus();
+        setInterval(updateStoreStatus, 60000);
+
+        // Scroll suave para links do menu
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = target.offsetTop - headerHeight - 20;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Adicionar efeito de fade para animações de busca
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        `;
+        document.head.appendChild(style);
+
         // Script para a tela de entrada (splash screen)
         const splashScreen = document.getElementById('splash-screen');
         const enterBtn = document.getElementById('enter-btn');
@@ -558,5 +743,6 @@
 
 </body>
 </html>
+
 
 
