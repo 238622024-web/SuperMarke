@@ -1278,29 +1278,60 @@
             installButton.style.display = 'none';
             
             installButton.addEventListener('click', async () => {
-                console.log('PWA: Botão clicado - iniciando instalação automática');
+                console.log('PWA: 🚀 INSTALAÇÃO AUTOMÁTICA INICIADA');
+                
+                // Desabilita o botão para evitar cliques duplos
+                installButton.disabled = true;
+                installButton.innerHTML = '⏳ Instalando...';
                 
                 if (deferredPrompt) {
                     try {
-                        console.log('PWA: Mostrando prompt de instalação');
-                        deferredPrompt.prompt();
+                        console.log('PWA: 📱 Prompt de instalação automática disparado');
+                        
+                        // Dispara o prompt de instalação AUTOMÁTICA
+                        await deferredPrompt.prompt();
                         const result = await deferredPrompt.userChoice;
-                        console.log('PWA: Resultado da instalação:', result);
+                        
+                        console.log('PWA: ✅ Resultado:', result.outcome);
                         
                         if (result.outcome === 'accepted') {
-                            console.log('PWA: Instalação aceita!');
-                            installButton.style.display = 'none';
+                            console.log('PWA: 🎉 APP INSTALADO COM SUCESSO!');
+                            
+                            // Mostra feedback de sucesso
+                            installButton.innerHTML = '✅ Instalado!';
+                            installButton.className = installButton.className.replace('bg-green-600', 'bg-blue-600');
+                            
+                            setTimeout(() => {
+                                installButton.style.display = 'none';
+                            }, 2000);
+                            
                         } else {
-                            console.log('PWA: Instalação rejeitada');
+                            console.log('PWA: ❌ Instalação cancelada pelo usuário');
+                            installButton.innerHTML = '📱 Instalar';
+                            installButton.disabled = false;
                         }
                         
                         deferredPrompt = null;
+                        
                     } catch (error) {
-                        console.error('PWA: Erro na instalação:', error);
+                        console.error('PWA: ❌ Erro na instalação automática:', error);
+                        installButton.innerHTML = '❌ Erro';
+                        setTimeout(() => {
+                            installButton.innerHTML = '📱 Instalar';
+                            installButton.disabled = false;
+                        }, 3000);
                     }
                 } else {
-                    console.log('PWA: Prompt não disponível - botão não deveria estar visível');
-                    installButton.style.display = 'none';
+                    console.log('PWA: ⚠️ Prompt não disponível - instalação manual necessária');
+                    installButton.innerHTML = '📱 Instalar';
+                    installButton.disabled = false;
+                    
+                    // Para debug - mostra por que não funcionou
+                    if (window.matchMedia('(display-mode: standalone)').matches) {
+                        console.log('PWA: App já está instalado');
+                    } else {
+                        console.log('PWA: Navegador não suporta instalação automática');
+                    }
                 }
             });
             
@@ -1339,21 +1370,46 @@
             document.body.appendChild(modal);
         }
 
-        // Evento para capturar o prompt de instalação
+        // Evento para capturar o prompt de instalação (OTIMIZADO)
         window.addEventListener('beforeinstallprompt', (e) => {
-            console.log('PWA: beforeinstallprompt event capturado!');
+            console.log('PWA: 🎯 EVENTO beforeinstallprompt CAPTURADO!');
+            console.log('PWA: ✅ Instalação automática DISPONÍVEL!');
+            
             e.preventDefault();
             deferredPrompt = e;
             
             createInstallButton();
             
-            // Mostra o botão APENAS quando tem prompt nativo disponível
+            // Mostra o botão IMEDIATAMENTE para instalação automática
             setTimeout(() => {
                 if (installButton && deferredPrompt) {
                     installButton.style.display = 'flex';
-                    console.log('PWA: Botão de instalação AUTOMÁTICA exibido');
+                    console.log('PWA: 🚀 BOTÃO DE INSTALAÇÃO AUTOMÁTICA ATIVO!');
+                    console.log('PWA: 👆 Clique = INSTALAÇÃO IMEDIATA!');
                 }
-            }, 1000);
+            }, 500); // Apenas 0.5 segundos
+        });
+
+        // Detecta se já está instalado
+        window.addEventListener('appinstalled', (evt) => {
+            console.log('PWA: 🎉 APP INSTALADO COM SUCESSO AUTOMATICAMENTE!');
+            if (installButton) {
+                installButton.style.display = 'none';
+            }
+            
+            // Notificação de sucesso
+            const toast = document.createElement('div');
+            toast.innerHTML = '🎉 SuperMarket instalado automaticamente!';
+            toast.className = `
+                fixed top-4 left-1/2 transform -translate-x-1/2 z-50
+                bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg
+                animate-bounce font-bold
+            `;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.remove();
+            }, 4000);
         });
 
         // REMOVIDO: Fallbacks que mostram instruções manuais
