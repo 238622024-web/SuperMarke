@@ -1279,13 +1279,28 @@
             
             createInstallButton();
             
-            // Mostra o botão após 3 segundos
+            // Mostra o botão após 2 segundos (reduzido de 3)
             setTimeout(() => {
                 if (installButton) {
                     installButton.style.display = 'flex';
+                    console.log('PWA: Botão de instalação exibido');
                 }
-            }, 3000);
+            }, 2000);
         });
+
+        // Fallback: Mostra botão mesmo sem beforeinstallprompt em alguns navegadores
+        setTimeout(() => {
+            if (!installButton && !window.matchMedia('(display-mode: standalone)').matches) {
+                console.log('PWA: Criando botão fallback');
+                createInstallButton();
+                if (installButton) {
+                    installButton.style.display = 'flex';
+                    installButton.onclick = () => {
+                        alert('Para instalar: Use o menu do navegador → "Adicionar à tela inicial" ou "Instalar app"');
+                    };
+                }
+            }
+        }, 5000);
 
         // Verifica se o app foi instalado
         window.addEventListener('appinstalled', (evt) => {
