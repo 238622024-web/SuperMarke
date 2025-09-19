@@ -1,20 +1,20 @@
 // Service Worker para PWA - SuperMarket
-const CACHE_NAME = 'supermarket-v1.0.1';
+const CACHE_NAME = 'supermarket-v1.0.2';
 const urlsToCache = [
-  '/SuperMarke/',
-  '/SuperMarke/index.html',
-  '/SuperMarke/manifest.json',
-  '/SuperMarke/logo.SuperMarket.jpg',
-  '/SuperMarke/FachadaSuperMarket.jpg',
-  '/SuperMarke/MacarraoDonaBenta.jpg',
-  '/SuperMarke/MioloAcem.jpeg',
-  '/SuperMarke/MolhoTomatePomodoro.jpg',
-  '/SuperMarke/PapelHigFoFinho.jpg',
-  '/SuperMarke/Pernil.jpeg',
-  '/SuperMarke/PontaAgulha.png',
-  '/SuperMarke/PontaAlcatra.jpeg',
-  '/SuperMarke/QueijoMussarela.jpeg',
-  '/SuperMarke/VinagreVitalia.jpg',
+  './',
+  './index.html',
+  './manifest.json',
+  './logo.SuperMarket.jpg',
+  './FachadaSuperMarket.jpg',
+  './MacarraoDonaBenta.jpg',
+  './MioloAcem.jpeg',
+  './MolhoTomatePomodoro.jpg',
+  './PapelHigFoFinho.jpg',
+  './Pernil.jpeg',
+  './PontaAgulha.png',
+  './PontaAlcatra.jpeg',
+  './QueijoMussarela.jpeg',
+  './VinagreVitalia.jpg',
   'https://cdn.tailwindcss.com',
   'https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap'
 ];
@@ -22,11 +22,24 @@ const urlsToCache = [
 // Instalação do Service Worker
 self.addEventListener('install', event => {
   console.log('SW: Instalando Service Worker');
+  self.skipWaiting(); // Força ativação imediata
+  
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
         console.log('SW: Cache aberto');
-        return cache.addAll(urlsToCache);
+        // Adiciona recursos um por um para melhor controle
+        return Promise.all(
+          urlsToCache.map(url => {
+            return cache.add(url).catch(error => {
+              console.warn('SW: Erro ao fazer cache de:', url, error);
+              return Promise.resolve(); // Continua mesmo com erro
+            });
+          })
+        );
+      })
+      .then(() => {
+        console.log('SW: Cache concluído');
       })
       .catch(error => {
         console.error('SW: Erro ao fazer cache:', error);
@@ -38,16 +51,21 @@ self.addEventListener('install', event => {
 self.addEventListener('activate', event => {
   console.log('SW: Ativando Service Worker');
   event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames.map(cacheName => {
-          if (cacheName !== CACHE_NAME) {
-            console.log('SW: Removendo cache antigo:', cacheName);
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    })
+    Promise.all([
+      // Limpa caches antigos
+      caches.keys().then(cacheNames => {
+        return Promise.all(
+          cacheNames.map(cacheName => {
+            if (cacheName !== CACHE_NAME) {
+              console.log('SW: Removendo cache antigo:', cacheName);
+              return caches.delete(cacheName);
+            }
+          })
+        );
+      }),
+      // Assume controle imediato
+      self.clients.claim()
+    ])
   );
 });
 

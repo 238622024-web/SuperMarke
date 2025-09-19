@@ -1294,7 +1294,7 @@
                     <!-- Card 1 -->
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
                         <div class="etiqueta-promo">PROMOÇÃO!</div>
-                        <img src="MolhoTomatePomodoro.jpg" alt="Molho Pomodoro 300g trad" class="w-full h-48 object-cover" loading="lazy">
+                        <img src="MolhoTomatePomodoro.jpg" alt="Molho Pomodoro 300g trad" class="w-full h-48 object-cover" loading="eager">
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="font-bold text-xl mb-2 text-gray-800">MOLHO POMODORO 300g</h3>
                             <p class="text-gray-600 mb-4 flex-grow">Molho de tomate tradicional, sabor caseiro para suas receitas</p>
@@ -1308,7 +1308,7 @@
                     </div>
                     <!-- Card 2 -->
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
-                        <img src="MacarraoDonaBenta.jpg" alt="Macarrão Dona Benta 500g" class="w-full h-48 object-cover" loading="lazy">
+                        <img src="MacarraoDonaBenta.jpg" alt="Macarrão Dona Benta 500g" class="w-full h-48 object-cover" loading="eager">
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="font-bold text-xl mb-2 text-gray-800">MACARRÃO DONA BENTA 500g</h3>
                             <p class="text-gray-600 mb-4 flex-grow">Perfeito para o almoço em família.</p>
@@ -1322,7 +1322,7 @@
                     </div>
                     <!-- Card 3 -->
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
-                        <img src="VinagreVitalia.jpg" alt="Vinagre Vitalia 750ml" class="w-full h-48 object-cover" loading="lazy">
+                        <img src="VinagreVitalia.jpg" alt="Vinagre Vitalia 750ml" class="w-full h-48 object-cover" loading="eager">
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="font-bold text-xl mb-2 text-gray-800">VINAGRE VITALIA 750ml</h3>
                             <p class="text-gray-600 mb-4 flex-grow">Ideal para temperar saladas.</p>
@@ -1336,7 +1336,7 @@
                     </div>
                     <!-- Card 4 -->
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
-                        <img src="PapelHigFoFinho.jpg" alt="Papel Hig Fofinho 12R" class="w-full h-48 object-cover" loading="lazy">
+                        <img src="PapelHigFoFinho.jpg" alt="Papel Hig Fofinho 12R" class="w-full h-48 object-cover" loading="eager">
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="font-bold text-xl mb-2 text-gray-800">PAPEL HIG FOFINHO 12R</h3>
                             <p class="text-gray-600 mb-4 flex-grow">Pacote econômico.</p>
@@ -1350,7 +1350,7 @@
                     </div>
                     <!-- Card 5 -->
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
-                        <img src="PontaAgulha.png" alt="Ponta Agulha kg" class="w-full h-48 object-cover" loading="lazy">
+                        <img src="PontaAgulha.png" alt="Ponta Agulha kg" class="w-full h-48 object-cover" loading="eager">
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="font-bold text-xl mb-2 text-gray-800">PONTA AGULHA KG</h3>
                             <p class="text-gray-600 mb-4 flex-grow">Carne para churrasco.</p>
@@ -1364,7 +1364,7 @@
                     </div>
                     <!-- Card 6 -->
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
-                        <img src="MioloAcem.jpeg" alt="Miolo Acém kg" class="w-full h-48 object-cover" loading="lazy">
+                        <img src="MioloAcem.jpeg" alt="Miolo Acém kg" class="w-full h-48 object-cover" loading="eager">
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="font-bold text-xl mb-2 text-gray-800">MIOLO ACÉM KG</h3>
                             <p class="text-gray-600 mb-4 flex-grow">Carne macia para cozidos.</p>
@@ -1378,7 +1378,7 @@
                     </div>
                     <!-- Card 7 -->
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
-                        <img src="Pernil.jpeg" alt="Pernil kg" class="w-full h-48 object-cover" loading="lazy">
+                        <img src="Pernil.jpeg" alt="Pernil kg" class="w-full h-48 object-cover" loading="eager">
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="font-bold text-xl mb-2 text-gray-800">PERNIL KG</h3>
                             <p class="text-gray-600 mb-4 flex-grow">Perfeito para assados.</p>
@@ -1392,7 +1392,7 @@
                     </div>
                     <!-- Card 8 -->
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
-                        <img src="PontaAlcatra.jpeg" alt="Ponta Alcatra kg" class="w-full h-48 object-cover" loading="lazy">
+                        <img src="PontaAlcatra.jpeg" alt="Ponta Alcatra kg" class="w-full h-48 object-cover" loading="eager">
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="font-bold text-xl mb-2 text-gray-800">PONTA ALCATRA KG</h3>
                             <p class="text-gray-600 mb-4 flex-grow">Carne nobre para grelha.</p>
@@ -1814,10 +1814,61 @@
         // Executa após carregamento da página
         window.addEventListener('load', ensureImagesLoad);
         
+        // FORÇA CARREGAMENTO IMEDIATO DE TODAS AS IMAGENS
+        function forceLoadAllImages() {
+            console.log('🖼️ Forçando carregamento de todas as imagens...');
+            
+            const allImages = document.querySelectorAll('img');
+            let loadedCount = 0;
+            
+            allImages.forEach((img, index) => {
+                // Remove lazy loading se existir
+                img.removeAttribute('loading');
+                
+                // Força recarregamento
+                const originalSrc = img.src;
+                if (originalSrc) {
+                    img.onload = () => {
+                        loadedCount++;
+                        console.log(`✅ Imagem ${index + 1}/${allImages.length} carregada: ${img.alt}`);
+                        
+                        if (loadedCount === allImages.length) {
+                            console.log('🎉 Todas as imagens carregadas com sucesso!');
+                            showToast('Todas as ofertas carregadas! 🎉', 'success');
+                        }
+                    };
+                    
+                    img.onerror = () => {
+                        console.warn(`❌ Erro ao carregar: ${img.alt} - ${originalSrc}`);
+                        // Tenta novamente após 1 segundo
+                        setTimeout(() => {
+                            img.src = originalSrc;
+                        }, 1000);
+                    };
+                    
+                    // Força recarregamento
+                    img.src = '';
+                    setTimeout(() => {
+                        img.src = originalSrc;
+                    }, 100);
+                }
+            });
+        }
+        
+        // Executa imediatamente quando DOM estiver pronto
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', forceLoadAllImages);
+        } else {
+            forceLoadAllImages();
+        }
+        
+        // Executa novamente após 2 segundos para garantir
+        setTimeout(forceLoadAllImages, 2000);
+        
         // Executa quando instalado como PWA
         window.addEventListener('appinstalled', () => {
-            console.log('App instalado como PWA');
-            setTimeout(ensureImagesLoad, 1000);
+            console.log('📱 App instalado - recarregando imagens...');
+            setTimeout(forceLoadAllImages, 1000);
         });
         
         // PWA INSTALL PROMPT
