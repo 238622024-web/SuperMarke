@@ -1278,17 +1278,29 @@
             installButton.style.display = 'none';
             
             installButton.addEventListener('click', async () => {
-                console.log('PWA: Botão clicado');
+                console.log('PWA: Botão clicado - iniciando instalação automática');
+                
                 if (deferredPrompt) {
-                    console.log('PWA: Usando prompt nativo');
-                    deferredPrompt.prompt();
-                    const result = await deferredPrompt.userChoice;
-                    console.log('PWA: Resultado da instalação:', result);
-                    deferredPrompt = null;
-                    installButton.style.display = 'none';
+                    try {
+                        console.log('PWA: Mostrando prompt de instalação');
+                        deferredPrompt.prompt();
+                        const result = await deferredPrompt.userChoice;
+                        console.log('PWA: Resultado da instalação:', result);
+                        
+                        if (result.outcome === 'accepted') {
+                            console.log('PWA: Instalação aceita!');
+                            installButton.style.display = 'none';
+                        } else {
+                            console.log('PWA: Instalação rejeitada');
+                        }
+                        
+                        deferredPrompt = null;
+                    } catch (error) {
+                        console.error('PWA: Erro na instalação:', error);
+                    }
                 } else {
-                    console.log('PWA: Mostrando instruções manuais');
-                    showManualInstallInstructions();
+                    console.log('PWA: Prompt não disponível - botão não deveria estar visível');
+                    installButton.style.display = 'none';
                 }
             });
             
@@ -1329,48 +1341,33 @@
 
         // Evento para capturar o prompt de instalação
         window.addEventListener('beforeinstallprompt', (e) => {
-            console.log('PWA: beforeinstallprompt event fired');
+            console.log('PWA: beforeinstallprompt event capturado!');
             e.preventDefault();
             deferredPrompt = e;
             
             createInstallButton();
             
-            // Mostra o botão após 1 segundo no mobile, 2 no desktop
-            const delay = isMobile() ? 1000 : 2000;
+            // Mostra o botão APENAS quando tem prompt nativo disponível
             setTimeout(() => {
-                if (installButton) {
+                if (installButton && deferredPrompt) {
                     installButton.style.display = 'flex';
-                    console.log('PWA: Botão de instalação exibido');
+                    console.log('PWA: Botão de instalação AUTOMÁTICA exibido');
                 }
-            }, delay);
+            }, 1000);
         });
 
-        // Fallback específico para mobile - sempre mostra botão
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                // Se é mobile e ainda não tem botão e não está instalado, cria um forçado
-                if (isMobile() && !installButton && !isAppInstalled()) {
-                    console.log('PWA: Criando botão forçado para mobile');
-                    createInstallButton();
-                    if (installButton) {
-                        installButton.style.display = 'flex';
-                        console.log('PWA: Botão forçado exibido para mobile');
-                    }
-                }
-            }, 2000); // Reduzido para 2 segundos
-        });
+        // REMOVIDO: Fallbacks que mostram instruções manuais
+        // Agora o botão só aparece quando pode instalar automaticamente
 
-        // Fallback: Mostra botão mesmo sem beforeinstallprompt
+        // Só para debug - mostra se o evento não foi capturado
         setTimeout(() => {
-            if (!installButton && !isAppInstalled()) {
-                console.log('PWA: Criando botão fallback final');
-                createInstallButton();
-                if (installButton) {
-                    installButton.style.display = 'flex';
-                    console.log('PWA: Botão fallback exibido');
-                }
+            if (!deferredPrompt) {
+                console.log('PWA: beforeinstallprompt não foi capturado. Possíveis causas:');
+                console.log('- App já está instalado');
+                console.log('- Navegador não suporta instalação automática');
+                console.log('- Critérios de PWA não foram atendidos');
             }
-        }, 4000); // Reduzido para 4 segundos
+        }, 3000);
 
         // Verifica se o app foi instalado
         window.addEventListener('appinstalled', (evt) => {
