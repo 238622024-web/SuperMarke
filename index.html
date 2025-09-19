@@ -1231,11 +1231,17 @@
             });
         }
 
-        // PWA - Install App Prompt
+        // PWA - Install App Prompt (Otimizado para Mobile)
         let deferredPrompt;
         let installButton = null;
 
-        // Cria botão de instalação
+        // Detecta se é dispositivo móvel
+        function isMobile() {
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+                   (window.innerWidth <= 768);
+        }
+
+        // Cria botão de instalação otimizado para mobile
         function createInstallButton() {
             if (installButton) return;
             
@@ -1247,28 +1253,57 @@
                 </svg>
                 📱 Instalar App
             `;
+            
+            // Estilos otimizados para mobile
+            const mobileStyles = isMobile() ? 
+                'bottom-6 right-4 left-4 mx-auto max-w-xs' : 
+                'bottom-4 right-4';
+                
             installButton.className = `
-                fixed bottom-4 right-4 z-50 
+                fixed ${mobileStyles} z-50 
                 bg-green-600 hover:bg-green-700 text-white 
-                px-4 py-3 rounded-full shadow-lg 
-                flex items-center font-bold text-sm
+                px-6 py-4 rounded-full shadow-2xl 
+                flex items-center justify-center font-bold text-base
                 transform transition-all duration-300 
                 hover:scale-105 active:scale-95
-                animate-bounce
+                animate-pulse border-2 border-green-400
             `;
             installButton.style.display = 'none';
             
             installButton.addEventListener('click', async () => {
+                console.log('PWA: Botão clicado');
                 if (deferredPrompt) {
+                    console.log('PWA: Usando prompt nativo');
                     deferredPrompt.prompt();
                     const result = await deferredPrompt.userChoice;
                     console.log('PWA: Resultado da instalação:', result);
                     deferredPrompt = null;
                     installButton.style.display = 'none';
+                } else {
+                    console.log('PWA: Mostrando instruções manuais');
+                    showManualInstallInstructions();
                 }
             });
             
             document.body.appendChild(installButton);
+            console.log('PWA: Botão de instalação criado');
+        }
+
+        // Instruções manuais para instalação
+        function showManualInstallInstructions() {
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+            const isAndroid = /Android/.test(navigator.userAgent);
+            
+            let instructions = '';
+            if (isIOS) {
+                instructions = 'Para instalar:\n1. Toque no ícone de compartilhar (📤)\n2. Selecione "Adicionar à Tela de Início"';
+            } else if (isAndroid) {
+                instructions = 'Para instalar:\n1. Toque no menu do navegador (⋮)\n2. Selecione "Adicionar à tela inicial" ou "Instalar app"';
+            } else {
+                instructions = 'Para instalar:\n1. Use o menu do navegador\n2. Procure por "Adicionar à tela inicial" ou "Instalar app"';
+            }
+            
+            alert(instructions);
         }
 
         // Evento para capturar o prompt de instalação
@@ -1279,13 +1314,29 @@
             
             createInstallButton();
             
-            // Mostra o botão após 2 segundos (reduzido de 3)
+            // Mostra o botão após 1 segundo no mobile, 2 no desktop
+            const delay = isMobile() ? 1000 : 2000;
             setTimeout(() => {
                 if (installButton) {
                     installButton.style.display = 'flex';
                     console.log('PWA: Botão de instalação exibido');
                 }
-            }, 2000);
+            }, delay);
+        });
+
+        // Fallback específico para mobile - sempre mostra botão
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                // Se é mobile e ainda não tem botão, cria um forçado
+                if (isMobile() && !installButton && !window.matchMedia('(display-mode: standalone)').matches) {
+                    console.log('PWA: Criando botão forçado para mobile');
+                    createInstallButton();
+                    if (installButton) {
+                        installButton.style.display = 'flex';
+                        console.log('PWA: Botão forçado exibido para mobile');
+                    }
+                }
+            }, 3000);
         });
 
         // Fallback: Mostra botão mesmo sem beforeinstallprompt em alguns navegadores
@@ -1295,9 +1346,6 @@
                 createInstallButton();
                 if (installButton) {
                     installButton.style.display = 'flex';
-                    installButton.onclick = () => {
-                        alert('Para instalar: Use o menu do navegador → "Adicionar à tela inicial" ou "Instalar app"');
-                    };
                 }
             }
         }, 5000);
