@@ -1,28 +1,66 @@
-{
-  "name": "SuperMarket - Ofertas Especiais",
-  "short_name": "SuperMarket",
-  "description": "Suas ofertas favoritas do SuperMarket direto no seu celular",
-  "start_url": "/SuperMarke/",
-  "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#22c55e",
-  "orientation": "portrait",
-  "scope": "/SuperMarke/",
-  "lang": "pt-BR",
-  "dir": "ltr",
-  "categories": ["shopping", "food", "lifestyle"],
-  "icons": [
-    {
+{{
+
+  "name": "SuperMarket - Supermercado Online",  "name": "SuperMarket",
+
+  "short_name": "SuperMarket",  "short_name": "SuperMarket", 
+
+  "description": "As melhores ofertas do seu bairro! Qualidade e economia perto de você.",  "icons": [
+
+  "start_url": "/SuperMarke/",    {
+
+  "display": "standalone",      "src": "logo.SuperMarket.jpg",
+
+  "background_color": "#ffffff",      "sizes": "192x192",
+
+  "theme_color": "#22c55e",      "type": "image/png"
+
+  "orientation": "portrait-primary",    }
+
+  "scope": "/SuperMarke/",  ],
+
+  "lang": "pt-BR",  "start_url": "/",
+
+  "dir": "ltr",  "display": "standalone",
+
+  "categories": ["shopping", "food", "business"],  "background_color": "#ffffff",
+
+  "icons": [  "theme_color": "#22c55e"
+
+    {}
+
       "src": "logo.SuperMarket.jpg",
-      "sizes": "192x192",
+
+      "sizes": "192x192",// Arquivo separado que faz cache do site
+
+      "type": "image/jpeg",self.addEventListener('install', function(event) {
+
+      "purpose": "maskable any"  // Cache dos arquivos principais
+
+    },});
+
+    {
+
+      "src": "logo.SuperMarket.jpg", <meta name="theme-color" content="#22c55e">
+
+      "sizes": "512x512",<link rel="manifest" href="/manifest.json">
       "type": "image/jpeg",
-      "purpose": "any maskable"
+      "purpose": "maskable any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Ver Ofertas",
+      "short_name": "Ofertas",
+      "description": "Confira as ofertas da semana",
+      "url": "/SuperMarke/#ofertas",
+      "icons": [{"src": "logo.SuperMarket.jpg", "sizes": "96x96"}]
     },
     {
-      "src": "logo.SuperMarket.jpg",
-      "sizes": "512x512",
-      "type": "image/jpeg",
-      "purpose": "any maskable"
+      "name": "Contato WhatsApp",
+      "short_name": "WhatsApp", 
+      "description": "Fale conosco pelo WhatsApp",
+      "url": "https://wa.me/5511969724824",
+      "icons": [{"src": "logo.SuperMarket.jpg", "sizes": "96x96"}]
     }
   ],
   "screenshots": [
@@ -30,43 +68,7 @@
       "src": "FachadaSuperMarket.jpg",
       "sizes": "1280x720",
       "type": "image/jpeg",
-      "form_factor": "wide",
-      "label": "Fachada do SuperMarket"
-    }
-  ],
-  "prefer_related_applications": false,
-  "related_applications": [],
-  "features": [
-    "Cross Platform",
-    "Fast",
-    "Offline Support"
-  ],
-  "shortcuts": [
-    {
-      "name": "Ver Ofertas",
-      "short_name": "Ofertas",
-      "description": "Veja as ofertas especiais",
-      "url": "/SuperMarke/#ofertas",
-      "icons": [
-        {
-          "src": "logo.SuperMarket.jpg",
-          "sizes": "96x96",
-          "type": "image/jpeg"
-        }
-      ]
-    },
-    {
-      "name": "Contato WhatsApp",
-      "short_name": "Contato",
-      "description": "Entre em contato via WhatsApp",
-      "url": "/SuperMarke/#contato",
-      "icons": [
-        {
-          "src": "logo.SuperMarket.jpg",
-          "sizes": "96x96",
-          "type": "image/jpeg"
-        }
-      ]
+      "form_factor": "wide"
     }
   ]
 }

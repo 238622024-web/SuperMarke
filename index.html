@@ -71,18 +71,24 @@
     <title>Mercado SuperMarket - As Melhores Ofertas! | Responsivo</title>
     
     <!-- PWA Meta Tags -->
-    <meta name="description" content="Suas ofertas favoritas do SuperMarket direto no seu celular">
     <meta name="theme-color" content="#22c55e">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="SuperMarket">
     <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="SuperMarket">
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="logo.SuperMarket.jpg">
-    <!-- PWA Icons -->
-    <link rel="apple-touch-icon" href="logo.SuperMarket.jpg">
+    <!-- Manifest PWA -->
     <link rel="manifest" href="manifest.json">
+    
+    <!-- Favicon e ícones Apple -->
+    <link rel="icon" type="image/png" href="logo.SuperMarket.jpg">
+    <link rel="apple-touch-icon" href="logo.SuperMarket.jpg">
+    <link rel="apple-touch-icon" sizes="152x152" href="logo.SuperMarket.jpg">
+    <link rel="apple-touch-icon" sizes="180x180" href="logo.SuperMarket.jpg">
+    <link rel="apple-touch-icon" sizes="167x167" href="logo.SuperMarket.jpg">
+    
+    <!-- Scripts e estilos -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -152,473 +158,6 @@
             margin: 0 auto;
             padding-left: 1rem;
             padding-right: 1rem;
-        }
-        
-        /* SKELETON LOADING STATES */
-        .skeleton {
-            background: linear-gradient(
-                90deg,
-                #f0f0f0 25%,
-                #e0e0e0 50%,
-                #f0f0f0 75%
-            );
-            background-size: 200% 100%;
-            animation: skeleton-loading 1.5s infinite;
-        }
-        
-        @keyframes skeleton-loading {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
-        
-        .skeleton-card {
-            background: white;
-            border-radius: 1rem;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            margin-bottom: 1.5rem;
-            min-height: 400px;
-        }
-        
-        .skeleton-image {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(
-                90deg,
-                #f0f0f0 25%,
-                #e0e0e0 50%,
-                #f0f0f0 75%
-            );
-            background-size: 200% 100%;
-            animation: skeleton-loading 1.5s infinite;
-        }
-        
-        .skeleton-content {
-            padding: 1.5rem;
-        }
-        
-        .skeleton-title {
-            width: 80%;
-            height: 24px;
-            background: linear-gradient(
-                90deg,
-                #f0f0f0 25%,
-                #e0e0e0 50%,
-                #f0f0f0 75%
-            );
-            background-size: 200% 100%;
-            animation: skeleton-loading 1.5s infinite;
-            border-radius: 4px;
-            margin-bottom: 1rem;
-        }
-        
-        .skeleton-description {
-            width: 100%;
-            height: 16px;
-            background: linear-gradient(
-                90deg,
-                #f0f0f0 25%,
-                #e0e0e0 50%,
-                #f0f0f0 75%
-            );
-            background-size: 200% 100%;
-            animation: skeleton-loading 1.5s infinite;
-            border-radius: 4px;
-            margin-bottom: 0.5rem;
-        }
-        
-        .skeleton-description:last-child {
-            width: 70%;
-        }
-        
-        .skeleton-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 1.5rem;
-        }
-        
-        .skeleton-price {
-            width: 120px;
-            height: 32px;
-            background: linear-gradient(
-                90deg,
-                #f0f0f0 25%,
-                #e0e0e0 50%,
-                #f0f0f0 75%
-            );
-            background-size: 200% 100%;
-            animation: skeleton-loading 1.5s infinite;
-            border-radius: 4px;
-        }
-        
-        .skeleton-button {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(
-                90deg,
-                #f0f0f0 25%,
-                #e0e0e0 50%,
-                #f0f0f0 75%
-            );
-            background-size: 200% 100%;
-            animation: skeleton-loading 1.5s infinite;
-            border-radius: 50%;
-        }
-        
-        /* Loading overlay para página */
-        .page-loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.9);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            opacity: 1;
-            transition: opacity 0.3s ease;
-        }
-        
-        .page-loader.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-        
-        .loader-spinner {
-            width: 50px;
-            height: 50px;
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #22c55e;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        /* STICKY HEADER MELHORADO */
-        header {
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        header.scrolled {
-            background: rgba(59, 130, 246, 0.95) !important;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-        }
-        
-        /* BOTÃO CARRINHO FLUTUANTE */
-        .floating-cart {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.4);
-            cursor: pointer;
-            z-index: 1000;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        .floating-cart:hover {
-            transform: scale(1.1) translateY(-5px);
-            box-shadow: 0 12px 35px rgba(34, 197, 94, 0.6);
-        }
-        
-        .floating-cart svg {
-            width: 28px;
-            height: 28px;
-            color: white;
-        }
-        
-        .cart-badge {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: #ef4444;
-            color: white;
-            font-size: 12px;
-            font-weight: bold;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
-        }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-        
-        /* BOTÃO VOLTAR AO TOPO MELHORADO */
-        .back-to-top {
-            position: fixed;
-            bottom: 100px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 999;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-        }
-        
-        .back-to-top.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .back-to-top:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5);
-        }
-        
-        .back-to-top svg {
-            width: 20px;
-            height: 20px;
-            color: white;
-        }
-        
-        /* MICRO-INTERAÇÕES E ANIMAÇÕES */
-        
-        /* Toast Notifications */
-        .toast {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: white;
-            border-radius: 12px;
-            padding: 16px 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
-            border-left: 4px solid #22c55e;
-            z-index: 10000;
-            opacity: 0;
-            transform: translateX(100%);
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            max-width: 300px;
-        }
-        
-        .toast.show {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
-        .toast.success { border-left-color: #22c55e; }
-        .toast.error { border-left-color: #ef4444; }
-        .toast.info { border-left-color: #3b82f6; }
-        
-        .toast-content {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .toast-icon {
-            width: 20px;
-            height: 20px;
-            flex-shrink: 0;
-        }
-        
-        .toast-text {
-            font-weight: 500;
-            color: #374151;
-        }
-        
-        /* Loading Spinner Components */
-        .btn-loading {
-            position: relative;
-            pointer-events: none;
-        }
-        
-        .btn-loading::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 16px;
-            height: 16px;
-            margin: -8px 0 0 -8px;
-            border: 2px solid transparent;
-            border-top: 2px solid currentColor;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        
-        .btn-loading .btn-text {
-            opacity: 0;
-        }
-        
-        /* Hover Effects Melhorados */
-        .enhanced-hover {
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        .enhanced-hover::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-        
-        .enhanced-hover:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-        
-        /* Ripple Effect */
-        .ripple {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .ripple::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-        
-        .ripple:active::after {
-            width: 200px;
-            height: 200px;
-        }
-        
-        /* Animações de Entrada */
-        .fade-in-up {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.6s ease forwards;
-        }
-        
-        .fade-in-left {
-            opacity: 0;
-            transform: translateX(-30px);
-            animation: fadeInLeft 0.6s ease forwards;
-        }
-        
-        .fade-in-right {
-            opacity: 0;
-            transform: translateX(30px);
-            animation: fadeInRight 0.6s ease forwards;
-        }
-        
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes fadeInLeft {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        @keyframes fadeInRight {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        /* Staggered Animations */
-        .stagger-children > * {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.6s ease forwards;
-        }
-        
-        .stagger-children > *:nth-child(1) { animation-delay: 0.1s; }
-        .stagger-children > *:nth-child(2) { animation-delay: 0.2s; }
-        .stagger-children > *:nth-child(3) { animation-delay: 0.3s; }
-        .stagger-children > *:nth-child(4) { animation-delay: 0.4s; }
-        .stagger-children > *:nth-child(5) { animation-delay: 0.5s; }
-        .stagger-children > *:nth-child(6) { animation-delay: 0.6s; }
-        .stagger-children > *:nth-child(7) { animation-delay: 0.7s; }
-        .stagger-children > *:nth-child(8) { animation-delay: 0.8s; }
-        
-        /* Progress Bar */
-        .progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #22c55e 0%, #16a34a 100%);
-            z-index: 10001;
-            transition: width 0.3s ease;
-        }
-        
-        /* PERFORMANCE OPTIMIZATIONS */
-        
-        /* Lazy Loading Images */
-        img[data-src] {
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-            background-size: 200% 100%;
-            animation: shimmer 1.5s infinite;
-        }
-        
-        img.loaded {
-            opacity: 1;
-        }
-        
-        /* Otimização de scrolling */
-        .smooth-scroll {
-            scroll-behavior: smooth;
-        }
-        
-        /* GPU acceleration para animações */
-        .gpu-accelerated {
-            transform: translateZ(0);
-            will-change: transform;
         }
         
         /* Header responsivo */
@@ -1276,10 +815,7 @@
                     <!-- Produto Mussarela KG -->
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
                         <div class="etiqueta-promo">OFERTA!</div>
-                        <img src="QueijoMussarela.jpeg" alt="Mussarela KG" class="w-full h-48 object-cover" loading="eager" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div style="display:none; align-items:center; justify-content:center; height:192px; background:#f3f4f6; color:#6b7280;">
-                            Carregando imagem...
-                        </div>
+                        <img src="QueijoMussarela.jpeg" alt="Mussarela KG" class="w-full h-48 object-cover" loading="lazy">
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="font-bold text-xl mb-2 text-gray-800">MUSSARELA KG</h3>
                             <p class="text-gray-600 mb-4 flex-grow">Queijo mussarela fresco, ideal para sanduíches e receitas</p>
@@ -1294,7 +830,7 @@
                     <!-- Card 1 -->
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
                         <div class="etiqueta-promo">PROMOÇÃO!</div>
-                        <img src="MolhoTomatePomodoro.jpg" alt="Molho Pomodoro 300g trad" class="w-full h-48 object-cover" loading="eager">
+                        <img src="MolhoTomatePomodoro.jpg" alt="Molho Pomodoro 300g trad" class="w-full h-48 object-cover" loading="lazy">
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="font-bold text-xl mb-2 text-gray-800">MOLHO POMODORO 300g</h3>
                             <p class="text-gray-600 mb-4 flex-grow">Molho de tomate tradicional, sabor caseiro para suas receitas</p>
@@ -1308,7 +844,7 @@
                     </div>
                     <!-- Card 2 -->
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
-                        <img src="MacarraoDonaBenta.jpg" alt="Macarrão Dona Benta 500g" class="w-full h-48 object-cover" loading="eager">
+                        <img src="MacarraoDonaBenta.jpg" alt="Macarrão Dona Benta 500g" class="w-full h-48 object-cover" loading="lazy">
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="font-bold text-xl mb-2 text-gray-800">MACARRÃO DONA BENTA 500g</h3>
                             <p class="text-gray-600 mb-4 flex-grow">Perfeito para o almoço em família.</p>
@@ -1322,7 +858,7 @@
                     </div>
                     <!-- Card 3 -->
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
-                        <img src="VinagreVitalia.jpg" alt="Vinagre Vitalia 750ml" class="w-full h-48 object-cover" loading="eager">
+                        <img src="VinagreVitalia.jpg" alt="Vinagre Vitalia 750ml" class="w-full h-48 object-cover" loading="lazy">
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="font-bold text-xl mb-2 text-gray-800">VINAGRE VITALIA 750ml</h3>
                             <p class="text-gray-600 mb-4 flex-grow">Ideal para temperar saladas.</p>
@@ -1336,7 +872,7 @@
                     </div>
                     <!-- Card 4 -->
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
-                        <img src="PapelHigFoFinho.jpg" alt="Papel Hig Fofinho 12R" class="w-full h-48 object-cover" loading="eager">
+                        <img src="PapelHigFoFinho.jpg" alt="Papel Hig Fofinho 12R" class="w-full h-48 object-cover" loading="lazy">
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="font-bold text-xl mb-2 text-gray-800">PAPEL HIG FOFINHO 12R</h3>
                             <p class="text-gray-600 mb-4 flex-grow">Pacote econômico.</p>
@@ -1350,7 +886,7 @@
                     </div>
                     <!-- Card 5 -->
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
-                        <img src="PontaAgulha.png" alt="Ponta Agulha kg" class="w-full h-48 object-cover" loading="eager">
+                        <img src="PontaAgulha.png" alt="Ponta Agulha kg" class="w-full h-48 object-cover" loading="lazy">
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="font-bold text-xl mb-2 text-gray-800">PONTA AGULHA KG</h3>
                             <p class="text-gray-600 mb-4 flex-grow">Carne para churrasco.</p>
@@ -1364,7 +900,7 @@
                     </div>
                     <!-- Card 6 -->
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
-                        <img src="MioloAcem.jpeg" alt="Miolo Acém kg" class="w-full h-48 object-cover" loading="eager">
+                        <img src="MioloAcem.jpeg" alt="Miolo Acém kg" class="w-full h-48 object-cover" loading="lazy">
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="font-bold text-xl mb-2 text-gray-800">MIOLO ACÉM KG</h3>
                             <p class="text-gray-600 mb-4 flex-grow">Carne macia para cozidos.</p>
@@ -1378,7 +914,7 @@
                     </div>
                     <!-- Card 7 -->
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
-                        <img src="Pernil.jpeg" alt="Pernil kg" class="w-full h-48 object-cover" loading="eager">
+                        <img src="Pernil.jpeg" alt="Pernil kg" class="w-full h-48 object-cover" loading="lazy">
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="font-bold text-xl mb-2 text-gray-800">PERNIL KG</h3>
                             <p class="text-gray-600 mb-4 flex-grow">Perfeito para assados.</p>
@@ -1392,7 +928,7 @@
                     </div>
                     <!-- Card 8 -->
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
-                        <img src="PontaAlcatra.jpeg" alt="Ponta Alcatra kg" class="w-full h-48 object-cover" loading="eager">
+                        <img src="PontaAlcatra.jpeg" alt="Ponta Alcatra kg" class="w-full h-48 object-cover" loading="lazy">
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="font-bold text-xl mb-2 text-gray-800">PONTA ALCATRA KG</h3>
                             <p class="text-gray-600 mb-4 flex-grow">Carne nobre para grelha.</p>
@@ -1757,412 +1293,136 @@
                 document.body.style.overflow = 'auto';
             }, 500); // Deve ser igual à duração da transição do CSS (duration-500)
         });
-        
-        // PWA SERVICE WORKER REGISTRATION
+
+        // PWA - Service Worker Registration
         if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
+            window.addEventListener('load', function() {
                 navigator.serviceWorker.register('/SuperMarke/sw.js')
-                    .then(registration => {
-                        console.log('SW: Service Worker registrado com sucesso:', registration);
-                        
-                        // Força atualização do SW se houver uma nova versão
-                        registration.addEventListener('updatefound', () => {
-                            const newWorker = registration.installing;
-                            newWorker.addEventListener('statechange', () => {
-                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                                    showToast('Nova versão disponível! Recarregue a página.', 'info');
-                                }
-                            });
-                        });
+                    .then(function(registration) {
+                        console.log('PWA: Service Worker registrado com sucesso:', registration.scope);
                     })
-                    .catch(error => {
-                        console.log('SW: Falha ao registrar Service Worker:', error);
+                    .catch(function(error) {
+                        console.log('PWA: Falha ao registrar Service Worker:', error);
                     });
             });
         }
-        
-        // CORREÇÃO PARA CARREGAMENTO DE IMAGENS NO PWA
-        function ensureImagesLoad() {
-            const images = document.querySelectorAll('img[src]');
-            images.forEach(img => {
-                if (!img.complete || img.naturalHeight === 0) {
-                    // Força recarregamento da imagem
-                    const originalSrc = img.src;
-                    img.src = '';
-                    setTimeout(() => {
-                        img.src = originalSrc;
-                    }, 100);
-                }
-                
-                // Adiciona fallback para erro de carregamento
-                img.onerror = function() {
-                    this.style.display = 'none';
-                    const fallback = this.nextElementSibling;
-                    if (fallback) {
-                        fallback.style.display = 'flex';
-                        fallback.innerHTML = `
-                            <div style="text-align:center; padding:20px;">
-                                <div style="font-size:24px; margin-bottom:8px;">📷</div>
-                                <div>Carregando...</div>
-                            </div>
-                        `;
-                    }
-                };
-            });
-        }
-        
-        // Executa após carregamento da página
-        window.addEventListener('load', ensureImagesLoad);
-        
-        // FORÇA CARREGAMENTO IMEDIATO DE TODAS AS IMAGENS
-        function forceLoadAllImages() {
-            console.log('🖼️ Forçando carregamento de todas as imagens...');
-            
-            const allImages = document.querySelectorAll('img');
-            let loadedCount = 0;
-            
-            allImages.forEach((img, index) => {
-                // Remove lazy loading se existir
-                img.removeAttribute('loading');
-                
-                // Força recarregamento
-                const originalSrc = img.src;
-                if (originalSrc) {
-                    img.onload = () => {
-                        loadedCount++;
-                        console.log(`✅ Imagem ${index + 1}/${allImages.length} carregada: ${img.alt}`);
-                        
-                        if (loadedCount === allImages.length) {
-                            console.log('🎉 Todas as imagens carregadas com sucesso!');
-                            showToast('Todas as ofertas carregadas! 🎉', 'success');
-                        }
-                    };
-                    
-                    img.onerror = () => {
-                        console.warn(`❌ Erro ao carregar: ${img.alt} - ${originalSrc}`);
-                        // Tenta novamente após 1 segundo
-                        setTimeout(() => {
-                            img.src = originalSrc;
-                        }, 1000);
-                    };
-                    
-                    // Força recarregamento
-                    img.src = '';
-                    setTimeout(() => {
-                        img.src = originalSrc;
-                    }, 100);
-                }
-            });
-        }
-        
-        // Executa imediatamente quando DOM estiver pronto
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', forceLoadAllImages);
-        } else {
-            forceLoadAllImages();
-        }
-        
-        // Executa novamente após 2 segundos para garantir
-        setTimeout(forceLoadAllImages, 2000);
-        
-        // Executa quando instalado como PWA
-        window.addEventListener('appinstalled', () => {
-            console.log('📱 App instalado - recarregando imagens...');
-            setTimeout(forceLoadAllImages, 1000);
-        });
-        
-        // PWA INSTALL PROMPT
+
+        // PWA - Install App Prompt
         let deferredPrompt;
-        
+        let installButton = null;
+
+        // Cria botão de instalação
+        function createInstallButton() {
+            if (installButton) return;
+            
+            installButton = document.createElement('button');
+            installButton.innerHTML = `
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                          d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+                📱 Instalar App
+            `;
+            installButton.className = `
+                fixed bottom-4 right-4 z-50 
+                bg-green-600 hover:bg-green-700 text-white 
+                px-4 py-3 rounded-full shadow-lg 
+                flex items-center font-bold text-sm
+                transform transition-all duration-300 
+                hover:scale-105 active:scale-95
+                animate-bounce
+            `;
+            installButton.style.display = 'none';
+            
+            installButton.addEventListener('click', async () => {
+                if (deferredPrompt) {
+                    deferredPrompt.prompt();
+                    const result = await deferredPrompt.userChoice;
+                    console.log('PWA: Resultado da instalação:', result);
+                    deferredPrompt = null;
+                    installButton.style.display = 'none';
+                }
+            });
+            
+            document.body.appendChild(installButton);
+        }
+
+        // Evento para capturar o prompt de instalação
         window.addEventListener('beforeinstallprompt', (e) => {
+            console.log('PWA: beforeinstallprompt event fired');
             e.preventDefault();
             deferredPrompt = e;
-            showInstallButton();
-        });
-        
-        function showInstallButton() {
-            const installBtn = document.createElement('button');
-            installBtn.textContent = '📱 Instalar App';
-            installBtn.className = 'fixed bottom-20 right-4 bg-green-500 text-white px-4 py-2 rounded-full shadow-lg z-50 text-sm font-semibold hover:bg-green-600 transition-all duration-300 transform hover:scale-105';
-            installBtn.onclick = installApp;
-            document.body.appendChild(installBtn);
             
-            // Remove o botão após 10 segundos se não for clicado
+            createInstallButton();
+            
+            // Mostra o botão após 3 segundos
             setTimeout(() => {
-                if (installBtn.parentNode) {
-                    installBtn.remove();
+                if (installButton) {
+                    installButton.style.display = 'flex';
                 }
-            }, 10000);
-        }
-        
-        async function installApp() {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                const result = await deferredPrompt.userChoice;
-                
-                if (result.outcome === 'accepted') {
-                    showToast('App instalado com sucesso! 🎉', 'success');
-                } else {
-                    showToast('Instalação cancelada', 'info');
-                }
-                
-                deferredPrompt = null;
-                const installBtn = document.querySelector('[onclick="installApp()"]');
-                if (installBtn) installBtn.remove();
+            }, 3000);
+        });
+
+        // Verifica se o app foi instalado
+        window.addEventListener('appinstalled', (evt) => {
+            console.log('PWA: App instalado com sucesso!');
+            if (installButton) {
+                installButton.style.display = 'none';
             }
-        }
-        
-        // TOAST NOTIFICATIONS
-        function showToast(message, type = 'info', duration = 4000) {
+            
+            // Mostra notificação de sucesso
             const toast = document.createElement('div');
-            toast.className = `toast ${type}`;
-            
-            const icons = {
-                success: '✅',
-                error: '❌',
-                info: 'ℹ️'
-            };
-            
-            toast.innerHTML = `
-                <div class="toast-content">
-                    <span class="toast-icon">${icons[type]}</span>
-                    <span class="toast-text">${message}</span>
-                </div>
+            toast.innerHTML = '🎉 SuperMarket instalado com sucesso!';
+            toast.className = `
+                fixed top-4 left-1/2 transform -translate-x-1/2 z-50
+                bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg
+                animate-pulse
             `;
-            
             document.body.appendChild(toast);
             
-            // Trigger animation
-            setTimeout(() => toast.classList.add('show'), 100);
-            
-            // Remove toast
             setTimeout(() => {
-                toast.classList.remove('show');
-                setTimeout(() => toast.remove(), 300);
-            }, duration);
-        }
-        
-        // MICRO-INTERACTIONS
-        
-        // Add ripple effect to buttons
-        document.addEventListener('click', (e) => {
-            if (e.target.matches('button') || e.target.matches('.btn')) {
-                e.target.classList.add('ripple');
+                toast.remove();
+            }, 3000);
+        });
+
+        // PWA - Detecta se está sendo executado como app standalone
+        if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
+            console.log('PWA: App rodando em modo standalone');
+            document.body.classList.add('pwa-mode');
+            
+            // Remove botão de instalação se estiver rodando como app
+            if (installButton) {
+                installButton.style.display = 'none';
             }
-        });
-        
-        // Enhanced hover effects for cards
-        document.querySelectorAll('.oferta-card').forEach(card => {
-            card.classList.add('enhanced-hover');
-        });
-        
-        // Loading states for WhatsApp buttons
-        document.querySelectorAll('[onclick*="whatsapp"]').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const originalText = this.innerHTML;
-                this.classList.add('btn-loading');
-                this.innerHTML = '<span class="btn-text">' + originalText + '</span>';
+        }
+
+        // PWA - Atualização do app
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.addEventListener('controllerchange', function() {
+                console.log('PWA: Nova versão disponível!');
+                
+                const updateToast = document.createElement('div');
+                updateToast.innerHTML = `
+                    <div class="flex items-center justify-between">
+                        <span>🔄 Nova versão disponível!</span>
+                        <button onclick="window.location.reload()" 
+                                class="ml-4 bg-white text-green-600 px-3 py-1 rounded font-bold">
+                            Atualizar
+                        </button>
+                    </div>
+                `;
+                updateToast.className = `
+                    fixed top-4 left-1/2 transform -translate-x-1/2 z-50
+                    bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg
+                    max-w-sm w-full
+                `;
+                document.body.appendChild(updateToast);
                 
                 setTimeout(() => {
-                    this.classList.remove('btn-loading');
-                    this.innerHTML = originalText;
-                    showToast('Redirecionando para WhatsApp...', 'success');
-                }, 1000);
-            });
-        });
-        
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in-up');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-        
-        // Observe all cards for animation
-        document.querySelectorAll('.oferta-card').forEach(card => {
-            observer.observe(card);
-        });
-        
-        // Progress bar on scroll
-        window.addEventListener('scroll', () => {
-            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-            document.querySelector('.progress-bar').style.width = scrollPercent + '%';
-        });
-        
-        // Add progress bar to page
-        const progressBar = document.createElement('div');
-        progressBar.className = 'progress-bar';
-        document.body.appendChild(progressBar);
-        
-        // PERFORMANCE OPTIMIZATIONS
-        
-        // Lazy Loading Images Implementation
-        const lazyImages = document.querySelectorAll('img[loading="lazy"]');
-        
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    
-                    // Preload image
-                    const tempImg = new Image();
-                    tempImg.onload = () => {
-                        img.classList.add('loaded');
-                    };
-                    tempImg.src = img.src;
-                    
-                    observer.unobserve(img);
-                }
-            });
-        });
-        
-        lazyImages.forEach(img => {
-            imageObserver.observe(img);
-        });
-        
-        // Critical Resource Preloading
-        function preloadCriticalResources() {
-            const criticalImages = [
-                'logo.SuperMarket.jpg',
-                'FachadaSuperMarket.jpg'
-            ];
-            
-            criticalImages.forEach(src => {
-                const link = document.createElement('link');
-                link.rel = 'preload';
-                link.as = 'image';
-                link.href = src;
-                document.head.appendChild(link);
+                    updateToast.remove();
+                }, 10000);
             });
         }
-        
-        // Memory Management
-        function optimizeMemory() {
-            // Remove elementos fora da viewport
-            const allCards = document.querySelectorAll('.oferta-card');
-            
-            const cardObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (!entry.isIntersecting) {
-                        // Remover animações desnecessárias de elementos não visíveis
-                        entry.target.style.willChange = 'auto';
-                    } else {
-                        entry.target.style.willChange = 'transform';
-                    }
-                });
-            }, { threshold: 0, rootMargin: '50px' });
-            
-            allCards.forEach(card => cardObserver.observe(card));
-        }
-        
-        // Performance Monitoring
-        function monitorPerformance() {
-            if ('performance' in window) {
-                // Measure First Contentful Paint
-                const observer = new PerformanceObserver((list) => {
-                    for (const entry of list.getEntries()) {
-                        if (entry.name === 'first-contentful-paint') {
-                            console.log('FCP:', entry.startTime.toFixed(2) + 'ms');
-                        }
-                    }
-                });
-                
-                observer.observe({ entryTypes: ['paint'] });
-                
-                // Measure page load time
-                window.addEventListener('load', () => {
-                    const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
-                    console.log('Page Load Time:', loadTime + 'ms');
-                    
-                    if (loadTime > 3000) {
-                        console.warn('Página carregou lentamente. Considere otimizações adicionais.');
-                    }
-                });
-            }
-        }
-        
-        // Request Idle Callback for non-critical tasks
-        function scheduleNonCriticalTasks() {
-            if ('requestIdleCallback' in window) {
-                requestIdleCallback(() => {
-                    preloadCriticalResources();
-                    optimizeMemory();
-                    monitorPerformance();
-                });
-            } else {
-                // Fallback for browsers without requestIdleCallback
-                setTimeout(() => {
-                    preloadCriticalResources();
-                    optimizeMemory();
-                    monitorPerformance();
-                }, 1000);
-            }
-        }
-        
-        // Initialize performance optimizations
-        scheduleNonCriticalTasks();
-        
-        // FORÇA CARREGAMENTO DE IMAGENS CRÍTICAS
-        function preloadCriticalImages() {
-            const criticalImages = [
-                'QueijoMussarela.jpeg',
-                'MolhoTomatePomodoro.jpg', 
-                'MacarraoDonaBenta.jpg',
-                'VinagreVitalia.jpg',
-                'PapelHigFoFinho.jpg',
-                'PontaAgulha.png',
-                'MioloAcem.jpeg',
-                'Pernil.jpeg',
-                'PontaAlcatra.jpeg'
-            ];
-            
-            criticalImages.forEach(src => {
-                const img = new Image();
-                img.crossOrigin = 'anonymous';
-                img.onload = () => console.log('Imagem carregada:', src);
-                img.onerror = () => console.warn('Erro ao carregar:', src);
-                img.src = src;
-            });
-        }
-        
-        // Executa preload logo após o DOM estar pronto
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', preloadCriticalImages);
-        } else {
-            preloadCriticalImages();
-        }
-        
-        // Debounced scroll handler for better performance
-        let ticking = false;
-        
-        function updateScrollProgress() {
-            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-            document.querySelector('.progress-bar').style.width = scrollPercent + '%';
-            ticking = false;
-        }
-        
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                requestAnimationFrame(updateScrollProgress);
-                ticking = true;
-            }
-        });
-        
-        // Optimize CSS animations with GPU acceleration
-        document.querySelectorAll('.oferta-card, .enhanced-hover').forEach(element => {
-            element.classList.add('gpu-accelerated');
-        });
-        
-        // Add smooth scrolling to document
-        document.documentElement.classList.add('smooth-scroll');
     </script>
 </body>
 </html>
