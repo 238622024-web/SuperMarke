@@ -1276,7 +1276,10 @@
                     <!-- Produto Mussarela KG -->
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
                         <div class="etiqueta-promo">OFERTA!</div>
-                        <img src="QueijoMussarela.jpeg" alt="Mussarela KG" class="w-full h-48 object-cover" loading="lazy">
+                        <img src="QueijoMussarela.jpeg" alt="Mussarela KG" class="w-full h-48 object-cover" loading="eager" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div style="display:none; align-items:center; justify-content:center; height:192px; background:#f3f4f6; color:#6b7280;">
+                            Carregando imagem...
+                        </div>
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="font-bold text-xl mb-2 text-gray-800">MUSSARELA KG</h3>
                             <p class="text-gray-600 mb-4 flex-grow">Queijo mussarela fresco, ideal para sanduíches e receitas</p>
@@ -1761,12 +1764,61 @@
                 navigator.serviceWorker.register('/SuperMarke/sw.js')
                     .then(registration => {
                         console.log('SW: Service Worker registrado com sucesso:', registration);
+                        
+                        // Força atualização do SW se houver uma nova versão
+                        registration.addEventListener('updatefound', () => {
+                            const newWorker = registration.installing;
+                            newWorker.addEventListener('statechange', () => {
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    showToast('Nova versão disponível! Recarregue a página.', 'info');
+                                }
+                            });
+                        });
                     })
                     .catch(error => {
                         console.log('SW: Falha ao registrar Service Worker:', error);
                     });
             });
         }
+        
+        // CORREÇÃO PARA CARREGAMENTO DE IMAGENS NO PWA
+        function ensureImagesLoad() {
+            const images = document.querySelectorAll('img[src]');
+            images.forEach(img => {
+                if (!img.complete || img.naturalHeight === 0) {
+                    // Força recarregamento da imagem
+                    const originalSrc = img.src;
+                    img.src = '';
+                    setTimeout(() => {
+                        img.src = originalSrc;
+                    }, 100);
+                }
+                
+                // Adiciona fallback para erro de carregamento
+                img.onerror = function() {
+                    this.style.display = 'none';
+                    const fallback = this.nextElementSibling;
+                    if (fallback) {
+                        fallback.style.display = 'flex';
+                        fallback.innerHTML = `
+                            <div style="text-align:center; padding:20px;">
+                                <div style="font-size:24px; margin-bottom:8px;">📷</div>
+                                <div>Carregando...</div>
+                            </div>
+                        `;
+                    }
+                };
+            });
+        }
+        
+        // Executa após carregamento da página
+        window.addEventListener('load', ensureImagesLoad);
+        
+        // Executa quando instalado como PWA
+        window.addEventListener('appinstalled', () => {
+            console.log('App instalado como PWA');
+            setTimeout(ensureImagesLoad, 1000);
+        });
         
         // PWA INSTALL PROMPT
         let deferredPrompt;
@@ -2006,6 +2058,36 @@
         
         // Initialize performance optimizations
         scheduleNonCriticalTasks();
+        
+        // FORÇA CARREGAMENTO DE IMAGENS CRÍTICAS
+        function preloadCriticalImages() {
+            const criticalImages = [
+                'QueijoMussarela.jpeg',
+                'MolhoTomatePomodoro.jpg', 
+                'MacarraoDonaBenta.jpg',
+                'VinagreVitalia.jpg',
+                'PapelHigFoFinho.jpg',
+                'PontaAgulha.png',
+                'MioloAcem.jpeg',
+                'Pernil.jpeg',
+                'PontaAlcatra.jpeg'
+            ];
+            
+            criticalImages.forEach(src => {
+                const img = new Image();
+                img.crossOrigin = 'anonymous';
+                img.onload = () => console.log('Imagem carregada:', src);
+                img.onerror = () => console.warn('Erro ao carregar:', src);
+                img.src = src;
+            });
+        }
+        
+        // Executa preload logo após o DOM estar pronto
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', preloadCriticalImages);
+        } else {
+            preloadCriticalImages();
+        }
         
         // Debounced scroll handler for better performance
         let ticking = false;

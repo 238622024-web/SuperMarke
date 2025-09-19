@@ -1,5 +1,5 @@
 // Service Worker para PWA - SuperMarket
-const CACHE_NAME = 'supermarket-v1.0.0';
+const CACHE_NAME = 'supermarket-v1.0.1';
 const urlsToCache = [
   '/SuperMarke/',
   '/SuperMarke/index.html',
@@ -15,7 +15,8 @@ const urlsToCache = [
   '/SuperMarke/PontaAlcatra.jpeg',
   '/SuperMarke/QueijoMussarela.jpeg',
   '/SuperMarke/VinagreVitalia.jpg',
-  'https://cdn.tailwindcss.com/3.3.6/tailwind.min.css'
+  'https://cdn.tailwindcss.com',
+  'https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap'
 ];
 
 // Instalação do Service Worker
@@ -52,6 +53,11 @@ self.addEventListener('activate', event => {
 
 // Interceptação de requisições
 self.addEventListener('fetch', event => {
+  // Ignora requisições não-HTTP
+  if (!event.request.url.startsWith('http')) {
+    return;
+  }
+  
   event.respondWith(
     caches.match(event.request)
       .then(response => {
@@ -60,7 +66,36 @@ self.addEventListener('fetch', event => {
           return response;
         }
         
-        // Senão, busca na rede
+        // Para imagens, tenta diferentes estratégias
+        if (event.request.destination === 'image') {
+          // Primeiro tenta buscar na rede
+          return fetch(event.request)
+            .then(response => {
+              if (response && response.status === 200) {
+                // Clona e adiciona ao cache
+                const responseToCache = response.clone();
+                caches.open(CACHE_NAME)
+                  .then(cache => {
+                    cache.put(event.request, responseToCache);
+                  });
+                return response;
+              }
+              // Se falhar, retorna uma imagem placeholder
+              return new Response(
+                '<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="#f3f4f6"/><text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="#6b7280">Carregando...</text></svg>',
+                { headers: { 'Content-Type': 'image/svg+xml' } }
+              );
+            })
+            .catch(() => {
+              // Fallback para placeholder
+              return new Response(
+                '<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="#f3f4f6"/><text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="#6b7280">Imagem indisponível</text></svg>',
+                { headers: { 'Content-Type': 'image/svg+xml' } }
+              );
+            });
+        }
+        
+        // Para outros recursos, busca na rede
         return fetch(event.request)
           .then(response => {
             // Verifica se a resposta é válida
