@@ -67,7 +67,7 @@
         }
     </style>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Mercado SuperMarket - As Melhores Ofertas!</title>
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="logo.SuperMarket.jpg">
@@ -76,38 +76,267 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+        /* Reset e configurações básicas */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            width: 100%;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
         body {
             font-family: 'Inter', sans-serif;
-            background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80'); /* supermercado azul moderno */
+            width: 100%;
+            min-width: 320px; /* Largura mínima para dispositivos muito pequenos */
+            overflow-x: hidden;
+            background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80');
             background-size: cover;
             background-attachment: fixed;
             background-repeat: no-repeat;
             background-position: center top;
         }
+        
+        /* Wrapper principal */
+        .main-wrapper {
+            width: 100%;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Container responsivo */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+        
+        /* Header responsivo */
+        header {
+            width: 100%;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        
+        /* Carrossel responsivo */
+        .swiper {
+            width: 100%;
+            height: auto;
+        }
+        
+        .swiper-slide {
+            width: 100%;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem;
+            text-align: center;
+        }
+        
+        /* Cards responsivos */
+        .oferta-card {
+            width: 100%;
+            max-width: 100%;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Grid responsivo */
+        .grid {
+            display: grid;
+            gap: 1.5rem;
+            width: 100%;
+        }
+        
+        /* Mobile específico */
+        @media (max-width: 640px) {
+            body {
+                background-attachment: scroll;
+                font-size: 14px;
+                min-width: 320px;
+            }
+            
+            .container {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+                max-width: 100%;
+            }
+            
+            /* Header mobile */
+            header {
+                width: 100vw;
+                position: relative;
+                left: 50%;
+                right: 50%;
+                margin-left: -50vw;
+                margin-right: -50vw;
+            }
+            
+            header nav {
+                flex-wrap: wrap;
+                padding: 0.75rem;
+                width: 100%;
+            }
+            
+            header .text-2xl {
+                font-size: 1.25rem;
+            }
+            
+            /* Logo mobile */
+            header .flex.items-center {
+                flex-shrink: 0;
+            }
+            
+            /* Carrossel mobile */
+            .swiper {
+                width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            .swiper-slide {
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 0.5rem;
+            }
+            
+            .swiper-slide img {
+                width: 3rem;
+                height: 3rem;
+            }
+            
+            .swiper-slide span {
+                font-size: 0.875rem;
+                text-align: center;
+                line-height: 1.2;
+            }
+            
+            /* Cards mobile */
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                padding: 0 0.75rem;
+            }
+            
+            .oferta-card {
+                margin-bottom: 1rem;
+            }
+            
+            .oferta-card img {
+                height: 200px;
+                object-fit: cover;
+            }
+            
+            /* Footer mobile */
+            footer {
+                width: 100%;
+                text-align: center;
+                padding: 1.5rem 0.75rem;
+            }
+            
+            /* Botões mobile */
+            .btn-animate {
+                font-size: 0.875rem;
+                padding: 0.5rem 1rem;
+            }
+            
+            /* Hero section mobile */
+            .hero-bg h1 {
+                font-size: 2rem;
+                line-height: 1.2;
+                margin-bottom: 1rem;
+            }
+            
+            .hero-bg p {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            /* Menu mobile melhorado */
+            #mobile-menu {
+                width: 100%;
+                left: 0;
+                right: 0;
+            }
+            
+            /* Busca mobile */
+            #mobile-menu input {
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+            
+            /* Seções mobile */
+            section {
+                padding: 2rem 0;
+            }
+            
+            /* Sobre nós mobile */
+            #sobre .flex {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            /* Contato mobile */
+            #contato .grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: left;
+            }
+        }
+        
+        /* Tablet específico */
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* Desktop */
+        @media (min-width: 1025px) {
+            .grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+        }
+        
         .hero-bg {
             background-image: linear-gradient(rgba(0, 32, 96, 0.5), rgba(0, 64, 128, 0.5)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80');
             background-size: cover;
             background-position: center;
+            width: 100%;
         }
     </style>
 </head>
-<body class="bg-gray-50">
+<body class="bg-gray-50 w-full">
+    <!-- Wrapper principal para controlar largura -->
+    <div class="main-wrapper w-full min-h-screen overflow-x-hidden">
+        
     <!-- Carrossel de Ofertas em Destaque -->
-    <div class="w-full bg-white py-4 shadow mb-4">
-        <div class="container mx-auto px-4 sm:px-6">
-            <div class="swiper mySwiper">
+    <div class="w-full bg-white py-3 shadow mb-4">
+        <div class="container mx-auto px-4">
+            <div class="swiper mySwiper w-full">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide flex items-center gap-4 justify-center">
-                        <img src="QueijoMussarela.jpeg" alt="Mussarela KG" class="w-16 h-16 rounded-full" loading="lazy">
-                        <span class="font-bold text-blue-700 text-lg">Mussarela KG 100g por R$ 4,49</span>
+                    <div class="swiper-slide">
+                        <div class="flex items-center gap-3 justify-center text-center">
+                            <img src="QueijoMussarela.jpeg" alt="Mussarela KG" class="w-12 h-12 sm:w-16 sm:h-16 rounded-full object-cover flex-shrink-0" loading="lazy">
+                            <span class="font-bold text-blue-700 text-sm sm:text-lg">Mussarela KG 100g por R$ 4,49</span>
+                        </div>
                     </div>
-                    <div class="swiper-slide flex items-center gap-4 justify-center">
-                        <img src="MolhoTomatePomodoro.jpg" alt="Molho Pomodoro" class="w-16 h-16 rounded-full" loading="lazy">
-                        <span class="font-bold text-blue-700 text-lg">Molho Pomodoro 300g trad por R$ 1,49</span>
+                    <div class="swiper-slide">
+                        <div class="flex items-center gap-3 justify-center text-center">
+                            <img src="MolhoTomatePomodoro.jpg" alt="Molho Pomodoro" class="w-12 h-12 sm:w-16 sm:h-16 rounded-full object-cover flex-shrink-0" loading="lazy">
+                            <span class="font-bold text-blue-700 text-sm sm:text-lg">Molho Pomodoro 300g trad por R$ 1,49</span>
+                        </div>
                     </div>
-                    <div class="swiper-slide flex items-center gap-4 justify-center">
-                        <img src="MacarraoDonaBenta.jpg" alt="Macarrão Dona Benta" class="w-16 h-16 rounded-full" loading="lazy">
-                        <span class="font-bold text-blue-700 text-lg">Macarrão Dona Benta 500g por R$ 3,99</span>
+                    <div class="swiper-slide">
+                        <div class="flex items-center gap-3 justify-center text-center">
+                            <img src="MacarraoDonaBenta.jpg" alt="Macarrão Dona Benta" class="w-12 h-12 sm:w-16 sm:h-16 rounded-full object-cover flex-shrink-0" loading="lazy">
+                            <span class="font-bold text-blue-700 text-sm sm:text-lg">Macarrão Dona Benta 500g por R$ 3,99</span>
+                        </div>
                     </div>
                     <div class="swiper-slide flex items-center gap-4 justify-center">
                         <img src="VinagreVitalia.jpg" alt="Vinagre Vitalia" class="w-16 h-16 rounded-full" loading="lazy">
@@ -307,22 +536,28 @@
         </div>
     </header>
 
-    <main>
+    <main class="w-full">
         <!-- Seção Principal (Hero) -->
-        <section class="hero-bg text-white h-96 flex items-center justify-center">
-            <div class="text-center">
-                <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-4">Qualidade e economia perto de você!</h1>
-                <p class="text-lg md:text-xl text-gray-200 mb-8">As melhores ofertas da vizinhança, todos os dias.</p>
-                <a href="#ofertas" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105">Confira as Ofertas</a>
+        <section class="hero-bg text-white py-16 sm:py-20 lg:py-24 w-full">
+            <div class="container mx-auto px-4 text-center">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4">
+                    Qualidade e economia perto de você!
+                </h1>
+                <p class="text-base sm:text-lg md:text-xl text-gray-200 mb-6 sm:mb-8 max-w-2xl mx-auto">
+                    As melhores ofertas da vizinhança, todos os dias.
+                </p>
+                <a href="#ofertas" class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 sm:px-8 rounded-full transition duration-300 transform hover:scale-105">
+                    Confira as Ofertas
+                </a>
             </div>
         </section>
 
         <!-- Seção de Ofertas -->
-        <section id="ofertas" class="py-16">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl font-bold text-center text-gray-800 mb-2">Ofertas da Semana</h2>
-                <p class="text-center text-gray-500 mb-10">Aproveite! Válidas enquanto durarem os estoques.</p>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <section id="ofertas" class="py-12 sm:py-16 w-full">
+            <div class="container mx-auto px-4">
+                <h2 class="text-2xl sm:text-3xl font-bold text-center text-gray-800 mb-2">Ofertas da Semana</h2>
+                <p class="text-center text-gray-500 mb-8 sm:mb-10">Aproveite! Válidas enquanto durarem os estoques.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
                     <!-- Produto Mussarela KG -->
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
                         <img src="QueijoMussarela.jpeg" alt="Mussarela KG" class="w-full h-48 object-cover" loading="lazy">
@@ -450,30 +685,35 @@
                         </div>
                     </div>
                    </div>
-        </section>
         
         <!-- Seção Sobre Nós -->
-        <section id="sobre" class="bg-white py-16">
-            <div class="container mx-auto px-6 flex flex-col md:flex-row items-center gap-10">
-                <div class="md:w-1/2">
-                    <img src="FachadaSuperMarket.jpg" alt="Fachada do SuperMarket" class="rounded-lg shadow-xl" loading="lazy">
-                </div>
-                <div class="md:w-1/2">
-                    <h2 class="text-3xl font-bold text-gray-800 mb-4">Sua mercearia de confiança!</h2>
-                    <p class="text-gray-600 leading-relaxed mb-4">
-                        O Mercado  SuperMarket é um negócio de família, criado com o objetivo de servir a nossa comunidade com produtos de qualidade, preços justos e um atendimento que faz você se sentir em casa. 
-                    </p>
-                    <p class="text-gray-600 leading-relaxed">
-                        Valorizamos cada cliente e trabalhamos todos os dias para oferecer uma variedade de itens essenciais, desde o pão fresquinho pela manhã até os ingredientes para o jantar em família. Venha nos visitar!
-                    </p>
+        <section id="sobre" class="bg-white py-12 sm:py-16 w-full">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-10">
+                    <div class="w-full lg:w-1/2">
+                        <img src="FachadaSuperMarket.jpg" alt="Fachada do SuperMarket" class="w-full rounded-lg shadow-xl object-cover" loading="lazy">
+                    </div>
+                    <div class="w-full lg:w-1/2">
+                        <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-4 text-center lg:text-left">
+                            Sua mercearia de confiança!
+                        </h2>
+                        <p class="text-gray-600 leading-relaxed mb-4 text-center lg:text-left">
+                            O Mercado SuperMarket é um negócio de família, criado com o objetivo de servir a nossa comunidade 
+                            com produtos de qualidade, preços justos e um atendimento que faz você se sentir em casa. 
+                        </p>
+                        <p class="text-gray-600 leading-relaxed text-center lg:text-left">
+                            Valorizamos cada cliente e trabalhamos todos os dias para oferecer uma variedade de itens essenciais, 
+                            desde o pão fresquinho pela manhã até os ingredientes para o jantar em família. Venha nos visitar!
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Seção de Contato -->
-        <section id="contato" class="py-16">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-4xl font-extrabold text-black mb-4 flex items-center justify-center gap-2 drop-shadow-lg">
+        <section id="contato" class="py-12 sm:py-16 w-full bg-gray-100">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-black mb-4 flex items-center justify-center gap-2">
                     <svg class="w-10 h-10 text-black inline-block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                     Venha nos Fazer uma Visita!
                 </h2>
@@ -565,20 +805,28 @@
         </section>
     </main>
 
-                        <!-- Produto 8 -->
     <!-- Rodapé -->
-    <footer class="bg-gray-800 text-white py-6">
-    <!-- Botão Voltar ao Topo -->
-    <button id="btn-topo" aria-label="Voltar ao topo" title="Voltar ao topo">↑</button>
-        <div class="container mx-auto px-6 text-center">
-            <p>&copy; 2025 Mercado SuperMarket. Todos os direitos reservados.</p>
+    <footer class="bg-gray-800 text-white py-6 w-full">
+        <div class="container mx-auto px-4 text-center">
+            <h3 class="text-xl font-bold mb-3">🛒 Mercado SuperMarket</h3>
+            <p class="mb-3">Qualidade, economia e atendimento especial para toda família!</p>
+            <p class="text-sm">&copy; 2025 Mercado SuperMarket. Todos os direitos reservados.</p>
         </div>
-        <!-- Botão fixo WhatsApp -->
-        <a href="https://wa.me/5511912345678" target="_blank" title="Fale conosco no WhatsApp" class="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white rounded-full shadow-lg p-4 flex items-center justify-center transition duration-300" style="box-shadow: 0 4px 16px rgba(0,0,0,0.2);">
-            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.42 1.32 4.84l-1.45 5.32 5.45-1.44a9.88 9.88 0 0 0 4.6 1.18h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.92-9.91zM17.13 14.5c-.21-.11-.9-1.04-1.32-1.16-.13-.04-.26-.06-.39.06-.13.11-.5.63-.61.75-.11.13-.22.14-.42.04-.21-.11-1.02-.38-1.9-1.18-.7-.63-1.16-1.41-1.31-1.66-.14-.24-.02-.38.1-.5.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4s.04-.3-.02-.41c-.06-.11-.39-1.05-.53-1.43-.14-.38-.3-.32-.42-.32h-.37c-.12 0-.31.04-.48.24-.17.19-.65.63-.65 1.54 0 .9.67 1.79.76 1.91.1.13 1.27 1.96 3.07 2.7.43.18.76.29 1.02.37.42.13.8.11.96.06.19-.06.9-1.04 1.13-1.43.23-.38.23-.7.16-.79l-.08-.02z"/></svg>
-                        <!-- Produto 9 -->
-        </a>
     </footer>
+    
+    <!-- Botões fixos -->
+    <!-- Botão Voltar ao Topo -->
+    <button id="btn-topo" aria-label="Voltar ao topo" title="Voltar ao topo" class="fixed bottom-20 right-4 z-40 bg-blue-500 hover:bg-blue-600 text-white rounded-full shadow-lg p-3 transition hidden">
+        ⬆️
+    </button>
+    
+    <!-- Botão fixo WhatsApp -->
+    <a href="https://wa.me/5511969724824" target="_blank" title="Fale conosco no WhatsApp" 
+       class="fixed bottom-4 right-4 z-50 bg-green-500 hover:bg-green-600 text-white rounded-full shadow-lg p-4 flex items-center justify-center transition duration-300">
+        💬
+    </a>
+    
+    </div> <!-- Fim do wrapper principal -->
 
     <script>
         // SwiperJS para carrossel
