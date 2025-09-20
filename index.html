@@ -72,21 +72,37 @@
     
     <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#22c55e">
+    
+    <!-- iOS PWA Meta Tags -->
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="SuperMarket">
+    <meta name="apple-touch-fullscreen" content="yes">
+    
+    <!-- Android PWA Meta Tags -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="SuperMarket">
     
     <!-- Manifest PWA -->
     <link rel="manifest" href="manifest.json">
     
-    <!-- Favicon e ícones Apple -->
+    <!-- Favicon e ícones Apple (iOS otimizado) -->
     <link rel="icon" type="image/png" href="logo.SuperMarket.jpg">
     <link rel="apple-touch-icon" href="logo.SuperMarket.jpg">
+    <link rel="apple-touch-icon" sizes="57x57" href="logo.SuperMarket.jpg">
+    <link rel="apple-touch-icon" sizes="60x60" href="logo.SuperMarket.jpg">
+    <link rel="apple-touch-icon" sizes="72x72" href="logo.SuperMarket.jpg">
+    <link rel="apple-touch-icon" sizes="76x76" href="logo.SuperMarket.jpg">
+    <link rel="apple-touch-icon" sizes="114x114" href="logo.SuperMarket.jpg">
+    <link rel="apple-touch-icon" sizes="120x120" href="logo.SuperMarket.jpg">
+    <link rel="apple-touch-icon" sizes="144x144" href="logo.SuperMarket.jpg">
     <link rel="apple-touch-icon" sizes="152x152" href="logo.SuperMarket.jpg">
     <link rel="apple-touch-icon" sizes="180x180" href="logo.SuperMarket.jpg">
     <link rel="apple-touch-icon" sizes="167x167" href="logo.SuperMarket.jpg">
+    
+    <!-- iOS Safari específico -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-orientation" content="portrait">
     
     <!-- Scripts e estilos -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -621,6 +637,56 @@
             100% { background-position: -200% 0; }
         }
 
+        /* Estilos específicos para iOS */
+        @supports (-webkit-touch-callout: none) {
+            /* Detecta Safari iOS */
+            .ios-device .oferta-card {
+                -webkit-tap-highlight-color: transparent;
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                user-select: none;
+            }
+            
+            .ios-device .oferta-card:active {
+                transform: translateY(-4px) scale(1.01);
+            }
+        }
+
+        /* Safe Area para iOS (iPhone X+) */
+        @supports (padding-top: env(safe-area-inset-top)) {
+            .ios-pwa {
+                padding-top: env(safe-area-inset-top);
+            }
+            
+            .ios-pwa header {
+                padding-top: calc(env(safe-area-inset-top) + 1rem);
+            }
+            
+            .ios-pwa .oferta-card a[href*="whatsapp"] {
+                padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));
+            }
+        }
+
+        /* Otimizações específicas para PWA iOS */
+        .ios-pwa.pwa-mode {
+            /* Remove bounce do scroll no iOS */
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .ios-pwa.pwa-mode body {
+            /* Evita o bounce scroll */
+            position: fixed;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+        }
+
+        .ios-pwa.pwa-mode .main-wrapper {
+            overflow-y: auto;
+            height: 100vh;
+            -webkit-overflow-scrolling: touch;
+        }
+
         /* Estilos compactos para PWA mobile */
         @media (max-width: 768px) {
             .pwa-mode .oferta-card img {
@@ -784,7 +850,7 @@
             <!-- Call to Action + Menu Mobile -->
             <div class="flex items-center gap-4">
                 <!-- Botão WhatsApp destacado -->
-                <a href="https://wa.me/5511969724824" target="_blank" 
+                <a href="https://wa.me/5511969624824" target="_blank" 
                    class="hidden sm:flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold px-4 py-2 rounded-full transition duration-300 transform hover:scale-105 shadow-lg">
                     💬 WhatsApp
                 </a>
@@ -826,7 +892,7 @@
                 </a>
                 
                 <!-- WhatsApp Mobile -->
-                <a href="https://wa.me/5511969724824" target="_blank" 
+                <a href="https://wa.me/5511969624824" target="_blank" 
                    class="block bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg text-center transition">
                     💬 Falar no WhatsApp
                 </a>
@@ -873,7 +939,7 @@
                             <p class="text-gray-600 mb-4 flex-grow">Queijo mussarela fresco, ideal para sanduíches e receitas</p>
                             <div class="flex items-center justify-between mt-4">
                                 <span class="text-green-600 font-bold text-2xl">R$ 4,49<span class="text-sm text-gray-500">/100g</span></span>
-                                <a href="https://wa.me/5511969724824?text=Olá!%20Tenho%20interesse%20na%20MUSSARELA%20KG%20por%20R$%204,49%20(100g).%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
+                                <a href="https://wa.me/5511969624824?text=Olá!%20Tenho%20interesse%20na%20MUSSARELA%20KG%20por%20R$%204,49%20(100g).%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
                                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WhatsApp"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.42 1.32 4.84l-1.45 5.32 5.45-1.44a9.88 9.88 0 0 0 4.6 1.18h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.92-9.91zM17.13 14.5c-.21-.11-.9-1.04-1.32-1.16-.13-.04-.26-.06-.39.06-.13.11-.5.63-.61.75-.11.13-.22.14-.42.04-.21-.11-1.02-.38-1.9-1.18-.7-.63-1.16-1.41-1.31-1.66-.14-.24-.02-.38.1-.5.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4s.04-.3-.02-.41c-.06-.11-.39-1.05-.53-1.43-.14-.38-.3-.32-.42-.32h-.37c-.12 0-.31.04-.48.24-.17.19-.65.63-.65 1.54 0 .9.67 1.79.76 1.91.1.13 1.27 1.96 3.07 2.7.43.18.76.29 1.02.37.42.13.8.11.96.06.19-.06.9-1.04 1.13-1.43.23-.38.23-.7.16-.79l-.08-.02z"/></svg>
                                 </a>
                             </div>
@@ -888,7 +954,7 @@
                             <p class="text-gray-600 mb-4 flex-grow">Molho de tomate tradicional, sabor caseiro para suas receitas</p>
                             <div class="flex items-center justify-between mt-4">
                                 <span class="text-green-600 font-bold text-2xl">R$ 1,49</span>
-                                <a href="https://wa.me/5511969724824?text=Olá!%20Tenho%20interesse%20no%20MOLHO%20POMODORO%20300g%20por%20R$%201,49.%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
+                                <a href="https://wa.me/5511969624824?text=Olá!%20Tenho%20interesse%20no%20MOLHO%20POMODORO%20300g%20por%20R$%201,49.%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
                                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WhatsApp"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.42 1.32 4.84l-1.45 5.32 5.45-1.44a9.88 9.88 0 0 0 4.6 1.18h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.92-9.91zM17.13 14.5c-.21-.11-.9-1.04-1.32-1.16-.13-.04-.26-.06-.39.06-.13.11-.5.63-.61.75-.11.13-.22.14-.42.04-.21-.11-1.02-.38-1.9-1.18-.7-.63-1.16-1.41-1.31-1.66-.14-.24-.02-.38.1-.5.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4s.04-.3-.02-.41c-.06-.11-.39-1.05-.53-1.43-.14-.38-.3-.32-.42-.32h-.37c-.12 0-.31.04-.48.24-.17.19-.65.63-.65 1.54 0 .9.67 1.79.76 1.91.1.13 1.27 1.96 3.07 2.7.43.18.76.29 1.02.37.42.13.8.11.96.06.19-.06.9-1.04 1.13-1.43.23-.38.23-.7.16-.79l-.08-.02z"/></svg>
                                 </a>
                             </div>
@@ -902,7 +968,7 @@
                             <p class="text-gray-600 mb-4 flex-grow">Perfeito para o almoço em família.</p>
                             <div class="flex items-center justify-between mt-4">
                                 <span class="text-green-600 font-bold text-2xl">R$ 3,99</span>
-                                <a href="https://wa.me/5511969724824?text=Olá!%20Tenho%20interesse%20no%20MACARRÃO%20DONA%20BENTA%20500g%20por%20R$%203,99.%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
+                                <a href="https://wa.me/5511969624824?text=Olá!%20Tenho%20interesse%20no%20MACARRÃO%20DONA%20BENTA%20500g%20por%20R$%203,99.%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
                                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WhatsApp"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.42 1.32 4.84l-1.45 5.32 5.45-1.44a9.88 9.88 0 0 0 4.6 1.18h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.92-9.91zM17.13 14.5c-.21-.11-.9-1.04-1.32-1.16-.13-.04-.26-.06-.39.06-.13.11-.5.63-.61.75-.11.13-.22.14-.42.04-.21-.11-1.02-.38-1.9-1.18-.7-.63-1.16-1.41-1.31-1.66-.14-.24-.02-.38.1-.5.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4s.04-.3-.02-.41c-.06-.11-.39-1.05-.53-1.43-.14-.38-.3-.32-.42-.32h-.37c-.12 0-.31.04-.48.24-.17.19-.65.63-.65 1.54 0 .9.67 1.79.76 1.91.1.13 1.27 1.96 3.07 2.7.43.18.76.29 1.02.37.42.13.8.11.96.06.19-.06.9-1.04 1.13-1.43.23-.38.23-.7.16-.79l-.08-.02z"/></svg>
                                 </a>
                             </div>
@@ -916,7 +982,7 @@
                             <p class="text-gray-600 mb-4 flex-grow">Ideal para temperar saladas.</p>
                             <div class="flex items-center justify-between mt-4">
                                 <span class="text-green-600 font-bold text-2xl">R$ 1,99</span>
-                                <a href="https://wa.me/5511969724824?text=Olá!%20Tenho%20interesse%20no%20VINAGRE%20VITALIA%20750ml%20por%20R$%201,99.%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
+                                <a href="https://wa.me/5511969624824?text=Olá!%20Tenho%20interesse%20no%20VINAGRE%20VITALIA%20750ml%20por%20R$%201,99.%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
                                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WhatsApp"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.42 1.32 4.84l-1.45 5.32 5.45-1.44a9.88 9.88 0 0 0 4.6 1.18h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.92-9.91zM17.13 14.5c-.21-.11-.9-1.04-1.32-1.16-.13-.04-.26-.06-.39.06-.13.11-.5.63-.61.75-.11.13-.22.14-.42.04-.21-.11-1.02-.38-1.9-1.18-.7-.63-1.16-1.41-1.31-1.66-.14-.24-.02-.38.1-.5.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4s.04-.3-.02-.41c-.06-.11-.39-1.05-.53-1.43-.14-.38-.3-.32-.42-.32h-.37c-.12 0-.31.04-.48.24-.17.19-.65.63-.65 1.54 0 .9.67 1.79.76 1.91.1.13 1.27 1.96 3.07 2.7.43.18.76.29 1.02.37.42.13.8.11.96.06.19-.06.9-1.04 1.13-1.43.23-.38.23-.7.16-.79l-.08-.02z"/></svg>
                                 </a>
                             </div>
@@ -930,7 +996,7 @@
                             <p class="text-gray-600 mb-4 flex-grow">Pacote econômico.</p>
                             <div class="flex items-center justify-between mt-4">
                                 <span class="text-green-600 font-bold text-2xl">R$ 15,99</span>
-                                <a href="https://wa.me/5511969724824?text=Olá!%20Tenho%20interesse%20no%20PAPEL%20HIGIÊNICO%20FOFINHO%2012R%20por%20R$%2015,99.%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
+                                <a href="https://wa.me/5511969624824?text=Olá!%20Tenho%20interesse%20no%20PAPEL%20HIGIÊNICO%20FOFINHO%2012R%20por%20R$%2015,99.%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
                                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WhatsApp"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.42 1.32 4.84l-1.45 5.32 5.45-1.44a9.88 9.88 0 0 0 4.6 1.18h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.92-9.91zM17.13 14.5c-.21-.11-.9-1.04-1.32-1.16-.13-.04-.26-.06-.39.06-.13.11-.5.63-.61.75-.11.13-.22.14-.42.04-.21-.11-1.02-.38-1.9-1.18-.7-.63-1.16-1.41-1.31-1.66-.14-.24-.02-.38.1-.5.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4s.04-.3-.02-.41c-.06-.11-.39-1.05-.53-1.43-.14-.38-.3-.32-.42-.32h-.37c-.12 0-.31.04-.48.24-.17.19-.65.63-.65 1.54 0 .9.67 1.79.76 1.91.1.13 1.27 1.96 3.07 2.7.43.18.76.29 1.02.37.42.13.8.11.96.06.19-.06.9-1.04 1.13-1.43.23-.38.23-.7.16-.79l-.08-.02z"/></svg>
                                 </a>
                             </div>
@@ -944,7 +1010,7 @@
                             <p class="text-gray-600 mb-4 flex-grow">Carne para churrasco.</p>
                             <div class="flex items-center justify-between mt-4">
                                 <span class="text-green-600 font-bold text-2xl">R$ 24,99</span>
-                                <a href="https://wa.me/5511969724824?text=Olá!%20Tenho%20interesse%20na%20PONTA%20AGULHA%20KG%20por%20R$%2024,99.%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
+                                <a href="https://wa.me/5511969624824?text=Olá!%20Tenho%20interesse%20na%20PONTA%20AGULHA%20KG%20por%20R$%2024,99.%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
                                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WhatsApp"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.42 1.32 4.84l-1.45 5.32 5.45-1.44a9.88 9.88 0 0 0 4.6 1.18h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.92-9.91zM17.13 14.5c-.21-.11-.9-1.04-1.32-1.16-.13-.04-.26-.06-.39.06-.13.11-.5.63-.61.75-.11.13-.22.14-.42.04-.21-.11-1.02-.38-1.9-1.18-.7-.63-1.16-1.41-1.31-1.66-.14-.24-.02-.38.1-.5.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4s.04-.3-.02-.41c-.06-.11-.39-1.05-.53-1.43-.14-.38-.3-.32-.42-.32h-.37c-.12 0-.31.04-.48.24-.17.19-.65.63-.65 1.54 0 .9.67 1.79.76 1.91.1.13 1.27 1.96 3.07 2.7.43.18.76.29 1.02.37.42.13.8.11.96.06.19-.06.9-1.04 1.13-1.43.23-.38.23-.7.16-.79l-.08-.02z"/></svg>
                                 </a>
                             </div>
@@ -958,7 +1024,7 @@
                             <p class="text-gray-600 mb-4 flex-grow">Carne macia para cozidos.</p>
                             <div class="flex items-center justify-between mt-4">
                                 <span class="text-green-600 font-bold text-2xl">R$ 34,99</span>
-                                <a href="https://wa.me/5511969724824?text=Olá!%20Tenho%20interesse%20no%20MIOLO%20ACÉM%20KG%20por%20R$%2034,99.%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
+                                <a href="https://wa.me/5511969624824?text=Olá!%20Tenho%20interesse%20no%20MIOLO%20ACÉM%20KG%20por%20R$%2034,99.%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
                                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WhatsApp"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.42 1.32 4.84l-1.45 5.32 5.45-1.44a9.88 9.88 0 0 0 4.6 1.18h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.92-9.91zM17.13 14.5c-.21-.11-.9-1.04-1.32-1.16-.13-.04-.26-.06-.39.06-.13.11-.5.63-.61.75-.11.13-.22.14-.42.04-.21-.11-1.02-.38-1.9-1.18-.7-.63-1.16-1.41-1.31-1.66-.14-.24-.02-.38.1-.5.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4s.04-.3-.02-.41c-.06-.11-.39-1.05-.53-1.43-.14-.38-.3-.32-.42-.32h-.37c-.12 0-.31.04-.48.24-.17.19-.65.63-.65 1.54 0 .9.67 1.79.76 1.91.1.13 1.27 1.96 3.07 2.7.43.18.76.29 1.02.37.42.13.8.11.96.06.19-.06.9-1.04 1.13-1.43.23-.38.23-.7.16-.79l-.08-.02z"/></svg>
                                 </a>
                             </div>
@@ -974,7 +1040,7 @@
                             <p class="text-gray-600 mb-4 flex-grow">Alface fresquinha, ideal para saladas nutritivas</p>
                             <div class="flex items-center justify-between mt-4">
                                 <span class="text-green-600 font-bold text-2xl">R$ 2,49<span class="text-sm text-gray-500">/un</span></span>
-                                <a href="https://wa.me/5511969724824?text=Olá!%20Tenho%20interesse%20na%20ALFACE%20CRESPA%20por%20R$%202,49%20(unidade).%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
+                                <a href="https://wa.me/5511969624824?text=Olá!%20Tenho%20interesse%20na%20ALFACE%20CRESPA%20por%20R$%202,49%20(unidade).%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
                                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WhatsApp"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.42 1.32 4.84l-1.45 5.32 5.45-1.44a9.88 9.88 0 0 0 4.6 1.18h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.92-9.91zM17.13 14.5c-.21-.11-.9-1.04-1.32-1.16-.13-.04-.26-.06-.39.06-.13.11-.5.63-.61.75-.11.13-.22.14-.42.04-.21-.11-1.02-.38-1.9-1.18-.7-.63-1.16-1.41-1.31-1.66-.14-.24-.02-.38.1-.5.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4s.04-.3-.02-.41c-.06-.11-.39-1.05-.53-1.43-.14-.38-.3-.32-.42-.32h-.37c-.12 0-.31.04-.48.24-.17.19-.65.63-.65 1.54 0 .9.67 1.79.76 1.91.1.13 1.27 1.96 3.07 2.7.43.18.76.29 1.02.37.42.13.8.11.96.06.19-.06.9-1.04 1.13-1.43.23-.38.23-.7.16-.79l-.08-.02z"/></svg>
                                 </a>
                             </div>
@@ -990,7 +1056,7 @@
                             <p class="text-gray-600 mb-4 flex-grow">Couve fresquinha, perfeita para refogados e vitaminas</p>
                             <div class="flex items-center justify-between mt-4">
                                 <span class="text-green-600 font-bold text-2xl">R$ 3,49<span class="text-sm text-gray-500">/un</span></span>
-                                <a href="https://wa.me/5511969724824?text=Olá!%20Tenho%20interesse%20na%20COUVE%20MANTEIGA%20por%20R$%203,49%20(unidade).%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
+                                <a href="https://wa.me/5511969624824?text=Olá!%20Tenho%20interesse%20na%20COUVE%20MANTEIGA%20por%20R$%203,49%20(unidade).%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
                                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WhatsApp"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.42 1.32 4.84l-1.45 5.32 5.45-1.44a9.88 9.88 0 0 0 4.6 1.18h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.92-9.91zM17.13 14.5c-.21-.11-.9-1.04-1.32-1.16-.13-.04-.26-.06-.39.06-.13.11-.5.63-.61.75-.11.13-.22.14-.42.04-.21-.11-1.02-.38-1.9-1.18-.7-.63-1.16-1.41-1.31-1.66-.14-.24-.02-.38.1-.5.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4s.04-.3-.02-.41c-.06-.11-.39-1.05-.53-1.43-.14-.38-.3-.32-.42-.32h-.37c-.12 0-.31.04-.48.24-.17.19-.65.63-.65 1.54 0 .9.67 1.79.76 1.91.1.13 1.27 1.96 3.07 2.7.43.18.76.29 1.02.37.42.13.8.11.96.06.19-.06.9-1.04 1.13-1.43.23-.38.23-.7.16-.79l-.08-.02z"/></svg>
                                 </a>
                             </div>
@@ -1006,7 +1072,7 @@
                             <p class="text-gray-600 mb-4 flex-grow">Coentro fresquinho para temperar seus pratos</p>
                             <div class="flex items-center justify-between mt-4">
                                 <span class="text-green-600 font-bold text-2xl">R$ 2,99<span class="text-sm text-gray-500">/un</span></span>
-                                <a href="https://wa.me/5511969724824?text=Olá!%20Tenho%20interesse%20no%20COENTRO%20por%20R$%202,99%20(unidade).%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
+                                <a href="https://wa.me/5511969624824?text=Olá!%20Tenho%20interesse%20no%20COENTRO%20por%20R$%202,99%20(unidade).%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
                                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WhatsApp"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.42 1.32 4.84l-1.45 5.32 5.45-1.44a9.88 9.88 0 0 0 4.6 1.18h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.92-9.91zM17.13 14.5c-.21-.11-.9-1.04-1.32-1.16-.13-.04-.26-.06-.39.06-.13.11-.5.63-.61.75-.11.13-.22.14-.42.04-.21-.11-1.02-.38-1.9-1.18-.7-.63-1.16-1.41-1.31-1.66-.14-.24-.02-.38.1-.5.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4s.04-.3-.02-.41c-.06-.11-.39-1.05-.53-1.43-.14-.38-.3-.32-.42-.32h-.37c-.12 0-.31.04-.48.24-.17.19-.65.63-.65 1.54 0 .9.67 1.79.76 1.91.1.13 1.27 1.96 3.07 2.7.43.18.76.29 1.02.37.42.13.8.11.96.06.19-.06.9-1.04 1.13-1.43.23-.38.23-.7.16-.79l-.08-.02z"/></svg>
                                 </a>
                             </div>
@@ -1022,7 +1088,7 @@
                             <p class="text-gray-600 mb-4 flex-grow">Salsa fresquinha, folhas verdes para saladas e pratos</p>
                             <div class="flex items-center justify-between mt-4">
                                 <span class="text-green-600 font-bold text-2xl">R$ 2,99<span class="text-sm text-gray-500">/un</span></span>
-                                <a href="https://wa.me/5511969724824?text=Olá!%20Tenho%20interesse%20na%20SALSA%20por%20R$%202,99%20(unidade).%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
+                                <a href="https://wa.me/5511969624824?text=Olá!%20Tenho%20interesse%20na%20SALSA%20por%20R$%202,99%20(unidade).%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
                                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WhatsApp"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.42 1.32 4.84l-1.45 5.32 5.45-1.44a9.88 9.88 0 0 0 4.6 1.18h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.92-9.91zM17.13 14.5c-.21-.11-.9-1.04-1.32-1.16-.13-.04-.26-.06-.39.06-.13.11-.5.63-.61.75-.11.13-.22.14-.42.04-.21-.11-1.02-.38-1.9-1.18-.7-.63-1.16-1.41-1.31-1.66-.14-.24-.02-.38.1-.5.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4s.04-.3-.02-.41c-.06-.11-.39-1.05-.53-1.43-.14-.38-.3-.32-.42-.32h-.37c-.12 0-.31.04-.48.24-.17.19-.65.63-.65 1.54 0 .9.67 1.79.76 1.91.1.13 1.27 1.96 3.07 2.7.43.18.76.29 1.02.37.42.13.8.11.96.06.19-.06.9-1.04 1.13-1.43.23-.38.23-.7.16-.79l-.08-.02z"/></svg>
                                 </a>
                             </div>
@@ -1038,7 +1104,7 @@
                             <p class="text-gray-600 mb-4 flex-grow">Bolinho individual sabor caseiro</p>
                             <div class="flex items-center justify-between mt-4">
                                 <span class="text-green-600 font-bold text-2xl">R$ 2,49</span>
-                                <a href="https://wa.me/5511969724824?text=Olá!%20Tenho%20interesse%20no%20BOLO%20ANA%20MARIA%2070g%20por%20R$%202,49.%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
+                                <a href="https://wa.me/5511969624824?text=Olá!%20Tenho%20interesse%20no%20BOLO%20ANA%20MARIA%2070g%20por%20R$%202,49.%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
                                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WhatsApp"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.42 1.32 4.84l-1.45 5.32 5.45-1.44a9.88 9.88 0 0 0 4.6 1.18h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.92-9.91zM17.13 14.5c-.21-.11-.9-1.04-1.32-1.16-.13-.04-.26-.06-.39.06-.13.11-.5.63-.61.75-.11.13-.22.14-.42.04-.21-.11-1.02-.38-1.9-1.18-.7-.63-1.16-1.41-1.31-1.66-.14-.24-.02-.38.1-.5.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4s.04-.3-.02-.41c-.06-.11-.39-1.05-.53-1.43-.14-.38-.3-.32-.42-.32h-.37c-.12 0-.31.04-.48.24-.17.19-.65.63-.65 1.54 0 .9.67 1.79.76 1.91.1.13 1.27 1.96 3.07 2.7.43.18.76.29 1.02.37.42.13.8.11.96.06.19-.06.9-1.04 1.13-1.43.23-.38.23-.7.16-.79l-.08-.02z"/></svg>
                                 </a>
                             </div>
@@ -1054,7 +1120,7 @@
                             <p class="text-gray-600 mb-4 flex-grow">Cerveja gelada para confraternizar, pack com 15 unidades</p>
                             <div class="flex items-center justify-between mt-4">
                                 <span class="text-green-600 font-bold text-2xl">R$ 39,90</span>
-                                <a href="https://wa.me/5511969724824?text=Olá!%20Tenho%20interesse%20no%20SKOL%20269ml%20PACK%20c/%2015un%20por%20R$%2039,90.%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
+                                <a href="https://wa.me/5511969624824?text=Olá!%20Tenho%20interesse%20no%20SKOL%20269ml%20PACK%20c/%2015un%20por%20R$%2039,90.%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
                                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WhatsApp"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.42 1.32 4.84l-1.45 5.32 5.45-1.44a9.88 9.88 0 0 0 4.6 1.18h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.92-9.91zM17.13 14.5c-.21-.11-.9-1.04-1.32-1.16-.13-.04-.26-.06-.39.06-.13.11-.5.63-.61.75-.11.13-.22.14-.42.04-.21-.11-1.02-.38-1.9-1.18-.7-.63-1.16-1.41-1.31-1.66-.14-.24-.02-.38.1-.5.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4s.04-.3-.02-.41c-.06-.11-.39-1.05-.53-1.43-.14-.38-.3-.32-.42-.32h-.37c-.12 0-.31.04-.48.24-.17.19-.65.63-.65 1.54 0 .9.67 1.79.76 1.91.1.13 1.27 1.96 3.07 2.7.43.18.76.29 1.02.37.42.13.8.11.96.06.19-.06.9-1.04 1.13-1.43.23-.38.23-.7.16-.79l-.08-.02z"/></svg>
                                 </a>
                             </div>
@@ -1068,7 +1134,7 @@
                             <p class="text-gray-600 mb-4 flex-grow">Perfeito para assados.</p>
                             <div class="flex items-center justify-between mt-4">
                                 <span class="text-green-600 font-bold text-2xl">R$ 19,90</span>
-                                <a href="https://wa.me/5511969724824?text=Olá!%20Tenho%20interesse%20no%20PERNIL%20KG%20por%20R$%2019,90.%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
+                                <a href="https://wa.me/5511969624824?text=Olá!%20Tenho%20interesse%20no%20PERNIL%20KG%20por%20R$%2019,90.%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
                                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WhatsApp"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.42 1.32 4.84l-1.45 5.32 5.45-1.44a9.88 9.88 0 0 0 4.6 1.18h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.92-9.91zM17.13 14.5c-.21-.11-.9-1.04-1.32-1.16-.13-.04-.26-.06-.39.06-.13.11-.5.63-.61.75-.11.13-.22.14-.42.04-.21-.11-1.02-.38-1.9-1.18-.7-.63-1.16-1.41-1.31-1.66-.14-.24-.02-.38.1-.5.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4s.04-.3-.02-.41c-.06-.11-.39-1.05-.53-1.43-.14-.38-.3-.32-.42-.32h-.37c-.12 0-.31.04-.48.24-.17.19-.65.63-.65 1.54 0 .9.67 1.79.76 1.91.1.13 1.27 1.96 3.07 2.7.43.18.76.29 1.02.37.42.13.8.11.96.06.19-.06.9-1.04 1.13-1.43.23-.38.23-.7.16-.79l-.08-.02z"/></svg>
                                 </a>
                             </div>
@@ -1082,7 +1148,7 @@
                             <p class="text-gray-600 mb-4 flex-grow">Carne nobre para grelha.</p>
                             <div class="flex items-center justify-between mt-4">
                                 <span class="text-green-600 font-bold text-2xl">R$ 35,90</span>
-                                <a href="https://wa.me/5511969724824?text=Olá!%20Tenho%20interesse%20na%20PONTA%20ALCATRA%20KG%20por%20R$%2035,90.%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
+                                <a href="https://wa.me/5511969624824?text=Olá!%20Tenho%20interesse%20na%20PONTA%20ALCATRA%20KG%20por%20R$%2035,90.%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
                                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WhatsApp"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.42 1.32 4.84l-1.45 5.32 5.45-1.44a9.88 9.88 0 0 0 4.6 1.18h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.92-9.91zM17.13 14.5c-.21-.11-.9-1.04-1.32-1.16-.13-.04-.26-.06-.39.06-.13.11-.5.63-.61.75-.11.13-.22.14-.42.04-.21-.11-1.02-.38-1.9-1.18-.7-.63-1.16-1.41-1.31-1.66-.14-.24-.02-.38.1-.5.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4s.04-.3-.02-.41c-.06-.11-.39-1.05-.53-1.43-.14-.38-.3-.32-.42-.32h-.37c-.12 0-.31.04-.48.24-.17.19-.65.63-.65 1.54 0 .9.67 1.79.76 1.91.1.13 1.27 1.96 3.07 2.7.43.18.76.29 1.02.37.42.13.8.11.96.06.19-.06.9-1.04 1.13-1.43.23-.38.23-.7.16-.79l-.08-.02z"/></svg>
                                 </a>
                             </div>
@@ -1166,7 +1232,7 @@
                                 <a href="https://instagram.com" class="text-gray-500 hover:text-green-600" target="_blank" title="Instagram">
                                     📷
                                 </a>
-                                <a href="https://wa.me/5511969724824" class="text-gray-500 hover:text-green-600" target="_blank" title="WhatsApp">
+                                <a href="https://wa.me/5511969624824" class="text-gray-500 hover:text-green-600" target="_blank" title="WhatsApp">
                                     💬
                                 </a>
                             </div>
@@ -1308,7 +1374,7 @@
     </button>
     
     <!-- Botão fixo WhatsApp -->
-    <a href="https://wa.me/5511969724824" target="_blank" title="Fale conosco no WhatsApp" 
+    <a href="https://wa.me/5511969624824" target="_blank" title="Fale conosco no WhatsApp" 
        class="fixed bottom-4 right-4 z-50 bg-green-500 hover:bg-green-600 text-white rounded-full shadow-lg p-4 flex items-center justify-center transition duration-300">
         💬
     </a>
@@ -1461,7 +1527,67 @@
 
         // PWA - Service Worker Registration
         if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
+            // Detectar iOS e PWA
+        function detectIOSAndPWA() {
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                         (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+            
+            const isPWA = window.matchMedia('(display-mode: standalone)').matches || 
+                         window.navigator.standalone === true ||
+                         document.referrer.includes('android-app://');
+            
+            const body = document.body;
+            
+            if (isIOS) {
+                body.classList.add('ios-device');
+                console.log('🍎 Dispositivo iOS detectado');
+                
+                // Adicionar wrapper para scroll suave no iOS
+                if (!document.querySelector('.main-wrapper')) {
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'main-wrapper';
+                    
+                    // Mover todo o conteúdo do body para o wrapper
+                    while (body.firstChild) {
+                        wrapper.appendChild(body.firstChild);
+                    }
+                    body.appendChild(wrapper);
+                }
+            }
+            
+            if (isPWA) {
+                body.classList.add('pwa-mode');
+                console.log('📱 PWA mode ativo');
+                
+                if (isIOS) {
+                    body.classList.add('ios-pwa');
+                    console.log('🍎📱 PWA iOS otimizado');
+                    
+                    // Prevenir bounce scroll no iOS PWA
+                    document.addEventListener('touchmove', function(e) {
+                        if (e.scale !== 1) { e.preventDefault(); }
+                    }, { passive: false });
+                }
+            }
+            
+            // Detectar orientação para iOS
+            if (isIOS) {
+                function handleOrientationChange() {
+                    setTimeout(() => {
+                        window.scrollTo(0, 1);
+                    }, 100);
+                }
+                
+                window.addEventListener('orientationchange', handleOrientationChange);
+                window.addEventListener('resize', handleOrientationChange);
+            }
+        }
+
+        // Executar detecção quando página carrega
+        document.addEventListener('DOMContentLoaded', detectIOSAndPWA);
+
+        // Registrar Service Worker
+        window.addEventListener('load', function() {
                 // Detecta automaticamente se está no GitHub Pages ou local
                 const isGitHubPages = window.location.hostname.includes('github.io');
                 const swPath = isGitHubPages ? '/SuperMarke/sw.js' : '/sw.js';
@@ -1810,7 +1936,7 @@
                             `📋 Assunto: ${formData.assunto}%0A%0A` +
                             `💬 Mensagem: ${formData.mensagem}`;
                         
-                        const whatsappUrl = `https://wa.me/5511969724824?text=${whatsappMessage}`;
+                        const whatsappUrl = `https://wa.me/5511969624824?text=${whatsappMessage}`;
                         window.open(whatsappUrl, '_blank');
                         
                         showError();
@@ -1927,6 +2053,85 @@
                 }, 10000);
             });
         }
+
+        // 📱 Funcionalidade para enviar imagem junto com mensagem no WhatsApp
+        function setupWhatsAppWithImages() {
+            // Seleciona todos os botões do WhatsApp nos cards
+            const whatsappButtons = document.querySelectorAll('.oferta-card a[href*="wa.me"]');
+            
+            whatsappButtons.forEach(button => {
+                // Adiciona evento de clique
+                button.addEventListener('click', function(e) {
+                    e.preventDefault(); // Previne o comportamento padrão
+                    
+                    // Encontra o card pai
+                    const card = this.closest('.oferta-card');
+                    if (!card) return;
+                    
+                    // Extrai informações do produto
+                    const img = card.querySelector('img');
+                    const title = card.querySelector('h3').textContent;
+                    const description = card.querySelector('p').textContent;
+                    const price = card.querySelector('.text-green-600').textContent;
+                    
+                    // Constrói URL da imagem
+                    let imageUrl;
+                    if (img.src.startsWith('http')) {
+                        // Se já é uma URL completa (como Unsplash)
+                        imageUrl = img.src;
+                    } else {
+                        // Para imagens locais, cria URL absoluta
+                        const baseUrl = window.location.hostname.includes('github.io') 
+                            ? `${window.location.origin}/SuperMarke/` 
+                            : window.location.origin + '/';
+                        imageUrl = baseUrl + img.getAttribute('src');
+                    }
+                    
+                    // Monta mensagem completa com imagem
+                    const message = `🛒 *SuperMarket - Oferta Especial!*
+
+� *FOTO DO PRODUTO:*
+${imageUrl}
+
+🏷️ *PRODUTO:* ${title}
+💰 *PREÇO:* ${price}
+
+📝 *DESCRIÇÃO:*
+${description}
+
+━━━━━━━━━━━━━━━━━━━━
+Olá! Vi esta oferta e tenho interesse neste produto. 
+
+✅ Está disponível?
+🚚 Vocês fazem entrega?
+
+Aguardo retorno! 😊`;
+                    
+                    // Codifica a mensagem para URL
+                    const encodedMessage = encodeURIComponent(message);
+                    
+                    // Abre WhatsApp com a mensagem e imagem
+                    const whatsappUrl = `https://wa.me/5511969624824?text=${encodedMessage}`;
+                    
+                    console.log('📱 Enviando para WhatsApp:', {
+                        produto: title,
+                        preco: price,
+                        imagem: imageUrl,
+                        mensagem: message,
+                        url: whatsappUrl
+                    });
+                    
+                    // Abre o WhatsApp
+                    window.open(whatsappUrl, '_blank');
+                });
+            });
+            
+            console.log(`✅ WhatsApp configurado para ${whatsappButtons.length} produtos com imagens!`);
+        }
+
+        // Executa a configuração quando a página carrega
+        document.addEventListener('DOMContentLoaded', setupWhatsAppWithImages);
+        
     </script>
 </body>
 </html>
