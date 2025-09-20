@@ -90,6 +90,8 @@
     
     <!-- Scripts e estilos -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -1107,16 +1109,22 @@
                     <h3 class="text-xl sm:text-2xl font-bold text-green-700 mb-6 text-center">
                         📝 Fale com a gente
                     </h3>
-                    <form class="bg-white rounded-lg shadow p-4 sm:p-6 grid grid-cols-1 md:grid-cols-2 gap-4" 
-                          action="#" 
-                          method="POST" 
-                          onsubmit="alert('Mensagem enviada! Em breve entraremos em contato.'); return false;">
+                    <form id="contact-form" class="bg-white rounded-lg shadow p-4 sm:p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                             <label class="block text-gray-700 font-bold mb-2" for="nome">Nome</label>
                             <input class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" 
                                    type="text" 
                                    id="nome" 
                                    name="nome" 
+                                   required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-bold mb-2" for="telefone">Telefone/WhatsApp</label>
+                            <input class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" 
+                                   type="tel" 
+                                   id="telefone" 
+                                   name="telefone" 
+                                   placeholder="(11) 99999-9999" 
                                    required>
                         </div>
                         <div>
@@ -1127,19 +1135,46 @@
                                    name="email" 
                                    required>
                         </div>
+                        <div>
+                            <label class="block text-gray-700 font-bold mb-2" for="assunto">Assunto</label>
+                            <select class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" 
+                                    id="assunto" 
+                                    name="assunto" 
+                                    required>
+                                <option value="">Selecione...</option>
+                                <option value="produto">Dúvida sobre produto</option>
+                                <option value="entrega">Entrega/Horários</option>
+                                <option value="preco">Preços/Promoções</option>
+                                <option value="sugestao">Sugestão</option>
+                                <option value="reclamacao">Reclamação</option>
+                                <option value="outro">Outro</option>
+                            </select>
+                        </div>
                         <div class="md:col-span-2">
                             <label class="block text-gray-700 font-bold mb-2" for="mensagem">Mensagem</label>
                             <textarea class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" 
                                       id="mensagem" 
                                       name="mensagem" 
                                       rows="4" 
+                                      placeholder="Descreva sua mensagem..."
                                       required></textarea>
                         </div>
                         <div class="md:col-span-2 text-center">
                             <button type="submit" 
+                                    id="submit-btn"
                                     class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105">
                                 📧 Enviar Mensagem
                             </button>
+                        </div>
+                        
+                        <!-- Status de envio -->
+                        <div id="form-status" class="md:col-span-2 text-center mt-4 hidden">
+                            <div id="success-message" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded hidden">
+                                ✅ Mensagem enviada com sucesso! Entraremos em contato em breve.
+                            </div>
+                            <div id="error-message" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded hidden">
+                                ❌ Erro ao enviar mensagem. Tente novamente ou entre em contato via WhatsApp.
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -1563,6 +1598,123 @@
                 toast.remove();
             }, 3000);
         });
+
+        // Sistema de Contato com EmailJS
+        (function() {
+            // Inicializar EmailJS
+            emailjs.init("YOUR_PUBLIC_KEY"); // Substituir pela sua chave pública
+            
+            const contactForm = document.getElementById('contact-form');
+            const submitBtn = document.getElementById('submit-btn');
+            const formStatus = document.getElementById('form-status');
+            const successMessage = document.getElementById('success-message');
+            const errorMessage = document.getElementById('error-message');
+            
+            // Máscara para telefone
+            const phoneInput = document.getElementById('telefone');
+            phoneInput.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length >= 11) {
+                    value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+                } else if (value.length >= 7) {
+                    value = value.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
+                } else if (value.length >= 3) {
+                    value = value.replace(/(\d{2})(\d{0,5})/, '($1) $2');
+                }
+                e.target.value = value;
+            });
+            
+            // Sistema de armazenamento local (backup)
+            function saveToLocalStorage(data) {
+                const contacts = JSON.parse(localStorage.getItem('supermarket_contacts') || '[]');
+                contacts.push({
+                    ...data,
+                    timestamp: new Date().toISOString(),
+                    id: Date.now()
+                });
+                localStorage.setItem('supermarket_contacts', JSON.stringify(contacts));
+            }
+            
+            // Envio do formulário
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Desabilitar botão
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '📧 Enviando...';
+                
+                // Coletar dados
+                const formData = {
+                    nome: document.getElementById('nome').value,
+                    telefone: document.getElementById('telefone').value,
+                    email: document.getElementById('email').value,
+                    assunto: document.getElementById('assunto').value,
+                    mensagem: document.getElementById('mensagem').value
+                };
+                
+                // Salvar localmente (backup)
+                saveToLocalStorage(formData);
+                
+                // Preparar template para email
+                const templateParams = {
+                    to_name: 'SuperMarket',
+                    from_name: formData.nome,
+                    from_email: formData.email,
+                    from_phone: formData.telefone,
+                    subject: formData.assunto,
+                    message: formData.mensagem,
+                    reply_to: formData.email
+                };
+                
+                // Tentar enviar via EmailJS
+                emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+                    .then(function(response) {
+                        console.log('Email enviado com sucesso!', response);
+                        showSuccess();
+                        contactForm.reset();
+                    })
+                    .catch(function(error) {
+                        console.error('Erro ao enviar email:', error);
+                        
+                        // Fallback: abrir WhatsApp
+                        const whatsappMessage = `Olá! Sou ${formData.nome}.%0A%0A` +
+                            `📧 Email: ${formData.email}%0A` +
+                            `📞 Telefone: ${formData.telefone}%0A` +
+                            `📋 Assunto: ${formData.assunto}%0A%0A` +
+                            `💬 Mensagem: ${formData.mensagem}`;
+                        
+                        const whatsappUrl = `https://wa.me/5511969724824?text=${whatsappMessage}`;
+                        window.open(whatsappUrl, '_blank');
+                        
+                        showError();
+                    })
+                    .finally(function() {
+                        // Reabilitar botão
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = '📧 Enviar Mensagem';
+                    });
+            });
+            
+            function showSuccess() {
+                formStatus.classList.remove('hidden');
+                successMessage.classList.remove('hidden');
+                errorMessage.classList.add('hidden');
+                
+                setTimeout(() => {
+                    formStatus.classList.add('hidden');
+                }, 5000);
+            }
+            
+            function showError() {
+                formStatus.classList.remove('hidden');
+                errorMessage.classList.remove('hidden');
+                successMessage.classList.add('hidden');
+                
+                setTimeout(() => {
+                    formStatus.classList.add('hidden');
+                }, 5000);
+            }
+        })();
 
         // PWA - Detecta se está sendo executado como app standalone
         if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
