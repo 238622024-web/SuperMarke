@@ -1,26 +1,23 @@
-﻿{
+{
   "name": "SuperMarket",
-  "short_name": "SuperMarket",
-  "description": "Supermercado online",
-  "start_url": "/SuperMarke/",
-  "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#22c55e",
-  "prefer_related_applications": false,
-  "scope": "/SuperMarke/",
-  "orientation": "portrait-primary",
+  "short_name": "SuperMarket", 
   "icons": [
     {
       "src": "logo.SuperMarket.jpg",
       "sizes": "192x192",
-      "type": "image/jpeg",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "logo.SuperMarket.jpg",
-      "sizes": "512x512", 
-      "type": "image/jpeg",
-      "purpose": "any maskable"
+      "type": "image/png"
     }
-  ]
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#22c55e"
 }
+
+// Arquivo separado que faz cache do site
+self.addEventListener('install', function(event) {
+  // Cache dos arquivos principais
+});
+
+<meta name="theme-color" content="#22c55e">
+<link rel="manifest" href="/manifest.json">
