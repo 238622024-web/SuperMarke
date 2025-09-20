@@ -1317,13 +1317,34 @@
         // PWA - Service Worker Registration
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/SuperMarke/sw.js')
+                navigator.serviceWorker.register('/sw.js')
                     .then(function(registration) {
                         console.log('PWA: Service Worker registrado com sucesso:', registration.scope);
+                        
+                        // Verifica atualizações
+                        registration.addEventListener('updatefound', () => {
+                            const newWorker = registration.installing;
+                            newWorker.addEventListener('statechange', () => {
+                                if (newWorker.state === 'installed') {
+                                    if (navigator.serviceWorker.controller) {
+                                        // Nova versão disponível
+                                        console.log('PWA: Nova versão disponível!');
+                                        // Força atualização
+                                        newWorker.postMessage({type: 'SKIP_WAITING'});
+                                    }
+                                }
+                            });
+                        });
                     })
                     .catch(function(error) {
                         console.log('PWA: Falha ao registrar Service Worker:', error);
                     });
+                
+                // Escuta mudanças no service worker
+                navigator.serviceWorker.addEventListener('controllerchange', () => {
+                    console.log('PWA: Recarregando para nova versão...');
+                    window.location.reload();
+                });
             });
         }
 
