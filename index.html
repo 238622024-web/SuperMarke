@@ -546,6 +546,80 @@
             background-position: center;
             width: 100%;
         }
+
+        /* Estilos para PWA (App Standalone) */
+        .pwa-mode .logo-container {
+            width: 80px !important;
+            height: 80px !important;
+            padding: 4px !important;
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.3) !important;
+            border: 3px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .pwa-mode .logo-container:hover {
+            transform: scale(1.2) !important;
+            box-shadow: 0 12px 35px rgba(34, 197, 94, 0.4) !important;
+        }
+
+        .pwa-mode .logo-title {
+            font-size: 1.75rem !important;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .pwa-mode .logo-subtitle {
+            font-size: 0.95rem !important;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .pwa-mode .logo-text {
+            margin-left: 0.75rem;
+        }
+
+        /* Animação especial para PWA */
+        .pwa-mode #main-logo {
+            animation: pwa-logo-pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pwa-logo-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.9; }
+        }
+
+        /* Media queries para PWA responsivo */
+        @media (max-width: 768px) {
+            .pwa-mode .logo-container {
+                width: 70px !important;
+                height: 70px !important;
+            }
+            
+            .pwa-mode .logo-title {
+                font-size: 1.5rem !important;
+            }
+            
+            .pwa-mode .logo-subtitle {
+                font-size: 0.85rem !important;
+            }
+        }
+
+        /* Indicador visual de que está no modo PWA */
+        .pwa-mode::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #22c55e, #059669, #22c55e);
+            background-size: 200% 100%;
+            animation: pwa-indicator 2s linear infinite;
+            z-index: 9999;
+        }
+
+        @keyframes pwa-indicator {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
     </style>
 </head>
 <body class="bg-gray-50 w-full">
@@ -635,13 +709,13 @@
         <!-- Navegação principal -->
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <!-- Logo -->
-            <a href="#" class="flex items-center gap-3 group">
-                <div class="w-16 h-16 bg-white rounded-full p-3 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
-                    <img src="logo.SuperMarket.jpg" alt="Logo SuperMarket" class="w-full h-full object-cover rounded-full">
+            <a href="#" class="flex items-center gap-3 group" id="main-logo">
+                <div class="w-16 h-16 bg-white rounded-full p-3 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110 logo-container">
+                    <img src="logo.SuperMarket.jpg" alt="Logo SuperMarket" class="w-full h-full object-cover rounded-full logo-image">
                 </div>
-                <div class="text-white">
-                    <h1 class="text-2xl font-bold leading-tight">SuperMarket</h1>
-                    <p class="text-blue-100 text-sm font-medium">Qualidade & Economia</p>
+                <div class="text-white logo-text">
+                    <h1 class="text-2xl font-bold leading-tight logo-title">SuperMarket</h1>
+                    <p class="text-blue-100 text-sm font-medium logo-subtitle">Qualidade & Economia</p>
                 </div>
             </a>
             
@@ -1762,10 +1836,29 @@
 
         // PWA - Detecta se está sendo executado como app standalone
         if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
-            console.log('PWA: App rodando em modo standalone');
+            console.log('PWA: 🚀 App rodando em modo standalone - Logo aumentado!');
             document.body.classList.add('pwa-mode');
             
+            // Mostra notificação visual de que está no modo PWA
+            setTimeout(() => {
+                const notification = document.createElement('div');
+                notification.innerHTML = `
+                    <div class="fixed top-20 right-4 bg-green-600 text-white px-4 py-2 rounded-lg shadow-lg z-50 flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        <span class="font-bold">Modo App Ativado!</span>
+                    </div>
+                `;
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.remove();
+                }, 3000);
+            }, 1000);
+            
             // Remove botão de instalação se estiver rodando como app
+            const installButton = document.getElementById('install-button');
             if (installButton) {
                 installButton.style.display = 'none';
             }
