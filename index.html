@@ -804,6 +804,12 @@
                     <span id="status-funcionamento" class="flex items-center gap-2 bg-green-500 px-3 py-1 rounded-full text-xs font-bold">
                         🟢 ABERTO
                     </span>
+                    <button onclick="forceAppUpdate()" class="flex items-center gap-1 bg-blue-500 hover:bg-blue-600 px-3 py-1 rounded-full text-xs font-bold text-white transition-colors" title="Atualizar app">
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                        </svg>
+                        <span class="hidden sm:inline">ATUALIZAR</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -1608,12 +1614,18 @@
                                     if (navigator.serviceWorker.controller) {
                                         // Nova versão disponível
                                         console.log('PWA: Nova versão disponível!');
-                                        // Força atualização
-                                        newWorker.postMessage({type: 'SKIP_WAITING'});
+                                        
+                                        // Mostra notificação de atualização
+                                        showUpdateNotification(newWorker);
                                     }
                                 }
                             });
                         });
+                        
+                        // Força verificação de atualizações
+                        setInterval(() => {
+                            registration.update();
+                        }, 60000); // Verifica a cada 1 minuto
                     })
                     .catch(function(error) {
                         console.log('PWA: Falha ao registrar Service Worker:', error);
@@ -2131,6 +2143,137 @@ Aguardo retorno! 😊`;
 
         // Executa a configuração quando a página carrega
         document.addEventListener('DOMContentLoaded', setupWhatsAppWithImages);
+        
+        // 🔄 Função para mostrar notificação de atualização
+        function showUpdateNotification(newWorker) {
+            // Remove notificação anterior se existir
+            const existingNotification = document.querySelector('.update-notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+            
+            // Cria nova notificação
+            const notification = document.createElement('div');
+            notification.className = 'update-notification';
+            notification.innerHTML = `
+                <div class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 bg-blue-600 text-white px-6 py-4 rounded-lg shadow-lg max-w-sm w-full mx-4">
+                    <div class="flex items-center gap-3">
+                        <div class="flex-shrink-0">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="text-sm font-bold">Nova versão disponível!</h4>
+                            <p class="text-xs opacity-90">Clique para atualizar o app</p>
+                        </div>
+                        <button onclick="updateApp()" class="bg-white text-blue-600 px-3 py-1 rounded text-xs font-bold hover:bg-blue-50 transition-colors">
+                            Atualizar
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Armazena referência do worker para atualização
+            window.newServiceWorker = newWorker;
+            
+            console.log('🔄 Notificação de atualização mostrada');
+        }
+        
+        // 🔄 Função para atualizar o app
+        function updateApp() {
+            if (window.newServiceWorker) {
+                window.newServiceWorker.postMessage({type: 'SKIP_WAITING'});
+                
+                // Remove notificação
+                const notification = document.querySelector('.update-notification');
+                if (notification) {
+                    notification.remove();
+                }
+                
+                // Mostra loading
+                const loading = document.createElement('div');
+                loading.innerHTML = `
+                    <div class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg">
+                        <div class="flex items-center gap-2">
+                            <svg class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="m4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            <span class="text-sm font-bold">Atualizando app...</span>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(loading);
+                
+                // Recarrega após 2 segundos
+                setTimeout(() => {
+                    window.location.reload();
+                }, 2000);
+                
+                console.log('🔄 Atualizando app...');
+            }
+        }
+        
+        // 🔄 Função para forçar atualização manual
+        function forceAppUpdate() {
+            // Mostra loading
+            const loading = document.createElement('div');
+            loading.innerHTML = `
+                <div class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 bg-orange-600 text-white px-6 py-3 rounded-lg shadow-lg">
+                    <div class="flex items-center gap-2">
+                        <svg class="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="m4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        <span class="text-sm font-bold">Forçando atualização...</span>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(loading);
+            
+            // Limpa cache do navegador
+            if ('caches' in window) {
+                caches.keys().then(cacheNames => {
+                    return Promise.all(
+                        cacheNames.map(cacheName => {
+                            console.log('🗑️ Removendo cache:', cacheName);
+                            return caches.delete(cacheName);
+                        })
+                    );
+                }).then(() => {
+                    console.log('✅ Cache limpo!');
+                    
+                    // Desregistra service worker
+                    if ('serviceWorker' in navigator) {
+                        navigator.serviceWorker.getRegistrations().then(registrations => {
+                            registrations.forEach(registration => {
+                                registration.unregister();
+                                console.log('🗑️ Service Worker desregistrado');
+                            });
+                            
+                            // Recarrega a página
+                            setTimeout(() => {
+                                window.location.reload(true);
+                            }, 1000);
+                        });
+                    } else {
+                        setTimeout(() => {
+                            window.location.reload(true);
+                        }, 1000);
+                    }
+                });
+            } else {
+                // Se não tem suporte a cache, só recarrega
+                setTimeout(() => {
+                    window.location.reload(true);
+                }, 1000);
+            }
+            
+            console.log('🔄 Forçando atualização completa...');
+        }
         
     </script>
 </body>

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'supermarket-v1.3';
+const CACHE_NAME = 'supermarket-v1.4';
 
 // Detecta automaticamente se está no GitHub Pages ou local
 const isGitHubPages = self.location.hostname.includes('github.io');
