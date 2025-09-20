@@ -347,9 +347,9 @@
                         0 4px 15px rgba(34, 197, 94, 0.2);
                 }
                 
-                /* Imagens mobile MAIORES e mais atrativas */
+                /* Imagens mobile MENORES e mais proporcionais */
                 .oferta-card img {
-                    height: 220px;
+                    height: 160px;
                     width: 100%;
                     object-fit: cover;
                     transition: transform 0.3s ease;
@@ -360,53 +360,53 @@
                     transform: scale(1.05);
                 }
                 
-                /* Conteúdo dos cards mobile com mais espaço */
+                /* Conteúdo dos cards mobile com menos espaço */
                 .oferta-card .p-6 {
-                    padding: 1.25rem 1.5rem 1.5rem 1.5rem;
+                    padding: 1rem 1.25rem 1.25rem 1.25rem;
                 }
                 
-                /* Títulos mobile mais legíveis */
+                /* Títulos mobile mais compactos */
                 .oferta-card h3 {
-                    font-size: 1.2rem;
+                    font-size: 1.1rem;
                     line-height: 1.3;
-                    margin-bottom: 0.75rem;
-                    font-weight: 800;
+                    margin-bottom: 0.5rem;
+                    font-weight: 700;
                     color: #111827;
                     letter-spacing: -0.025em;
                 }
                 
-                /* Descrições mobile otimizadas */
+                /* Descrições mobile mais compactas */
                 .oferta-card p.text-gray-600 {
-                    font-size: 0.95rem;
-                    line-height: 1.5;
-                    margin-bottom: 1rem;
+                    font-size: 0.875rem;
+                    line-height: 1.4;
+                    margin-bottom: 0.75rem;
                     color: #6b7280;
                     font-weight: 400;
                 }
                 
-                /* Container preço/botão com design especial */
+                /* Container preço/botão mais compacto */
                 .oferta-card .flex.items-center.justify-between {
                     flex-direction: column;
                     align-items: stretch;
-                    gap: 1rem;
-                    margin-top: 1rem;
-                    padding: 1.25rem;
+                    gap: 0.75rem;
+                    margin-top: 0.75rem;
+                    padding: 1rem;
                     background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
-                    border-radius: 1.25rem;
+                    border-radius: 1rem;
                     border: 2px solid #d1fae5;
                 }
                 
-                /* Preços mobile destacados com gradiente */
+                /* Preços mobile compactos */
                 .oferta-card .text-green-600 {
-                    font-size: 1.8rem;
-                    font-weight: 900;
+                    font-size: 1.6rem;
+                    font-weight: 800;
                     text-align: center;
                     background: linear-gradient(135deg, #059669 0%, #10b981 100%);
                     background-clip: text;
                     -webkit-background-clip: text;
                     -webkit-text-fill-color: transparent;
                     text-shadow: 0 2px 4px rgba(5, 150, 105, 0.2);
-                    margin-bottom: 0.5rem;
+                    margin-bottom: 0.25rem;
                 }
                 
                 /* Subpreços mobile (/100g) */
@@ -417,22 +417,22 @@
                     -webkit-text-fill-color: #6b7280;
                 }
                 
-                /* Botões WhatsApp mobile PREMIUM */
+                /* Botões WhatsApp mobile mais compactos */
                 .oferta-card a[href*="whatsapp"] {
                     width: 100%;
                     background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
                     color: white;
-                    padding: 1rem 1.5rem;
-                    border-radius: 1.25rem;
-                    font-weight: 700;
-                    font-size: 1rem;
+                    padding: 0.75rem 1.25rem;
+                    border-radius: 1rem;
+                    font-weight: 600;
+                    font-size: 0.95rem;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    gap: 0.75rem;
+                    gap: 0.5rem;
                     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
                     box-shadow: 
-                        0 4px 20px rgba(37, 211, 102, 0.35),
+                        0 3px 15px rgba(37, 211, 102, 0.3),
                         inset 0 1px 0 rgba(255,255,255,0.3);
                     text-decoration: none;
                     position: relative;
@@ -619,6 +619,42 @@
         @keyframes pwa-indicator {
             0% { background-position: 200% 0; }
             100% { background-position: -200% 0; }
+        }
+
+        /* Estilos compactos para PWA mobile */
+        @media (max-width: 768px) {
+            .pwa-mode .oferta-card img {
+                height: 140px !important;
+            }
+            
+            .pwa-mode .oferta-card .p-6 {
+                padding: 0.875rem 1rem 1rem 1rem !important;
+            }
+            
+            .pwa-mode .oferta-card h3 {
+                font-size: 1rem !important;
+                margin-bottom: 0.4rem !important;
+            }
+            
+            .pwa-mode .oferta-card p.text-gray-600 {
+                font-size: 0.8rem !important;
+                margin-bottom: 0.5rem !important;
+            }
+            
+            .pwa-mode .oferta-card .flex.items-center.justify-between {
+                padding: 0.75rem !important;
+                gap: 0.5rem !important;
+                margin-top: 0.5rem !important;
+            }
+            
+            .pwa-mode .oferta-card .text-green-600 {
+                font-size: 1.4rem !important;
+            }
+            
+            .pwa-mode .oferta-card a[href*="whatsapp"] {
+                padding: 0.625rem 1rem !important;
+                font-size: 0.875rem !important;
+            }
         }
     </style>
 </head>
