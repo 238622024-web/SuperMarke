@@ -1,16 +1,24 @@
-const CACHE_NAME = 'supermarket-v1.1';
+const CACHE_NAME = 'supermarket-v1.3';
+
+// Detecta automaticamente se está no GitHub Pages ou local
+const isGitHubPages = self.location.hostname.includes('github.io');
+const BASE_URL = isGitHubPages ? '/SuperMarke/' : '/';
+
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/logo.SuperMarket.jpg',
-  '/FachadaSuperMarket.jpg',
-  '/AnaMaria.png',
-  '/Coentro.jpeg',
-  '/CouveManteiga.jpeg',
-  '/Skol269ml.jpeg',
-  '/sausa.jpg'
+  BASE_URL,
+  BASE_URL + 'index.html',
+  BASE_URL + 'manifest.json',
+  BASE_URL + 'logo.SuperMarket.jpg',
+  BASE_URL + 'FachadaSuperMarket.jpg',
+  BASE_URL + 'AnaMaria.png',
+  BASE_URL + 'Coentro.jpeg',
+  BASE_URL + 'CouveManteiga.jpeg',
+  BASE_URL + 'Skol269ml.jpeg',
+  BASE_URL + 'sausa.jpg'
 ];
+
+console.log('SW: Ambiente detectado:', isGitHubPages ? 'GitHub Pages' : 'Local');
+console.log('SW: BASE_URL:', BASE_URL);
 
 // Instalação do Service Worker
 self.addEventListener('install', function(event) {
@@ -71,7 +79,7 @@ self.addEventListener('fetch', function(event) {
             }
             // Se não estiver no cache, retorna página offline básica
             if (event.request.destination === 'document') {
-              return caches.match('/index.html');
+              return caches.match(BASE_URL + 'index.html');
             }
           });
       })

@@ -1352,9 +1352,17 @@
         // PWA - Service Worker Registration
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/sw.js')
+                // Detecta automaticamente se está no GitHub Pages ou local
+                const isGitHubPages = window.location.hostname.includes('github.io');
+                const swPath = isGitHubPages ? '/SuperMarke/sw.js' : '/sw.js';
+                
+                console.log('PWA: Ambiente detectado:', isGitHubPages ? 'GitHub Pages' : 'Local');
+                console.log('PWA: Service Worker path:', swPath);
+                
+                navigator.serviceWorker.register(swPath)
                     .then(function(registration) {
                         console.log('PWA: Service Worker registrado com sucesso:', registration.scope);
+                        console.log('PWA: ✅ PWA está funcionando corretamente!');
                         
                         // Verifica atualizações
                         registration.addEventListener('updatefound', () => {
@@ -1373,6 +1381,15 @@
                     })
                     .catch(function(error) {
                         console.log('PWA: Falha ao registrar Service Worker:', error);
+                        console.log('PWA: ❌ Verifique se o arquivo sw.js existe em:', swPath);
+                        
+                        // Tenta registrar sem cache se falhar
+                        if (isGitHubPages) {
+                            console.log('PWA: Tentando caminho alternativo...');
+                            navigator.serviceWorker.register('./sw.js')
+                                .then(reg => console.log('PWA: ✅ Registrado com caminho relativo!'))
+                                .catch(err => console.log('PWA: ❌ Falha total:', err));
+                        }
                     });
                 
                 // Escuta mudanças no service worker
@@ -1715,6 +1732,33 @@
                 }, 5000);
             }
         })();
+
+        // PWA - Teste de Conectividade e Diagnóstico
+        function testPWA() {
+            console.log('=== DIAGNÓSTICO PWA ===');
+            console.log('URL atual:', window.location.href);
+            console.log('Hostname:', window.location.hostname);
+            console.log('Pathname:', window.location.pathname);
+            console.log('Service Worker suportado:', 'serviceWorker' in navigator);
+            console.log('Manifest:', document.querySelector('link[rel="manifest"]')?.href);
+            
+            // Testa cache
+            if ('caches' in window) {
+                caches.keys().then(names => {
+                    console.log('Caches disponíveis:', names);
+                });
+            }
+            
+            // Testa se está instalado
+            if (window.matchMedia('(display-mode: standalone)').matches) {
+                console.log('PWA: ✅ Rodando como app instalado');
+            } else {
+                console.log('PWA: 🌐 Rodando no navegador');
+            }
+        }
+        
+        // Executa diagnóstico
+        setTimeout(testPWA, 2000);
 
         // PWA - Detecta se está sendo executado como app standalone
         if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
