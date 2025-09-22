@@ -1866,8 +1866,11 @@
 
         // Sistema de Contato com EmailJS
         (function() {
-            // Inicializar EmailJS
-            emailjs.init("YOUR_PUBLIC_KEY"); // Substituir pela sua chave pública
+            // CONFIGURE SUAS CREDENCIAIS EMAILJS AQUI:
+            // emailjs.init("YOUR_PUBLIC_KEY"); // Substituir pela sua chave pública
+            
+            // TEMPORARIAMENTE DESABILITADO - Configure suas credenciais EmailJS
+            console.warn('⚠️ EmailJS não configurado. Veja CONFIGURACAO_CONTATO.md para instruções');
             
             const contactForm = document.getElementById('contact-form');
             const submitBtn = document.getElementById('submit-btn');
@@ -1931,17 +1934,25 @@
                     reply_to: formData.email
                 };
                 
-                // Tentar enviar via EmailJS
-                emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
-                    .then(function(response) {
-                        console.log('Email enviado com sucesso!', response);
-                        showSuccess();
-                        contactForm.reset();
-                    })
-                    .catch(function(error) {
-                        console.error('Erro ao enviar email:', error);
-                        
-                        // Fallback: abrir WhatsApp
+                // Tentar enviar via EmailJS (apenas se configurado)
+                if (typeof emailjs !== 'undefined' && window.emailjsConfigured) {
+                    emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+                        .then(function(response) {
+                            console.log('Email enviado com sucesso!', response);
+                            showSuccess();
+                            contactForm.reset();
+                        })
+                        .catch(function(error) {
+                            console.error('Erro ao enviar email:', error);
+                            fallbackToWhatsApp();
+                        });
+                } else {
+                    // Fallback direto para WhatsApp
+                    console.log('EmailJS não configurado, usando WhatsApp como fallback');
+                    fallbackToWhatsApp();
+                }
+                
+                function fallbackToWhatsApp() {
                         const whatsappMessage = `Olá! Sou ${formData.nome}.%0A%0A` +
                             `📧 Email: ${formData.email}%0A` +
                             `📞 Telefone: ${formData.telefone}%0A` +
@@ -1951,13 +1962,14 @@
                         const whatsappUrl = `https://wa.me/5511969624824?text=${whatsappMessage}`;
                         window.open(whatsappUrl, '_blank');
                         
-                        showError();
-                    })
-                    .finally(function() {
-                        // Reabilitar botão
-                        submitBtn.disabled = false;
-                        submitBtn.innerHTML = '📧 Enviar Mensagem';
-                    });
+                        showSuccess(); // Mudado de showError para showSuccess
+                }
+                
+                // Sempre reabilitar botão
+                setTimeout(function() {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '📧 Enviar Mensagem';
+                }, 2000);
             });
             
             function showSuccess() {
