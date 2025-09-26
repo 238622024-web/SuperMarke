@@ -10,16 +10,12 @@
     <style>
         /* Animação suave nos cards */
         .oferta-card {
-            transition: transform 0.3s, box-shadow 0.3s;
             border: 4px solid #FFD600;
-            box-shadow: 0 4px 24px rgba(255,214,0,0.15);
+            box-shadow: 0 6px 26px rgba(255,214,0,0.25), 0 2px 6px rgba(0,0,0,0.08);
             position: relative;
+            background: linear-gradient(180deg,#ffffff 0%, #fffbea 100%);
         }
-        .oferta-card:hover {
-            transform: scale(1.07) translateY(-8px);
-            box-shadow: 0 12px 40px rgba(255,214,0,0.25);
-            border-color: #FF3D00; 
-        }
+        /* Hover removido para versão estática solicitada */
         .etiqueta-promo {
             position: absolute;
             top: 12px;
@@ -936,231 +932,173 @@
                 <h2 class="text-2xl sm:text-3xl font-bold text-center text-gray-800 mb-2">Ofertas da Semana</h2>
                 <p class="text-center text-gray-500 mb-8 sm:mb-10">Aproveite! Válidas enquanto durarem os estoques.</p>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
-                    <!-- Produto Mussarela KG -->
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
-                        <div class="etiqueta-promo">OFERTA!</div>
-                        <img src="QueijoMussarela.jpeg" alt="Mussarela KG" class="w-full h-48 object-cover" loading="lazy">
+                    <!-- 🛒 ÁREA PARA NOVAS OFERTAS -->
+                    <!-- NOVAS OFERTAS 26/09/2025 -->
+                    <!-- 1 SABÃO BRILHANTE 800g -->
+                    <a href="https://wa.me/5511969624824?text=https://raw.githubusercontent.com/238622024-web/SuperMarket-Responsiva/main/SabaoBrilhante.jpg%0AOlá!%20Tenho%20interesse%20no%20SABÃO%20BRILHANTE%20800g%20por%20R$%2011,99.%20Pode%20separar%20pra%20mim?" target="_blank" rel="noopener noreferrer" class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col group no-underline">
+                        <div class="etiqueta-promo">LIMPEZA</div>
+                        <img src="SabaoBrilhante.jpg" alt="Sabão Brilhante 800g" class="w-full h-48 object-cover" loading="lazy">
                         <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="font-bold text-xl mb-2 text-gray-800">MUSSARELA KG</h3>
-                            <p class="text-gray-600 mb-4 flex-grow">Queijo mussarela fresco, ideal para sanduíches e receitas</p>
-                            <div class="flex items-center justify-between mt-4">
-                                <span class="text-green-600 font-bold text-2xl">R$ 4,49<span class="text-sm text-gray-500">/100g</span></span>
-                                <a href="https://wa.me/5511969624824?text=Olá!%20Tenho%20interesse%20na%20MUSSARELA%20KG%20por%20R$%204,49%20(100g).%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WhatsApp"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.42 1.32 4.84l-1.45 5.32 5.45-1.44a9.88 9.88 0 0 0 4.6 1.18h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.92-9.91zM17.13 14.5c-.21-.11-.9-1.04-1.32-1.16-.13-.04-.26-.06-.39.06-.13.11-.5.63-.61.75-.11.13-.22.14-.42.04-.21-.11-1.02-.38-1.9-1.18-.7-.63-1.16-1.41-1.31-1.66-.14-.24-.02-.38.1-.5.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4s.04-.3-.02-.41c-.06-.11-.39-1.05-.53-1.43-.14-.38-.3-.32-.42-.32h-.37c-.12 0-.31.04-.48.24-.17.19-.65.63-.65 1.54 0 .9.67 1.79.76 1.91.1.13 1.27 1.96 3.07 2.7.43.18.76.29 1.02.37.42.13.8.11.96.06.19-.06.9-1.04 1.13-1.43.23-.38.23-.7.16-.79l-.08-.02z"/></svg>
-                                </a>
+                            <h3 class="font-extrabold text-xl mb-1 text-gray-900 leading-tight">SABÃO BRILHANTE 800g</h3>
+                            <p class="text-gray-600 text-sm mb-3">Roupas mais limpas e perfumadas</p>
+                            <div class="mt-auto flex items-end justify-between">
+                                <span class="preco-destaque leading-none">R$ 11,99</span>
+                                <span class="text-xs font-semibold text-red-600 bg-red-100 px-2 py-1 rounded">OFERTA</span>
                             </div>
                         </div>
-                    </div>
-                    <!-- Card 1 -->
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
-                        <div class="etiqueta-promo">PROMOÇÃO!</div>
-                        <img src="MolhoTomatePomodoro.jpg" alt="Molho Pomodoro 300g trad" class="w-full h-48 object-cover" loading="lazy">
+                    </a>
+                    <!-- 2 CAFÉ PILÃO 500g -->
+                    <a href="https://wa.me/5511969624824?text=https://raw.githubusercontent.com/238622024-web/SuperMarket-Responsiva/main/CafePILAO.jpg%0AOlá!%20Quero%20o%20CAFÉ%20PILÃO%20500g%20por%20R$%2035,99.%20Tem%20disponível?" target="_blank" rel="noopener noreferrer" class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
+                        <div class="etiqueta-promo">CAFÉ</div>
+                        <img src="CafePILAO.jpg" alt="Café Pilão 500g" class="w-full h-48 object-cover" loading="lazy">
                         <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="font-bold text-xl mb-2 text-gray-800">MOLHO POMODORO 300g</h3>
-                            <p class="text-gray-600 mb-4 flex-grow">Molho de tomate tradicional, sabor caseiro para suas receitas</p>
-                            <div class="flex items-center justify-between mt-4">
-                                <span class="text-green-600 font-bold text-2xl">R$ 1,49</span>
-                                <a href="https://wa.me/5511969624824?text=Olá!%20Tenho%20interesse%20no%20MOLHO%20POMODORO%20300g%20por%20R$%201,49.%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WhatsApp"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.42 1.32 4.84l-1.45 5.32 5.45-1.44a9.88 9.88 0 0 0 4.6 1.18h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.92-9.91zM17.13 14.5c-.21-.11-.9-1.04-1.32-1.16-.13-.04-.26-.06-.39.06-.13.11-.5.63-.61.75-.11.13-.22.14-.42.04-.21-.11-1.02-.38-1.9-1.18-.7-.63-1.16-1.41-1.31-1.66-.14-.24-.02-.38.1-.5.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4s.04-.3-.02-.41c-.06-.11-.39-1.05-.53-1.43-.14-.38-.3-.32-.42-.32h-.37c-.12 0-.31.04-.48.24-.17.19-.65.63-.65 1.54 0 .9.67 1.79.76 1.91.1.13 1.27 1.96 3.07 2.7.43.18.76.29 1.02.37.42.13.8.11.96.06.19-.06.9-1.04 1.13-1.43.23-.38.23-.7.16-.79l-.08-.02z"/></svg>
-                                </a>
+                            <h3 class="font-extrabold text-xl mb-1 text-gray-900">CAFÉ PILÃO 500g</h3>
+                            <p class="text-gray-600 text-sm mb-3">Sabor intenso e encorpado</p>
+                            <div class="mt-auto flex items-end justify-between">
+                                <span class="preco-destaque">R$ 35,99</span>
+                                <span class="text-xs font-semibold text-amber-700 bg-amber-100 px-2 py-1 rounded">TRADICIONAL</span>
                             </div>
                         </div>
-                    </div>
-                    <!-- Card 2 -->
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
-                        <img src="MacarraoDonaBenta.jpg" alt="Macarrão Dona Benta 500g" class="w-full h-48 object-cover" loading="lazy">
+                    </a>
+                    <!-- 3 PAPEL HIG FOFINHO 12R -->
+                    <a href="https://wa.me/5511969624824?text=https://raw.githubusercontent.com/238622024-web/SuperMarket-Responsiva/main/PapelHigFoFinho.jpg%0AOlá!%20Quero%20o%20PAPEL%20HIGIÊNICO%20FOFINHO%2012%20ROLOS%20por%20R$%2015,99.%20Pode%20reservar?" target="_blank" rel="noopener noreferrer" class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
+                        <div class="etiqueta-promo">HIGIENE</div>
+                        <img src="PapelHigFoFinho.jpg" alt="Papel Higiênico Fofinho 12R" class="w-full h-48 object-cover" loading="lazy">
                         <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="font-bold text-xl mb-2 text-gray-800">MACARRÃO DONA BENTA 500g</h3>
-                            <p class="text-gray-600 mb-4 flex-grow">Perfeito para o almoço em família.</p>
-                            <div class="flex items-center justify-between mt-4">
-                                <span class="text-green-600 font-bold text-2xl">R$ 3,99</span>
-                                <a href="https://wa.me/5511969624824?text=Olá!%20Tenho%20interesse%20no%20MACARRÃO%20DONA%20BENTA%20500g%20por%20R$%203,99.%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WhatsApp"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.42 1.32 4.84l-1.45 5.32 5.45-1.44a9.88 9.88 0 0 0 4.6 1.18h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.92-9.91zM17.13 14.5c-.21-.11-.9-1.04-1.32-1.16-.13-.04-.26-.06-.39.06-.13.11-.5.63-.61.75-.11.13-.22.14-.42.04-.21-.11-1.02-.38-1.9-1.18-.7-.63-1.16-1.41-1.31-1.66-.14-.24-.02-.38.1-.5.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4s.04-.3-.02-.41c-.06-.11-.39-1.05-.53-1.43-.14-.38-.3-.32-.42-.32h-.37c-.12 0-.31.04-.48.24-.17.19-.65.63-.65 1.54 0 .9.67 1.79.76 1.91.1.13 1.27 1.96 3.07 2.7.43.18.76.29 1.02.37.42.13.8.11.96.06.19-.06.9-1.04 1.13-1.43.23-.38.23-.7.16-.79l-.08-.02z"/></svg>
-                                </a>
+                            <h3 class="font-extrabold text-xl mb-1 text-gray-900">PAPEL FOFINHO 12R</h3>
+                            <p class="text-gray-600 text-sm mb-3">Pacote econômico macio</p>
+                            <div class="mt-auto flex items-end justify-between">
+                                <span class="preco-destaque">R$ 15,99</span>
+                                <span class="text-xs font-semibold text-purple-700 bg-purple-100 px-2 py-1 rounded">ECONOMIA</span>
                             </div>
                         </div>
-                    </div>
-                    <!-- Card 3 -->
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
-                        <img src="VinagreVitalia.jpg" alt="Vinagre Vitalia 750ml" class="w-full h-48 object-cover" loading="lazy">
+                    </a>
+                    <!-- 4 MOLHO TOMATE POMODORO 300g -->
+                    <a href="https://wa.me/5511969624824?text=https://raw.githubusercontent.com/238622024-web/SuperMarket-Responsiva/main/MolhoTomatePomodoro.jpg%0AOlá!%20Tenho%20interesse%20no%20MOLHO%20DE%20TOMATE%20POMODORO%20300g%20por%20R$%201,49.%20Pode%20separar?" target="_blank" rel="noopener noreferrer" class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
+                        <div class="etiqueta-promo">MOLHO</div>
+                        <img src="MolhoTomatePomodoro.jpg" alt="Molho de Tomate Pomodoro 300g" class="w-full h-48 object-cover" loading="lazy">
                         <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="font-bold text-xl mb-2 text-gray-800">VINAGRE VITALIA 750ml</h3>
-                            <p class="text-gray-600 mb-4 flex-grow">Ideal para temperar saladas.</p>
-                            <div class="flex items-center justify-between mt-4">
-                                <span class="text-green-600 font-bold text-2xl">R$ 1,99</span>
-                                <a href="https://wa.me/5511969624824?text=Olá!%20Tenho%20interesse%20no%20VINAGRE%20VITALIA%20750ml%20por%20R$%201,99.%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WhatsApp"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.42 1.32 4.84l-1.45 5.32 5.45-1.44a9.88 9.88 0 0 0 4.6 1.18h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.92-9.91zM17.13 14.5c-.21-.11-.9-1.04-1.32-1.16-.13-.04-.26-.06-.39.06-.13.11-.5.63-.61.75-.11.13-.22.14-.42.04-.21-.11-1.02-.38-1.9-1.18-.7-.63-1.16-1.41-1.31-1.66-.14-.24-.02-.38.1-.5.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4s.04-.3-.02-.41c-.06-.11-.39-1.05-.53-1.43-.14-.38-.3-.32-.42-.32h-.37c-.12 0-.31.04-.48.24-.17.19-.65.63-.65 1.54 0 .9.67 1.79.76 1.91.1.13 1.27 1.96 3.07 2.7.43.18.76.29 1.02.37.42.13.8.11.96.06.19-.06.9-1.04 1.13-1.43.23-.38.23-.7.16-.79l-.08-.02z"/></svg>
-                                </a>
+                            <h3 class="font-extrabold text-xl mb-1 text-gray-900">MOLHO POMODORO 300g</h3>
+                            <p class="text-gray-600 text-sm mb-3">Tomate selecionado</p>
+                            <div class="mt-auto flex items-end justify-between">
+                                <span class="preco-destaque">R$ 1,49</span>
+                                <span class="text-xs font-semibold text-red-700 bg-red-100 px-2 py-1 rounded">IMPERDÍVEL</span>
                             </div>
                         </div>
-                    </div>
-                    <!-- Card 4 -->
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
-                        <img src="PapelHigFoFinho.jpg" alt="Papel Hig Fofinho 12R" class="w-full h-48 object-cover" loading="lazy">
+                    </a>
+                    <!-- 5 LEITE JUSSARA 1L (CONSULTE) -->
+                    <a href="https://wa.me/5511969624824?text=https://raw.githubusercontent.com/238622024-web/SuperMarket-Responsiva/main/LeiteJussara.jpg%0AOlá!%20Qual%20o%20preço%20atual%20do%20LEITE%20JUSSARA%201L?" target="_blank" rel="noopener noreferrer" class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
+                        <div class="etiqueta-promo">LÁCTEO</div>
+                        <img src="LeiteJussara.jpg" alt="Leite Jussara 1 Litro" class="w-full h-48 object-cover" loading="lazy">
                         <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="font-bold text-xl mb-2 text-gray-800">PAPEL HIG FOFINHO 12R</h3>
-                            <p class="text-gray-600 mb-4 flex-grow">Pacote econômico.</p>
-                            <div class="flex items-center justify-between mt-4">
-                                <span class="text-green-600 font-bold text-2xl">R$ 15,99</span>
-                                <a href="https://wa.me/5511969624824?text=Olá!%20Tenho%20interesse%20no%20PAPEL%20HIGIÊNICO%20FOFINHO%2012R%20por%20R$%2015,99.%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WhatsApp"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.42 1.32 4.84l-1.45 5.32 5.45-1.44a9.88 9.88 0 0 0 4.6 1.18h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.92-9.91zM17.13 14.5c-.21-.11-.9-1.04-1.32-1.16-.13-.04-.26-.06-.39.06-.13.11-.5.63-.61.75-.11.13-.22.14-.42.04-.21-.11-1.02-.38-1.9-1.18-.7-.63-1.16-1.41-1.31-1.66-.14-.24-.02-.38.1-.5.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4s.04-.3-.02-.41c-.06-.11-.39-1.05-.53-1.43-.14-.38-.3-.32-.42-.32h-.37c-.12 0-.31.04-.48.24-.17.19-.65.63-.65 1.54 0 .9.67 1.79.76 1.91.1.13 1.27 1.96 3.07 2.7.43.18.76.29 1.02.37.42.13.8.11.96.06.19-.06.9-1.04 1.13-1.43.23-.38.23-.7.16-.79l-.08-.02z"/></svg>
-                                </a>
+                            <h3 class="font-extrabold text-xl mb-1 text-gray-900">LEITE JUSSARA 1L</h3>
+                            <p class="text-gray-600 text-sm mb-3">Integral de qualidade</p>
+                            <div class="mt-auto flex items-end justify-between">
+                                <span class="text-gray-500 font-bold text-2xl">CONSULTE</span>
+                                <span class="text-xs font-semibold text-blue-700 bg-blue-100 px-2 py-1 rounded">DIÁRIO</span>
                             </div>
                         </div>
-                    </div>
-                    <!-- Card 5 -->
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
-                        <img src="PontaAgulha.png" alt="Ponta Agulha kg" class="w-full h-48 object-cover" loading="lazy">
+                    </a>
+                    <!-- 6 OVOS 20un -->
+                    <a href="https://wa.me/5511969624824?text=https://raw.githubusercontent.com/238622024-web/SuperMarket-Responsiva/main/Ovos20.jpg%0AOlá!%20Quero%20a%20BANDEJA%20DE%2020%20OVOS%20por%20R$%2011,99.%20Tem%20aí?" target="_blank" rel="noopener noreferrer" class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
+                        <div class="etiqueta-promo">OVOS</div>
+                        <img src="Ovos20.jpg" alt="Ovos 20 unidades" class="w-full h-48 object-cover" loading="lazy">
                         <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="font-bold text-xl mb-2 text-gray-800">PONTA AGULHA KG</h3>
-                            <p class="text-gray-600 mb-4 flex-grow">Carne para churrasco.</p>
-                            <div class="flex items-center justify-between mt-4">
-                                <span class="text-green-600 font-bold text-2xl">R$ 24,99</span>
-                                <a href="https://wa.me/5511969624824?text=Olá!%20Tenho%20interesse%20na%20PONTA%20AGULHA%20KG%20por%20R$%2024,99.%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WhatsApp"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.42 1.32 4.84l-1.45 5.32 5.45-1.44a9.88 9.88 0 0 0 4.6 1.18h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.92-9.91zM17.13 14.5c-.21-.11-.9-1.04-1.32-1.16-.13-.04-.26-.06-.39.06-.13.11-.5.63-.61.75-.11.13-.22.14-.42.04-.21-.11-1.02-.38-1.9-1.18-.7-.63-1.16-1.41-1.31-1.66-.14-.24-.02-.38.1-.5.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4s.04-.3-.02-.41c-.06-.11-.39-1.05-.53-1.43-.14-.38-.3-.32-.42-.32h-.37c-.12 0-.31.04-.48.24-.17.19-.65.63-.65 1.54 0 .9.67 1.79.76 1.91.1.13 1.27 1.96 3.07 2.7.43.18.76.29 1.02.37.42.13.8.11.96.06.19-.06.9-1.04 1.13-1.43.23-.38.23-.7.16-.79l-.08-.02z"/></svg>
-                                </a>
+                            <h3 class="font-extrabold text-xl mb-1 text-gray-900">OVOS 20 UNIDADES</h3>
+                            <p class="text-gray-600 text-sm mb-3">Frescos e selecionados</p>
+                            <div class="mt-auto flex items-end justify-between">
+                                <span class="preco-destaque">R$ 11,99</span>
+                                <span class="text-xs font-semibold text-yellow-700 bg-yellow-100 px-2 py-1 rounded">FRESCO</span>
                             </div>
                         </div>
-                    </div>
-                    <!-- Card 6 -->
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
+                    </a>
+                    <!-- 7 COSTELA GAÚCHA kg -->
+                    <a href="https://wa.me/5511969624824?text=https://raw.githubusercontent.com/238622024-web/SuperMarket-Responsiva/main/CostelaGaucha.jpg%0AOlá!%20Quero%20a%20COSTELA%20GAÚCHA%20KG%20por%20R$%2027,90.%20Pode%20separar?" target="_blank" rel="noopener noreferrer" class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
+                        <div class="etiqueta-promo">CARNES</div>
+                        <img src="CostelaGaucha.jpg" alt="Costela Gaúcha kg" class="w-full h-48 object-cover" loading="lazy">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="font-extrabold text-xl mb-1 text-gray-900">COSTELA GAÚCHA KG</h3>
+                            <p class="text-gray-600 text-sm mb-3">Ideal para assar lentamente</p>
+                            <div class="mt-auto flex items-end justify-between">
+                                <span class="preco-destaque">R$ 27,90</span>
+                                <span class="text-xs font-semibold text-rose-700 bg-rose-100 px-2 py-1 rounded">CHURRASCO</span>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- 8 LAGARTO kg -->
+                    <a href="https://wa.me/5511969624824?text=https://raw.githubusercontent.com/238622024-web/SuperMarket-Responsiva/main/Lagarto.jpg%0AOlá!%20Tenho%20interesse%20no%20LAGARTO%20KG%20por%20R$%2039,90.%20Está%20fresco?" target="_blank" rel="noopener noreferrer" class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
+                        <div class="etiqueta-promo">CARNES</div>
+                        <img src="Lagarto.jpg" alt="Lagarto kg" class="w-full h-48 object-cover" loading="lazy">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="font-extrabold text-xl mb-1 text-gray-900">LAGARTO KG</h3>
+                            <p class="text-gray-600 text-sm mb-3">Perfeito para assados e molhos</p>
+                            <div class="mt-auto flex items-end justify-between">
+                                <span class="preco-destaque">R$ 39,90</span>
+                                <span class="text-xs font-semibold text-rose-700 bg-rose-100 px-2 py-1 rounded">NOBRE</span>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- 9 MIOLO ACÉM kg -->
+                    <a href="https://wa.me/5511969624824?text=https://raw.githubusercontent.com/238622024-web/SuperMarket-Responsiva/main/MioloAcem.jpeg%0AOlá!%20Quero%20o%20MIOLO%20ACÉM%20KG%20por%20R$%2034,99.%20Tem%20aí%20agora?" target="_blank" rel="noopener noreferrer" class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
+                        <div class="etiqueta-promo">CARNES</div>
                         <img src="MioloAcem.jpeg" alt="Miolo Acém kg" class="w-full h-48 object-cover" loading="lazy">
                         <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="font-bold text-xl mb-2 text-gray-800">MIOLO ACÉM KG</h3>
-                            <p class="text-gray-600 mb-4 flex-grow">Carne macia para cozidos.</p>
-                            <div class="flex items-center justify-between mt-4">
-                                <span class="text-green-600 font-bold text-2xl">R$ 34,99</span>
-                                <a href="https://wa.me/5511969624824?text=Olá!%20Tenho%20interesse%20no%20MIOLO%20ACÉM%20KG%20por%20R$%2034,99.%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WhatsApp"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.42 1.32 4.84l-1.45 5.32 5.45-1.44a9.88 9.88 0 0 0 4.6 1.18h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.92-9.91zM17.13 14.5c-.21-.11-.9-1.04-1.32-1.16-.13-.04-.26-.06-.39.06-.13.11-.5.63-.61.75-.11.13-.22.14-.42.04-.21-.11-1.02-.38-1.9-1.18-.7-.63-1.16-1.41-1.31-1.66-.14-.24-.02-.38.1-.5.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4s.04-.3-.02-.41c-.06-.11-.39-1.05-.53-1.43-.14-.38-.3-.32-.42-.32h-.37c-.12 0-.31.04-.48.24-.17.19-.65.63-.65 1.54 0 .9.67 1.79.76 1.91.1.13 1.27 1.96 3.07 2.7.43.18.76.29 1.02.37.42.13.8.11.96.06.19-.06.9-1.04 1.13-1.43.23-.38.23-.7.16-.79l-.08-.02z"/></svg>
-                                </a>
+                            <h3 class="font-extrabold text-xl mb-1 text-gray-900">MIOLO ACÉM KG</h3>
+                            <p class="text-gray-600 text-sm mb-3">Carne versátil e saborosa</p>
+                            <div class="mt-auto flex items-end justify-between">
+                                <span class="preco-destaque">R$ 34,99</span>
+                                <span class="text-xs font-semibold text-rose-700 bg-rose-100 px-2 py-1 rounded">SUCULENTO</span>
                             </div>
                         </div>
-                    </div>
+                    </a>
+                    <!-- 10 OSSO BUCO kg -->
+                    <a href="https://wa.me/5511969624824?text=https://raw.githubusercontent.com/238622024-web/SuperMarket-Responsiva/main/OssoBuco.jpg%0AOlá!%20Tenho%20interesse%20no%20OSSO%20BUCO%20KG%20por%20R$%2024,99.%20Pode%20separar?" target="_blank" rel="noopener noreferrer" class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
+                        <div class="etiqueta-promo">CARNES</div>
+                        <img src="OssoBuco.jpg" alt="Osso Buco kg" class="w-full h-48 object-cover" loading="lazy">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="font-extrabold text-xl mb-1 text-gray-900">OSSO BUCO KG</h3>
+                            <p class="text-gray-600 text-sm mb-3">Ideal para cozidos e caldos</p>
+                            <div class="mt-auto flex items-end justify-between">
+                                <span class="preco-destaque">R$ 24,99</span>
+                                <span class="text-xs font-semibold text-rose-700 bg-rose-100 px-2 py-1 rounded">COZIDO</span>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- 11 BATATA LAVADA kg -->
+                    <a href="https://wa.me/5511969624824?text=https://raw.githubusercontent.com/238622024-web/SuperMarket-Responsiva/main/BatataLavada.jpg%0AOlá!%20Quero%20BATATA%20LAVADA%20KG%20por%20R$%203,99.%20Pode%20separar%20pra%20mim?" target="_blank" rel="noopener noreferrer" class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
+                        <div class="etiqueta-promo">HORTIFRUTI</div>
+                        <img src="BatataLavada.jpg" alt="Batata Lavada kg" class="w-full h-48 object-cover" loading="lazy">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="font-extrabold text-xl mb-1 text-gray-900">BATATA LAVADA KG</h3>
+                            <p class="text-gray-600 text-sm mb-3">Limpa e pronta para uso</p>
+                            <div class="mt-auto flex items-end justify-between">
+                                <span class="preco-destaque">R$ 3,99</span>
+                                <span class="text-xs font-semibold text-green-700 bg-green-100 px-2 py-1 rounded">FRESCO</span>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- 12 MANDIOCA kg -->
+                    <a href="https://wa.me/5511969624824?text=https://raw.githubusercontent.com/238622024-web/SuperMarket-Responsiva/main/Mandioca.jpg%0AOlá!%20Quero%20MANDIOCA%20KG%20por%20R$%203,49.%20Tem%20aí?" target="_blank" rel="noopener noreferrer" class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
+                        <div class="etiqueta-promo">HORTIFRUTI</div>
+                        <img src="Mandioca.jpg" alt="Mandioca kg" class="w-full h-48 object-cover" loading="lazy">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="font-extrabold text-xl mb-1 text-gray-900">MANDIOCA KG</h3>
+                            <p class="text-gray-600 text-sm mb-3">Para fritar ou cozinhar</p>
+                            <div class="mt-auto flex items-end justify-between">
+                                <span class="preco-destaque">R$ 3,49</span>
+                                <span class="text-xs font-semibold text-green-700 bg-green-100 px-2 py-1 rounded">RAIZ</span>
+                            </div>
+                        </div>
+                    </a>
                     
-                    <!-- Alface Crespa -->
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
-                        <div class="etiqueta-promo">FRESCO!</div>
-                        <img src="https://images.unsplash.com/photo-1622206151226-18ca2c9ab4a1?w=400&h=300&fit=crop&crop=center" alt="Alface Crespa" class="w-full h-48 object-cover" loading="lazy">
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="font-bold text-xl mb-2 text-gray-800">ALFACE CRESPA</h3>
-                            <p class="text-gray-600 mb-4 flex-grow">Alface fresquinha, ideal para saladas nutritivas</p>
-                            <div class="flex items-center justify-between mt-4">
-                                <span class="text-green-600 font-bold text-2xl">R$ 2,49<span class="text-sm text-gray-500">/un</span></span>
-                                <a href="https://wa.me/5511969624824?text=Olá!%20Tenho%20interesse%20na%20ALFACE%20CRESPA%20por%20R$%202,49%20(unidade).%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WhatsApp"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.42 1.32 4.84l-1.45 5.32 5.45-1.44a9.88 9.88 0 0 0 4.6 1.18h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.92-9.91zM17.13 14.5c-.21-.11-.9-1.04-1.32-1.16-.13-.04-.26-.06-.39.06-.13.11-.5.63-.61.75-.11.13-.22.14-.42.04-.21-.11-1.02-.38-1.9-1.18-.7-.63-1.16-1.41-1.31-1.66-.14-.24-.02-.38.1-.5.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4s.04-.3-.02-.41c-.06-.11-.39-1.05-.53-1.43-.14-.38-.3-.32-.42-.32h-.37c-.12 0-.31.04-.48.24-.17.19-.65.63-.65 1.54 0 .9.67 1.79.76 1.91.1.13 1.27 1.96 3.07 2.7.43.18.76.29 1.02.37.42.13.8.11.96.06.19-.06.9-1.04 1.13-1.43.23-.38.23-.7.16-.79l-.08-.02z"/></svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Couve Manteiga -->
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
-                        <div class="etiqueta-promo">FRESCO!</div>
-                        <img src="CouveManteiga.jpeg" alt="Couve Manteiga" class="w-full h-48 object-cover" loading="lazy">
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="font-bold text-xl mb-2 text-gray-800">COUVE MANTEIGA</h3>
-                            <p class="text-gray-600 mb-4 flex-grow">Couve fresquinha, perfeita para refogados e vitaminas</p>
-                            <div class="flex items-center justify-between mt-4">
-                                <span class="text-green-600 font-bold text-2xl">R$ 3,49<span class="text-sm text-gray-500">/un</span></span>
-                                <a href="https://wa.me/5511969624824?text=Olá!%20Tenho%20interesse%20na%20COUVE%20MANTEIGA%20por%20R$%203,49%20(unidade).%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WhatsApp"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.42 1.32 4.84l-1.45 5.32 5.45-1.44a9.88 9.88 0 0 0 4.6 1.18h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.92-9.91zM17.13 14.5c-.21-.11-.9-1.04-1.32-1.16-.13-.04-.26-.06-.39.06-.13.11-.5.63-.61.75-.11.13-.22.14-.42.04-.21-.11-1.02-.38-1.9-1.18-.7-.63-1.16-1.41-1.31-1.66-.14-.24-.02-.38.1-.5.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4s.04-.3-.02-.41c-.06-.11-.39-1.05-.53-1.43-.14-.38-.3-.32-.42-.32h-.37c-.12 0-.31.04-.48.24-.17.19-.65.63-.65 1.54 0 .9.67 1.79.76 1.91.1.13 1.27 1.96 3.07 2.7.43.18.76.29 1.02.37.42.13.8.11.96.06.19-.06.9-1.04 1.13-1.43.23-.38.23-.7.16-.79l-.08-.02z"/></svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Coentro -->
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
-                        <div class="etiqueta-promo">FRESCO!</div>
-                        <img src="Coentro.jpeg" alt="Coentro" class="w-full h-48 object-cover" loading="lazy">
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="font-bold text-xl mb-2 text-gray-800">COENTRO</h3>
-                            <p class="text-gray-600 mb-4 flex-grow">Coentro fresquinho para temperar seus pratos</p>
-                            <div class="flex items-center justify-between mt-4">
-                                <span class="text-green-600 font-bold text-2xl">R$ 2,99<span class="text-sm text-gray-500">/un</span></span>
-                                <a href="https://wa.me/5511969624824?text=Olá!%20Tenho%20interesse%20no%20COENTRO%20por%20R$%202,99%20(unidade).%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WhatsApp"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.42 1.32 4.84l-1.45 5.32 5.45-1.44a9.88 9.88 0 0 0 4.6 1.18h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.92-9.91zM17.13 14.5c-.21-.11-.9-1.04-1.32-1.16-.13-.04-.26-.06-.39.06-.13.11-.5.63-.61.75-.11.13-.22.14-.42.04-.21-.11-1.02-.38-1.9-1.18-.7-.63-1.16-1.41-1.31-1.66-.14-.24-.02-.38.1-.5.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4s.04-.3-.02-.41c-.06-.11-.39-1.05-.53-1.43-.14-.38-.3-.32-.42-.32h-.37c-.12 0-.31.04-.48.24-.17.19-.65.63-.65 1.54 0 .9.67 1.79.76 1.91.1.13 1.27 1.96 3.07 2.7.43.18.76.29 1.02.37.42.13.8.11.96.06.19-.06.9-1.04 1.13-1.43.23-.38.23-.7.16-.79l-.08-.02z"/></svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Salsa -->
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
-                        <div class="etiqueta-promo">FRESCO!</div>
-                        <img src="sausa.jpg" alt="Salsa" class="w-full h-48 object-cover" loading="lazy">
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="font-bold text-xl mb-2 text-gray-800">SALSA</h3>
-                            <p class="text-gray-600 mb-4 flex-grow">Salsa fresquinha, folhas verdes para saladas e pratos</p>
-                            <div class="flex items-center justify-between mt-4">
-                                <span class="text-green-600 font-bold text-2xl">R$ 2,99<span class="text-sm text-gray-500">/un</span></span>
-                                <a href="https://wa.me/5511969624824?text=Olá!%20Tenho%20interesse%20na%20SALSA%20por%20R$%202,99%20(unidade).%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WhatsApp"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.42 1.32 4.84l-1.45 5.32 5.45-1.44a9.88 9.88 0 0 0 4.6 1.18h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.92-9.91zM17.13 14.5c-.21-.11-.9-1.04-1.32-1.16-.13-.04-.26-.06-.39.06-.13.11-.5.63-.61.75-.11.13-.22.14-.42.04-.21-.11-1.02-.38-1.9-1.18-.7-.63-1.16-1.41-1.31-1.66-.14-.24-.02-.38.1-.5.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4s.04-.3-.02-.41c-.06-.11-.39-1.05-.53-1.43-.14-.38-.3-.32-.42-.32h-.37c-.12 0-.31.04-.48.24-.17.19-.65.63-.65 1.54 0 .9.67 1.79.76 1.91.1.13 1.27 1.96 3.07 2.7.43.18.76.29 1.02.37.42.13.8.11.96.06.19-.06.9-1.04 1.13-1.43.23-.38.23-.7.16-.79l-.08-.02z"/></svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Bolo Ana Maria -->
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
-                        <div class="etiqueta-promo">DOCE!</div>
-                        <img src="AnaMaria.png" alt="Bolo Ana Maria" class="w-full h-48 object-cover" loading="lazy">
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="font-bold text-xl mb-2 text-gray-800">BOLO ANA MARIA 70g</h3>
-                            <p class="text-gray-600 mb-4 flex-grow">Bolinho individual sabor caseiro</p>
-                            <div class="flex items-center justify-between mt-4">
-                                <span class="text-green-600 font-bold text-2xl">R$ 2,49</span>
-                                <a href="https://wa.me/5511969624824?text=Olá!%20Tenho%20interesse%20no%20BOLO%20ANA%20MARIA%2070g%20por%20R$%202,49.%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WhatsApp"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.42 1.32 4.84l-1.45 5.32 5.45-1.44a9.88 9.88 0 0 0 4.6 1.18h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.92-9.91zM17.13 14.5c-.21-.11-.9-1.04-1.32-1.16-.13-.04-.26-.06-.39.06-.13.11-.5.63-.61.75-.11.13-.22.14-.42.04-.21-.11-1.02-.38-1.9-1.18-.7-.63-1.16-1.41-1.31-1.66-.14-.24-.02-.38.1-.5.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4s.04-.3-.02-.41c-.06-.11-.39-1.05-.53-1.43-.14-.38-.3-.32-.42-.32h-.37c-.12 0-.31.04-.48.24-.17.19-.65.63-.65 1.54 0 .9.67 1.79.76 1.91.1.13 1.27 1.96 3.07 2.7.43.18.76.29 1.02.37.42.13.8.11.96.06.19-.06.9-1.04 1.13-1.43.23-.38.23-.7.16-.79l-.08-.02z"/></svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Skol 269ml Pack -->
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
-                        <div class="etiqueta-promo">PACK!</div>
-                        <img src="Skol269ml.jpeg" alt="Skol 269ml Pack c/ 15un" class="w-full h-48 object-cover" loading="lazy">
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="font-bold text-xl mb-2 text-gray-800">SKOL 269ml PCT c/ 15un</h3>
-                            <p class="text-gray-600 mb-4 flex-grow">Cerveja gelada para confraternizar, pack com 15 unidades</p>
-                            <div class="flex items-center justify-between mt-4">
-                                <span class="text-green-600 font-bold text-2xl">R$ 39,90</span>
-                                <a href="https://wa.me/5511969624824?text=Olá!%20Tenho%20interesse%20no%20SKOL%20269ml%20PACK%20c/%2015un%20por%20R$%2039,90.%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WhatsApp"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.42 1.32 4.84l-1.45 5.32 5.45-1.44a9.88 9.88 0 0 0 4.6 1.18h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.92-9.91zM17.13 14.5c-.21-.11-.9-1.04-1.32-1.16-.13-.04-.26-.06-.39.06-.13.11-.5.63-.61.75-.11.13-.22.14-.42.04-.21-.11-1.02-.38-1.9-1.18-.7-.63-1.16-1.41-1.31-1.66-.14-.24-.02-.38.1-.5.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4s.04-.3-.02-.41c-.06-.11-.39-1.05-.53-1.43-.14-.38-.3-.32-.42-.32h-.37c-.12 0-.31.04-.48.24-.17.19-.65.63-.65 1.54 0 .9.67 1.79.76 1.91.1.13 1.27 1.96 3.07 2.7.43.18.76.29 1.02.37.42.13.8.11.96.06.19-.06.9-1.04 1.13-1.43.23-.38.23-.7.16-.79l-.08-.02z"/></svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Card 7 -->
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
-                        <img src="Pernil.jpeg" alt="Pernil kg" class="w-full h-48 object-cover" loading="lazy">
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="font-bold text-xl mb-2 text-gray-800">PERNIL KG</h3>
-                            <p class="text-gray-600 mb-4 flex-grow">Perfeito para assados.</p>
-                            <div class="flex items-center justify-between mt-4">
-                                <span class="text-green-600 font-bold text-2xl">R$ 19,90</span>
-                                <a href="https://wa.me/5511969624824?text=Olá!%20Tenho%20interesse%20no%20PERNIL%20KG%20por%20R$%2019,90.%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WhatsApp"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.42 1.32 4.84l-1.45 5.32 5.45-1.44a9.88 9.88 0 0 0 4.6 1.18h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.92-9.91zM17.13 14.5c-.21-.11-.9-1.04-1.32-1.16-.13-.04-.26-.06-.39.06-.13.11-.5.63-.61.75-.11.13-.22.14-.42.04-.21-.11-1.02-.38-1.9-1.18-.7-.63-1.16-1.41-1.31-1.66-.14-.24-.02-.38.1-.5.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4s.04-.3-.02-.41c-.06-.11-.39-1.05-.53-1.43-.14-.38-.3-.32-.42-.32h-.37c-.12 0-.31.04-.48.24-.17.19-.65.63-.65 1.54 0 .9.67 1.79.76 1.91.1.13 1.27 1.96 3.07 2.7.43.18.76.29 1.02.37.42.13.8.11.96.06.19-.06.9-1.04 1.13-1.43.23-.38.23-.7.16-.79l-.08-.02z"/></svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Card 8 -->
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
-                        <img src="PontaAlcatra.jpeg" alt="Ponta Alcatra kg" class="w-full h-48 object-cover" loading="lazy">
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="font-bold text-xl mb-2 text-gray-800">PONTA ALCATRA KG</h3>
-                            <p class="text-gray-600 mb-4 flex-grow">Carne nobre para grelha.</p>
-                            <div class="flex items-center justify-between mt-4">
-                                <span class="text-green-600 font-bold text-2xl">R$ 35,90</span>
-                                <a href="https://wa.me/5511969624824?text=Olá!%20Tenho%20interesse%20na%20PONTA%20ALCATRA%20KG%20por%20R$%2035,90.%20Está%20disponível?" target="_blank" rel="noopener noreferrer" title="Comprar via WhatsApp" class="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full transition duration-300 ml-2">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WhatsApp"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.42 1.32 4.84l-1.45 5.32 5.45-1.44a9.88 9.88 0 0 0 4.6 1.18h.01c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.92-9.91zM17.13 14.5c-.21-.11-.9-1.04-1.32-1.16-.13-.04-.26-.06-.39.06-.13.11-.5.63-.61.75-.11.13-.22.14-.42.04-.21-.11-1.02-.38-1.9-1.18-.7-.63-1.16-1.41-1.31-1.66-.14-.24-.02-.38.1-.5.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4s.04-.3-.02-.41c-.06-.11-.39-1.05-.53-1.43-.14-.38-.3-.32-.42-.32h-.37c-.12 0-.31.04-.48.24-.17.19-.65.63-.65 1.54 0 .9.67 1.79.76 1.91.1.13 1.27 1.96 3.07 2.7.43.18.76.29 1.02.37.42.13.8.11.96.06.19-.06.9-1.04 1.13-1.43.23-.38.23-.7.16-.79l-.08-.02z"/></svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                   </div>
+                </div>
+            </div>
+        </section>
+                    
+                    <!-- Área para adicionar novas ofertas -->
+                    <!-- As novas ofertas serão adicionadas aqui -->
+                    
+                </div>
         
         <!-- Seção Sobre Nós -->
         <section id="sobre" class="bg-white py-12 sm:py-16 w-full">
@@ -2080,23 +2018,23 @@
 
         // 📱 Funcionalidade para enviar imagem junto com mensagem no WhatsApp
         function setupWhatsAppWithImages() {
-            // Seleciona todos os botões do WhatsApp nos cards
-            const whatsappButtons = document.querySelectorAll('.oferta-card a[href*="wa.me"]');
+            // Agora cada card inteiro é um link (a.oferta-card)
+            const whatsappCards = document.querySelectorAll('a.oferta-card[href*="wa.me"]');
             
-            whatsappButtons.forEach(button => {
-                // Adiciona evento de clique
-                button.addEventListener('click', function(e) {
-                    e.preventDefault(); // Previne o comportamento padrão
-                    
-                    // Encontra o card pai
-                    const card = this.closest('.oferta-card');
+            whatsappCards.forEach(cardLink => {
+                cardLink.addEventListener('click', function(e) {
+                    // Mantemos comportamento padrão (abrir link) mas podemos enriquecer mensagem se quisermos
+                    // e.preventDefault(); // Se quisermos interceptar totalmente, descomentar
+                    const card = this; // o próprio link
                     if (!card) return;
                     
-                    // Extrai informações do produto
                     const img = card.querySelector('img');
-                    const title = card.querySelector('h3').textContent;
-                    const description = card.querySelector('p').textContent;
-                    const price = card.querySelector('.text-green-600').textContent;
+                    const titleEl = card.querySelector('h3');
+                    const descEl = card.querySelector('p');
+                    const priceEl = card.querySelector('.preco-destaque') || card.querySelector('.text-green-600') || card.querySelector('.text-gray-500.font-bold');
+                    const title = titleEl ? titleEl.textContent.trim() : 'PRODUTO';
+                    const description = descEl ? descEl.textContent.trim() : '';
+                    const price = priceEl ? priceEl.textContent.replace(/CONSULTE/i,'CONSULTE PREÇO').trim() : '';
                     
                     // Constrói URL da imagem
                     let imageUrl;
