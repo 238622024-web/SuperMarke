@@ -720,7 +720,7 @@
         }
     </style>
 </head>
-<body class="bg-gray-50 w-full">
+<body class="bg-gray-50 w-full theme-wallpaper">
     <!-- Wrapper principal para controlar largura -->
     <div class="main-wrapper w-full min-h-screen overflow-x-hidden">
         
@@ -733,23 +733,70 @@
                         <div class="flex items-center gap-3 justify-center text-center">
                             <img src="QueijoMussarela.jpeg" alt="Mussarela KG" class="w-12 h-12 sm:w-16 sm:h-16 rounded-full object-cover flex-shrink-0" loading="lazy">
                             <span class="font-bold text-blue-700 text-sm sm:text-lg">Mussarela KG 100g por R$ 4,49</span>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="flex items-center gap-3 justify-center text-center">
-                            <img src="MolhoTomatePomodoro.jpg" alt="Molho Pomodoro" class="w-12 h-12 sm:w-16 sm:h-16 rounded-full object-cover flex-shrink-0" loading="lazy">
-                            <span class="font-bold text-blue-700 text-sm sm:text-lg">Molho Pomodoro 300g trad por R$ 1,49</span>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="flex items-center gap-3 justify-center text-center">
-                            <img src="MacarraoDonaBenta.jpg" alt="Macarrão Dona Benta" class="w-12 h-12 sm:w-16 sm:h-16 rounded-full object-cover flex-shrink-0" loading="lazy">
-                            <span class="font-bold text-blue-700 text-sm sm:text-lg">Macarrão Dona Benta 500g por R$ 3,99</span>
-                        </div>
-                    </div>
-                    <div class="swiper-slide flex items-center gap-4 justify-center">
-                        <img src="VinagreVitalia.jpg" alt="Vinagre Vitalia" class="w-16 h-16 rounded-full" loading="lazy">
-                        <span class="font-bold text-blue-700 text-lg">Vinagre Vitalia 750ml por R$ 1,99</span>
+                        body {
+                            font-family: 'Inter', sans-serif;
+                            width: 100%;
+                            min-width: 320px; /* Largura mínima para dispositivos muito pequenos */
+                            overflow-x: hidden;
+                        }
+
+                        /* ===== Papel de Parede Temático =====
+                           Combina cores principais: Laranja (oferta), Amarelo (destaque), Verde (marca) e Azul (identidade).
+                           Leve, não polui a leitura e reforça ambiente promocional. */
+                        .theme-wallpaper {
+                            --cor-laranja: #FF3D00;
+                            --cor-amarelo: #FFD600;
+                            --cor-verde: #22c55e;
+                            --cor-azul: #2563eb;
+                            background:
+                                /* Camada superior: faixas diagonais translúcidas */
+                                linear-gradient(135deg,
+                                    rgba(255,61,0,0.06) 0%,
+                                    rgba(255,214,0,0.06) 25%,
+                                    rgba(37,99,235,0.06) 50%,
+                                    rgba(34,197,94,0.06) 75%,
+                                    rgba(255,61,0,0.06) 100%),
+                                /* Camada padrão repetitiva suave */
+                                repeating-linear-gradient(45deg,
+                                    rgba(255,214,0,0.08) 0 14px,
+                                    rgba(255,61,0,0.08) 14px 28px,
+                                    rgba(37,99,235,0.08) 28px 42px,
+                                    rgba(34,197,94,0.08) 42px 56px),
+                                /* Brilho central neutro */
+                                radial-gradient(circle at 50% 40%, #ffffff 0%, #fff9e6 70%, #f8fafc 100%);
+                            background-attachment: fixed, fixed, fixed;
+                            background-size: cover, 800px 800px, 100% 100%;
+                        }
+
+                        /* Suave textura de pontos para dar profundidade */
+                        .theme-wallpaper::before {
+                            content: "";
+                            position: fixed;
+                            inset: 0;
+                            pointer-events: none;
+                            background:
+                                radial-gradient(circle at 10% 20%, rgba(255,214,0,0.15) 0 2px, transparent 2px),
+                                radial-gradient(circle at 80% 70%, rgba(255,61,0,0.12) 0 2px, transparent 2px),
+                                radial-gradient(circle at 30% 85%, rgba(37,99,235,0.12) 0 2px, transparent 2px),
+                                radial-gradient(circle at 70% 30%, rgba(34,197,94,0.14) 0 2px, transparent 2px);
+                            background-size: 320px 320px, 360px 360px, 400px 400px, 340px 340px;
+                            mix-blend-mode: multiply;
+                            opacity: .18;
+                            z-index: -1;
+                        }
+
+                        /* Gradiente de foco nas seções principais para evitar poluição visual por trás dos cards */
+                        #ofertas, #sobre, #contato, header, footer, .hero-bg {
+                            position: relative;
+                        }
+                        #ofertas::before, #sobre::before, #contato::before, .hero-bg::before {
+                            content: "";
+                            position: absolute;
+                            inset: 0;
+                            background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.88) 100%);
+                            backdrop-filter: blur(2px);
+                            z-index: -1;
+                        }
                     </div>
                     <div class="swiper-slide flex items-center gap-4 justify-center">
                         <img src="PapelHigFoFinho.jpg" alt="Papel Hig Fofinho" class="w-16 h-16 rounded-full" loading="lazy">
@@ -950,7 +997,7 @@
                     <!-- 2 CAFÉ PILÃO 500g -->
                     <a href="https://wa.me/5511969624824?text=https://raw.githubusercontent.com/238622024-web/SuperMarket-Responsiva/main/CafePILAO.jpg%0AOlá!%20Quero%20o%20CAFÉ%20PILÃO%20500g%20por%20R$%2035,99.%20Tem%20disponível?" target="_blank" rel="noopener noreferrer" class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
                         <div class="etiqueta-promo">CAFÉ</div>
-                        <img src="CafePILAO.jpg" alt="Café Pilão 500g" class="w-full h-48 object-cover" loading="lazy">
+                        <img src="CafePILAO.png" alt="Café Pilão 500g" class="w-full h-48 object-cover" loading="lazy">
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="font-extrabold text-xl mb-1 text-gray-900">CAFÉ PILÃO 500g</h3>
                             <p class="text-gray-600 text-sm mb-3">Sabor intenso e encorpado</p>
@@ -1054,7 +1101,7 @@
                     <!-- 10 OSSO BUCO kg -->
                     <a href="https://wa.me/5511969624824?text=https://raw.githubusercontent.com/238622024-web/SuperMarket-Responsiva/main/OssoBuco.jpg%0AOlá!%20Tenho%20interesse%20no%20OSSO%20BUCO%20KG%20por%20R$%2024,99.%20Pode%20separar?" target="_blank" rel="noopener noreferrer" class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
                         <div class="etiqueta-promo">CARNES</div>
-                        <img src="OssoBuco.jpg" alt="Osso Buco kg" class="w-full h-48 object-cover" loading="lazy">
+                        <img src="OssoBuco.png" alt="Osso Buco kg" class="w-full h-48 object-cover" loading="lazy">
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="font-extrabold text-xl mb-1 text-gray-900">OSSO BUCO KG</h3>
                             <p class="text-gray-600 text-sm mb-3">Ideal para cozidos e caldos</p>
