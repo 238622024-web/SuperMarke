@@ -794,15 +794,15 @@
         </div>
         
         <!-- Navegação principal -->
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <nav class="container mx-auto px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center gap-2">
             <!-- Logo -->
-            <a href="#" class="flex items-center gap-3 group" id="main-logo">
-                <div class="w-16 h-16 bg-white rounded-full p-3 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110 logo-container relative overflow-hidden" style="background:linear-gradient(135deg,#ffffff,#f1f5f9);">
+            <a href="#" class="flex items-center gap-2 sm:gap-3 group max-w-full" id="main-logo">
+                <div class="w-14 h-14 sm:w-16 sm:h-16 bg-white rounded-full p-2.5 sm:p-3 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110 logo-container relative overflow-hidden flex-shrink-0" style="background:linear-gradient(135deg,#ffffff,#f1f5f9);">
                     <img 
                         src="logo.SuperMarket.jpg"
                         alt="Logo SuperMarket"
-                        class="w-full h-full object-cover rounded-full logo-image animate-fade-in"
-                        width="64" height="64"
+                        class="w-full h-full object-cover rounded-full logo-image animate-fade-in select-none"
+                        width="64" height="64" 
                         decoding="async"
                         loading="eager"
                         onerror="this.onerror=null;this.src='logo.SuperMarket.jpg';this.style.objectFit='contain';this.style.padding='8px';"
@@ -811,9 +811,9 @@
                     >
                     <noscript><img src="logo.SuperMarket.jpg" alt="Logo SuperMarket" class="w-full h-full object-cover rounded-full" width="64" height="64"></noscript>
                 </div>
-                <div class="text-white logo-text">
-                    <h1 class="text-2xl font-bold leading-tight logo-title">SuperMarket</h1>
-                    <p class="text-blue-100 text-sm font-medium logo-subtitle">Qualidade & Economia</p>
+                <div class="text-white logo-text leading-tight min-w-0">
+                    <h1 class="text-xl sm:text-2xl font-bold logo-title break-words">SuperMarket</h1>
+                    <p class="text-[0.65rem] sm:text-sm font-medium logo-subtitle text-blue-100 whitespace-normal leading-snug">Qualidade & Economia</p>
                 </div>
             </a>
             
@@ -844,7 +844,7 @@
             </div>
             
             <!-- Call to Action + Menu Mobile -->
-            <div class="flex items-center gap-4">
+            <div class="flex items-center gap-3 sm:gap-4 flex-shrink-0">
                 <!-- Botão WhatsApp destacado -->
                 <a href="https://wa.me/5511969624824" target="_blank" 
                    class="hidden sm:flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold px-4 py-2 rounded-full transition duration-300 transform hover:scale-105 shadow-lg">
@@ -853,10 +853,11 @@
                 
                 <!-- Menu Mobile -->
                 <div class="lg:hidden">
-                    <button id="menu-btn" class="text-white hover:text-yellow-300 focus:outline-none bg-white/10 p-2 rounded-lg">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <button id="menu-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu" class="text-white hover:text-yellow-300 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 focus:ring-offset-blue-600/40 bg-white/10 p-2 rounded-lg transition relative active:scale-95 select-none">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                         </svg>
+                        <span class="sr-only">Menu</span>
                     </button>
                 </div>
             </div>
