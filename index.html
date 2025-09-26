@@ -1523,60 +1523,51 @@
         // Executar detecção quando página carrega
         document.addEventListener('DOMContentLoaded', detectIOSAndPWA);
 
-        // Registrar Service Worker
+        // Registrar Service Worker (ajustado para detectar corretamente o subdiretório do repositório no GitHub Pages)
         window.addEventListener('load', function() {
-                // Detecta automaticamente se está no GitHub Pages ou local
-                const isGitHubPages = window.location.hostname.includes('github.io');
-                const swPath = isGitHubPages ? '/SuperMarke/sw.js' : '/sw.js';
-                
-                console.log('PWA: Ambiente detectado:', isGitHubPages ? 'GitHub Pages' : 'Local');
-                console.log('PWA: Service Worker path:', swPath);
-                
-                navigator.serviceWorker.register(swPath)
-                    .then(function(registration) {
-                        console.log('PWA: Service Worker registrado com sucesso:', registration.scope);
-                        console.log('PWA: ✅ PWA está funcionando corretamente!');
-                        
-                        // Verifica atualizações
-                        registration.addEventListener('updatefound', () => {
-                            const newWorker = registration.installing;
-                            newWorker.addEventListener('statechange', () => {
-                                if (newWorker.state === 'installed') {
-                                    if (navigator.serviceWorker.controller) {
-                                        // Nova versão disponível
-                                        console.log('PWA: Nova versão disponível!');
-                                        
-                                        // Mostra notificação de atualização
-                                        showUpdateNotification(newWorker);
-                                    }
-                                }
-                            });
+            if (!('serviceWorker' in navigator)) {
+                console.log('PWA: Service Worker não suportado neste navegador.');
+                return;
+            }
+
+            const isGitHubPages = window.location.hostname.includes('github.io');
+            // Captura o primeiro segmento do path (nome do repositório) quando em Pages de projeto
+            const pathSegments = window.location.pathname.split('/').filter(Boolean);
+            // Ex.: https://user.github.io/RepoName/ => pathSegments[0] = 'RepoName'
+            const repoSegment = isGitHubPages && pathSegments.length > 0 ? `/${pathSegments[0]}` : '';
+            const swPath = `${repoSegment}/sw.js`;
+
+            console.log('PWA: Ambiente:', isGitHubPages ? 'GitHub Pages' : 'Local');
+            console.log('PWA: Repo segment detectado:', repoSegment || '(root)');
+            console.log('PWA: Caminho do Service Worker:', swPath);
+
+            navigator.serviceWorker.register(swPath)
+                .then(function(registration) {
+                    console.log('PWA: SW registrado:', registration.scope);
+
+                    // Observa novas instalações
+                    registration.addEventListener('updatefound', () => {
+                        const newWorker = registration.installing;
+                        newWorker && newWorker.addEventListener('statechange', () => {
+                            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                console.log('PWA: Nova versão detectada (installed).');
+                                showUpdateNotification(newWorker);
+                            }
                         });
-                        
-                        // Força verificação de atualizações
-                        setInterval(() => {
-                            registration.update();
-                        }, 60000); // Verifica a cada 1 minuto
-                    })
-                    .catch(function(error) {
-                        console.log('PWA: Falha ao registrar Service Worker:', error);
-                        console.log('PWA: ❌ Verifique se o arquivo sw.js existe em:', swPath);
-                        
-                        // Tenta registrar sem cache se falhar
-                        if (isGitHubPages) {
-                            console.log('PWA: Tentando caminho alternativo...');
-                            navigator.serviceWorker.register('./sw.js')
-                                .then(reg => console.log('PWA: ✅ Registrado com caminho relativo!'))
-                                .catch(err => console.log('PWA: ❌ Falha total:', err));
-                        }
                     });
-                
-                // Escuta mudanças no service worker
-                navigator.serviceWorker.addEventListener('controllerchange', () => {
-                    console.log('PWA: Recarregando para nova versão...');
-                    window.location.reload();
+
+                    // Verifica atualização a cada 60s
+                    setInterval(() => registration.update(), 60000);
+                })
+                .catch(function(error) {
+                    console.log('PWA: Falha ao registrar SW:', error);
                 });
+
+            navigator.serviceWorker.addEventListener('controllerchange', () => {
+                console.log('PWA: Controller mudou -> recarregando para aplicar nova versão');
+                window.location.reload();
             });
+        });
         }
 
         // PWA - Install App Prompt (Otimizado para Mobile)

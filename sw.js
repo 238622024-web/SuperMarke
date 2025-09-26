@@ -1,20 +1,29 @@
-const CACHE_NAME = 'supermarket-v1.4';
+const CACHE_NAME = 'supermarket-v1.5';
 
-// Detecta automaticamente se está no GitHub Pages ou local
+// Detecta automaticamente se está no GitHub Pages ou local e calcula subpasta dinâmica
 const isGitHubPages = self.location.hostname.includes('github.io');
-const BASE_URL = isGitHubPages ? '/SuperMarke/' : '/';
+// Ex.: em https://usuario.github.io/RepoName/ => pathname começa com /RepoName/
+let BASE_URL = '/';
+if (isGitHubPages) {
+  const parts = self.location.pathname.split('/').filter(Boolean); // [ 'RepoName', 'sw.js' ]
+  if (parts.length > 0) {
+    BASE_URL = `/${parts[0]}/`;
+  }
+}
 
 const urlsToCache = [
   BASE_URL,
   BASE_URL + 'index.html',
   BASE_URL + 'manifest.json',
+  // Logos e imagens principais (adicione aqui conforme necessidade offline)
   BASE_URL + 'logo.SuperMarket.jpg',
   BASE_URL + 'FachadaSuperMarket.jpg',
-  BASE_URL + 'AnaMaria.png',
-  BASE_URL + 'Coentro.jpeg',
-  BASE_URL + 'CouveManteiga.jpeg',
-  BASE_URL + 'Skol269ml.jpeg',
-  BASE_URL + 'sausa.jpg'
+  BASE_URL + 'SabaoBrilhante.jpg',
+  BASE_URL + 'CafePILAO.png',
+  BASE_URL + 'PapelHigFoFinho.jpg',
+  BASE_URL + 'MolhoTomatePomodoro.jpg',
+  BASE_URL + 'LeiteJussara.jpg',
+  BASE_URL + 'Ovos20.jpg'
 ];
 
 console.log('SW: Ambiente detectado:', isGitHubPages ? 'GitHub Pages' : 'Local');
