@@ -725,8 +725,11 @@
     <div class="main-wrapper w-full min-h-screen overflow-x-hidden">
     <!-- Novo Cabeçalho Mobile (Android) -->
     <header class="lg:hidden bg-gradient-to-r from-blue-700 via-blue-600 to-green-600 shadow-md sticky top-0 z-50 border-b-4 border-green-500/60" id="mobile-header-alt">
-        <div class="px-4 py-2 flex items-center justify-between gap-3">
-            <a href="#" class="flex items-center gap-2" style="min-width:0;">
+        <div class="px-3 py-2 flex items-center gap-3">
+            <button id="menu-btn-mobile-alt" aria-label="Abrir menu" aria-expanded="false" class="p-2 rounded-lg bg-white/15 hover:bg-white/25 active:scale-95 transition focus:outline-none focus:ring-2 focus:ring-yellow-400 text-white">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+            <a href="#" class="flex items-center gap-2 flex-grow" style="min-width:0;">
                 <div class="w-12 h-12 rounded-xl bg-white shadow flex items-center justify-center overflow-hidden ring-2 ring-white/40">
                     <img src="logo.SuperMarket.jpg" alt="Logo SuperMarket" class="w-full h-full object-cover" loading="lazy" decoding="async"
                          onerror="this.onerror=null;this.style.objectFit='contain';this.style.padding='6px';" />
@@ -736,14 +739,9 @@
                     <span class="text-green-100 text-[0.65rem] font-semibold uppercase tracking-wide">Qualidade & Economia</span>
                 </div>
             </a>
-            <div class="flex items-center gap-2">
-                <button id="menu-btn-mobile-alt" aria-label="Abrir menu" aria-expanded="false" class="p-2 rounded-lg bg-white/15 hover:bg-white/25 active:scale-95 transition focus:outline-none focus:ring-2 focus:ring-yellow-400 text-white">
-                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-                </button>
-                <a href="https://wa.me/5511969624824" class="p-2 rounded-lg bg-green-500 hover:bg-green-600 text-white shadow active:scale-95 transition" aria-label="WhatsApp">
-                    💬
-                </a>
-            </div>
+            <a href="https://wa.me/5511969624824" class="p-2 rounded-lg bg-green-500 hover:bg-green-600 text-white shadow active:scale-95 transition" aria-label="WhatsApp">
+                💬
+            </a>
         </div>
         <div id="mobile-menu-alt" class="hidden px-4 pb-3 animate-fade-in">
             <nav class="grid gap-2 mt-1">
