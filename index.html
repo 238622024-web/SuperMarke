@@ -324,6 +324,109 @@
             
             /* Cards mobile OTIMIZADOS - VERSÃO PREMIUM */
             @media (max-width: 640px) {
+                /* NOVO LAYOUT COMPACTO HORIZONTAL (foto pequena à esquerda) */
+                .oferta-card {
+                    display: flex !important;
+                    flex-direction: row !important;
+                    align-items: stretch;
+                    min-height: 110px;
+                }
+                .oferta-card img {
+                    width: 105px !important;
+                    height: 105px !important;
+                    flex-shrink: 0;
+                    object-fit: cover;
+                    border-radius: 1rem 0 0 1rem !important;
+                    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.04);
+                }
+                /* Wrapper interno (já é .p-6) vira flex para distribuir texto/preço */
+                .oferta-card .p-6 {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    padding: 0.75rem 0.85rem 0.75rem 0.9rem !important;
+                    gap: 0.35rem;
+                }
+                .oferta-card h3 {
+                    font-size: 0.92rem !important;
+                    margin: 0 0 0.15rem 0 !important;
+                    line-height: 1.15 !important;
+                }
+                .oferta-card p.text-gray-600 {
+                    display: none; /* esconde descrição longa no super compacto */
+                }
+                /* Área preço + botão fica em linha, sem bloco verde grande */
+                .oferta-card .flex.items-center.justify-between {
+                    background: transparent !important;
+                    border: 0 !important;
+                    padding: 0 !important;
+                    margin: 0 !important;
+                    flex-direction: row !important;
+                    align-items: center !important;
+                    gap: 0.5rem !important;
+                }
+                .oferta-card .text-green-600 {
+                    font-size: 1.15rem !important;
+                    font-weight: 800;
+                    text-shadow: none !important;
+                    background: none !important;
+                    -webkit-text-fill-color: #059669 !important;
+                    color: #059669 !important;
+                    line-height: 1;
+                    margin: 0 !important;
+                }
+                .oferta-card .text-green-600 .text-sm { /* preço secundário */
+                    display: block;
+                    font-size: 0.65rem !important;
+                    font-weight: 600;
+                    color: #6b7280 !important;
+                    -webkit-text-fill-color: #6b7280 !important;
+                    margin-top: 0.15rem;
+                }
+                /* Botão WhatsApp agora vira mini-pill à direita */
+                .oferta-card a[href*="whatsapp"] {
+                    width: auto !important;
+                    padding: 0.45rem 0.7rem !important;
+                    font-size: 0.70rem !important;
+                    border-radius: 999px !important;
+                    gap: 0.35rem !important;
+                    box-shadow: 0 2px 6px rgba(37,211,102,0.35) !important;
+                    background: linear-gradient(135deg,#25d366 0%,#15a058 100%) !important;
+                }
+                .oferta-card a[href*="whatsapp"] svg {
+                    width: 0.9rem !important;
+                    height: 0.9rem !important;
+                }
+                /* Remove ripple grande para manter leve */
+                .oferta-card a[href*="whatsapp"]:before { display:none !important; }
+                /* Etiqueta promo ajustada menor e sem sombra pesada */
+                .oferta-card .etiqueta-promo, .etiqueta-promo {
+                    font-size: 0.55rem !important;
+                    padding: 0.35rem 0.55rem !important;
+                    left: 0 !important;
+                    top: 0.35rem !important;
+                    border-radius: 0 0.65rem 0.65rem 0 !important;
+                    box-shadow: 0 2px 6px rgba(0,0,0,0.15) !important;
+                    letter-spacing: 0.5px;
+                }
+                /* Espaçamento entre cards mais compacto */
+                .oferta-card + .oferta-card { margin-top: 0.65rem !important; }
+            
+                /* Quando usuário tocar (active) só leve escala */
+                .oferta-card:active { transform: scale(0.985) !important; box-shadow: 0 4px 18px -4px rgba(0,0,0,0.18) !important; }
+                .oferta-card:active img { transform: none !important; }
+            
+                /* Ajuste se estiver em modo PWA classe .pwa-mode no body */
+                .pwa-mode .oferta-card { border:1px solid rgba(0,0,0,0.06); }
+                .pwa-mode .oferta-card a[href*="whatsapp"] { box-shadow: 0 2px 4px rgba(0,0,0,0.25) !important; }
+            
+                /* Suporte para telas super pequenas (<360px) */
+                @media (max-width: 360px) {
+                    .oferta-card img { width: 92px !important; height: 92px !important; }
+                    .oferta-card h3 { font-size: 0.85rem !important; }
+                    .oferta-card .text-green-600 { font-size: 1.05rem !important; }
+                }
+            
                 /* Container principal mobile */
                 #ofertas .container {
                     padding-left: 0.75rem;
