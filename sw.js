@@ -1,4 +1,6 @@
-const CACHE_NAME = 'supermarket-v1.5';
+const CACHE_NAME = 'supermarket-v1.6';
+const IMG_FULL_CACHE = 'supermarket-img-full-v1';
+const IMG_THUMB_CACHE = 'supermarket-img-thumb-v1';
 
 // Detecta automaticamente se está no GitHub Pages ou local e calcula subpasta dinâmica
 const isGitHubPages = self.location.hostname.includes('github.io');
@@ -65,33 +67,58 @@ self.addEventListener('activate', function(event) {
 
 // Intercepta requisições de rede
 self.addEventListener('fetch', function(event) {
+  const req = event.request;
+  const url = new URL(req.url);
+
+  // Estratégia para imagens de ofertas
+  if (req.destination === 'image') {
+    const isThumb = /\/thumbs\//.test(url.pathname) || /-300w\.(avif|webp|jpe?g|png)$/i.test(url.pathname);
+    // Thumbnails: cache-first
+    if (isThumb) {
+      event.respondWith(
+        caches.open(IMG_THUMB_CACHE).then(cache =>
+          cache.match(req).then(cached => {
+            if (cached) return cached;
+            return fetch(req).then(netRes => {
+              if (netRes.status === 200) cache.put(req, netRes.clone());
+              return netRes;
+            }).catch(()=> cached);
+          })
+        )
+      );
+      return;
+    }
+    // Imagens full: stale-while-revalidate
+    event.respondWith(
+      caches.open(IMG_FULL_CACHE).then(cache =>
+        cache.match(req).then(cached => {
+          const fetchPromise = fetch(req).then(netRes => {
+            if (netRes.status === 200) cache.put(req, netRes.clone());
+            return netRes;
+          }).catch(()=> cached);
+          return cached || fetchPromise;
+        })
+      )
+    );
+    return;
+  }
+
+  // Demais requisições: network-first (como antes)
   event.respondWith(
-    // Sempre tenta buscar da rede primeiro para conteúdo atualizado
-    fetch(event.request)
-      .then(function(response) {
-        // Se a resposta é válida, clona e salva no cache
+    fetch(req)
+      .then(response => {
         if (response.status === 200) {
-          const responseClone = response.clone();
-          caches.open(CACHE_NAME)
-            .then(function(cache) {
-              cache.put(event.request, responseClone);
-            });
+          const clone = response.clone();
+            caches.open(CACHE_NAME).then(cache => cache.put(req, clone));
         }
         return response;
       })
-      .catch(function() {
-        // Se falhar (offline), busca do cache
-        return caches.match(event.request)
-          .then(function(response) {
-            if (response) {
-              return response;
-            }
-            // Se não estiver no cache, retorna página offline básica
-            if (event.request.destination === 'document') {
-              return caches.match(BASE_URL + 'index.html');
-            }
-          });
-      })
+      .catch(()=> caches.match(req).then(match => {
+        if (match) return match;
+        if (req.destination === 'document') {
+          return caches.match(BASE_URL + 'index.html');
+        }
+      }))
   );
 });
 
