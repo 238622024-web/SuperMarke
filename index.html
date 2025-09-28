@@ -2342,65 +2342,36 @@ Aguardo retorno! 😊`;
         
         // ===== Lazy Loading avançado (IntersectionObserver) =====
         document.addEventListener('DOMContentLoaded', function(){
-        (function advancedLazy(){
-            const isSupported = 'IntersectionObserver' in window;
             const mobile = window.matchMedia('(max-width:640px)').matches;
             const pictures = document.querySelectorAll('.oferta-card picture');
-
-            function hydratePicture(pic){
+            pictures.forEach(pic => {
                 if(pic.dataset.loaded) return;
                 const img = pic.querySelector('img');
                 const sources = pic.querySelectorAll('source');
-                // aplica thumb se existir
+                // Ativa srcset imediatamente
+                sources.forEach(s => { if(s.dataset.srcset) s.setAttribute('srcset', s.dataset.srcset); });
+                // Se mobile e existir thumb usa primeiro
                 if(mobile && img.dataset.thumb){
-                    img.src = img.dataset.thumb;
+                    const fullSrc = img.dataset.full || img.src;
+                    const thumbSrc = img.dataset.thumb;
+                    img.src = thumbSrc;
                     img.classList.add('thumb-loading');
+                    const preload = new Image();
+                    preload.src = fullSrc;
+                    preload.onload = () => {
+                        requestAnimationFrame(()=>{
+                            img.src = fullSrc;
+                            img.classList.remove('thumb-loading');
+                            img.classList.add('is-loaded');
+                            pic.dataset.loaded = '1';
+                        });
+                    };
+                } else {
+                    // Desktop: já considera carregada
+                    img.classList.add('is-loaded');
+                    pic.dataset.loaded = '1';
                 }
-                // Carrega full quando necessário
-                const fullSrc = img.dataset.full || img.getAttribute('src');
-                const fullImg = new Image();
-                fullImg.src = fullSrc;
-                fullImg.onload = () => {
-                    // injeta srcset real nos sources (deferred)
-                    sources.forEach(s => {
-                        if(s.dataset.srcset){
-                            s.setAttribute('srcset', s.dataset.srcset);
-                        }
-                    });
-                    requestAnimationFrame(()=>{
-                        img.src = fullSrc;
-                        img.classList.remove('thumb-loading');
-                        img.classList.add('is-loaded');
-                        pic.dataset.loaded = '1';
-                    });
-                };
-            }
-
-            if(!isSupported){
-                pictures.forEach(hydratePicture);
-                return;
-            }
-
-            const obs = new IntersectionObserver((entries)=>{
-                entries.forEach(entry=>{
-                    if(entry.isIntersecting){
-                        hydratePicture(entry.target);
-                        obs.unobserve(entry.target);
-                    }
-                });
-            }, { rootMargin: '120px 0px 120px 0px', threshold: 0.01 });
-
-            pictures.forEach(pic => obs.observe(pic));
-
-            // Fallback de segurança: após 3s carrega qualquer que não tenha entrado ainda (evita ficar vazio se usuário não scrolla)
-            setTimeout(()=>{
-                pictures.forEach(pic => {
-                    if(!pic.dataset.loaded){
-                        hydratePicture(pic);
-                    }
-                });
-            }, 3000);
-        })();
+            });
         });
         
         // 🔄 Função para mostrar notificação de atualização
