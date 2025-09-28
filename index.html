@@ -353,7 +353,15 @@
                     line-height: 1.15 !important;
                 }
                 .oferta-card p.text-gray-600 {
-                    display: none; /* esconde descrição longa no super compacto */
+                    display: -webkit-box !important; /* reexibe descrição */
+                    -webkit-line-clamp: 2;
+                    line-clamp: 2; /* fallback */
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    font-size: 0.68rem !important;
+                    line-height: 1.15 !important;
+                    margin: 0 !important;
+                    opacity: 0.9;
                 }
                 /* Área preço + botão fica em linha, sem bloco verde grande */
                 .oferta-card .flex.items-center.justify-between {
@@ -366,7 +374,7 @@
                     gap: 0.5rem !important;
                 }
                 .oferta-card .text-green-600 {
-                    font-size: 1.15rem !important;
+                    font-size: 1.0rem !important; /* menor conforme pedido */
                     font-weight: 800;
                     text-shadow: none !important;
                     background: none !important;
