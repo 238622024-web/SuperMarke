@@ -691,29 +691,7 @@
             width: 100%;
         }
 
-        /* ==== Thumbnails & Lazy Enhancement ==== */
-        .oferta-card img[data-thumb] {
-            filter: blur(14px) brightness(1.05) saturate(1.2);
-            transform: scale(1.03);
-            transition: filter .6s ease, transform .6s ease, opacity .6s ease;
-            opacity: 0.35;
-            background: linear-gradient(120deg,#f1f5f9,#e2e8f0,#f8fafc);
-            background-size: 200% 200%;
-            animation: pulseBG 2s ease-in-out infinite;
-        }
-        .oferta-card img.is-loaded {
-            filter: blur(0) brightness(1) saturate(1);
-            transform: scale(1);
-            opacity: 1;
-            animation: none;
-        }
-        @keyframes pulseBG {
-            0%,100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-        @media (max-width:640px) {
-            .oferta-card img.is-loaded { transition: filter .45s ease, transform .45s ease, opacity .45s ease; }
-        }
+        /* (Removido lazy thumbnails; fallback simples agora) */
 
         /* Estilos para PWA (App Standalone) */
         .pwa-mode .logo-container {
@@ -1125,11 +1103,7 @@
                     <!-- 1 SABÃO BRILHANTE 800g -->
                     <a href="https://wa.me/5511969624824?text=https://raw.githubusercontent.com/238622024-web/SuperMarket-Responsiva/main/SabaoBrilhante.jpg%0AOlá!%20Tenho%20interesse%20no%20SABÃO%20BRILHANTE%20800g%20por%20R$%2011,99.%20Pode%20separar%20pra%20mim?" target="_blank" rel="noopener noreferrer" class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col group no-underline">
                         <div class="etiqueta-promo">LIMPEZA</div>
-                        <picture>
-                            <source type="image/avif" data-srcset="thumbs/SabaoBrilhante-300w.avif 300w, SabaoBrilhante.avif 600w">
-                            <source type="image/webp" data-srcset="thumbs/SabaoBrilhante-300w.webp 300w, SabaoBrilhante.webp 600w">
-                            <img src="SabaoBrilhante.jpg" alt="Sabão Brilhante 800g" class="w-full h-48 object-cover lazy-offer" loading="lazy" width="600" height="300" data-full="SabaoBrilhante.jpg" data-thumb="thumbs/SabaoBrilhante-300w.jpg">
-                        </picture>
+                        <img src="SabaoBrilhante.jpg" alt="Sabão Brilhante 800g" class="w-full h-48 object-cover" loading="lazy" width="600" height="300">
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="font-extrabold text-xl mb-1 text-gray-900 leading-tight">SABÃO BRILHANTE 800g</h3>
                             <p class="text-gray-600 text-sm mb-3">Roupas mais limpas e perfumadas</p>
@@ -1142,11 +1116,7 @@
                     <!-- 2 CAFÉ PILÃO 500g -->
                     <a href="https://wa.me/5511969624824?text=https://raw.githubusercontent.com/238622024-web/SuperMarket-Responsiva/main/CafePILAO.jpg%0AOlá!%20Quero%20o%20CAFÉ%20PILÃO%20500g%20por%20R$%2035,99.%20Tem%20disponível?" target="_blank" rel="noopener noreferrer" class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
                         <div class="etiqueta-promo">CAFÉ</div>
-                        <picture>
-                            <source type="image/avif" data-srcset="thumbs/CafePILAO-300w.avif 300w, CafePILAO.avif 600w">
-                            <source type="image/webp" data-srcset="thumbs/CafePILAO-300w.webp 300w, CafePILAO.webp 600w">
-                            <img src="CafePILAO.png" alt="Café Pilão 500g" class="w-full h-48 object-cover lazy-offer" loading="lazy" width="600" height="300" data-full="CafePILAO.png" data-thumb="thumbs/CafePILAO-300w.png">
-                        </picture>
+                        <img src="CafePILAO.png" alt="Café Pilão 500g" class="w-full h-48 object-cover" loading="lazy" width="600" height="300">
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="font-extrabold text-xl mb-1 text-gray-900">CAFÉ PILÃO 500g</h3>
                             <p class="text-gray-600 text-sm mb-3">Sabor intenso e encorpado</p>
@@ -1159,11 +1129,7 @@
                     <!-- 3 PAPEL HIG FOFINHO 12R -->
                     <a href="https://wa.me/5511969624824?text=https://raw.githubusercontent.com/238622024-web/SuperMarket-Responsiva/main/PapelHigFoFinho.jpg%0AOlá!%20Quero%20o%20PAPEL%20HIGIÊNICO%20FOFINHO%2012%20ROLOS%20por%20R$%2015,99.%20Pode%20reservar?" target="_blank" rel="noopener noreferrer" class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
                         <div class="etiqueta-promo">HIGIENE</div>
-                        <picture>
-                            <source type="image/avif" data-srcset="thumbs/PapelHigFoFinho-300w.avif 300w, PapelHigFoFinho.avif 600w">
-                            <source type="image/webp" data-srcset="thumbs/PapelHigFoFinho-300w.webp 300w, PapelHigFoFinho.webp 600w">
-                            <img src="PapelHigFoFinho.jpg" alt="Papel Higiênico Fofinho 12R" class="w-full h-48 object-cover lazy-offer" loading="lazy" width="600" height="300" data-full="PapelHigFoFinho.jpg" data-thumb="thumbs/PapelHigFoFinho-300w.jpg">
-                        </picture>
+                        <img src="PapelHigFoFinho.jpg" alt="Papel Higiênico Fofinho 12R" class="w-full h-48 object-cover" loading="lazy" width="600" height="300">
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="font-extrabold text-xl mb-1 text-gray-900">PAPEL FOFINHO 12R</h3>
                             <p class="text-gray-600 text-sm mb-3">Pacote econômico macio</p>
@@ -1176,11 +1142,7 @@
                     <!-- 4 MOLHO TOMATE POMODORO 300g -->
                     <a href="https://wa.me/5511969624824?text=https://raw.githubusercontent.com/238622024-web/SuperMarket-Responsiva/main/MolhoTomatePomodoro.jpg%0AOlá!%20Tenho%20interesse%20no%20MOLHO%20DE%20TOMATE%20POMODORO%20300g%20por%20R$%201,49.%20Pode%20separar?" target="_blank" rel="noopener noreferrer" class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
                         <div class="etiqueta-promo">MOLHO</div>
-                        <picture>
-                            <source type="image/avif" data-srcset="thumbs/MolhoTomatePomodoro-300w.avif 300w, MolhoTomatePomodoro.avif 600w">
-                            <source type="image/webp" data-srcset="thumbs/MolhoTomatePomodoro-300w.webp 300w, MolhoTomatePomodoro.webp 600w">
-                            <img src="MolhoTomatePomodoro.jpg" alt="Molho de Tomate Pomodoro 300g" class="w-full h-48 object-cover lazy-offer" loading="lazy" width="600" height="300" data-full="MolhoTomatePomodoro.jpg" data-thumb="thumbs/MolhoTomatePomodoro-300w.jpg">
-                        </picture>
+                        <img src="MolhoTomatePomodoro.jpg" alt="Molho de Tomate Pomodoro 300g" class="w-full h-48 object-cover" loading="lazy" width="600" height="300">
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="font-extrabold text-xl mb-1 text-gray-900">MOLHO POMODORO 300g</h3>
                             <p class="text-gray-600 text-sm mb-3">Tomate selecionado</p>
@@ -1193,11 +1155,7 @@
                     <!-- 5 LEITE JUSSARA 1L -->
                     <a href="https://wa.me/5511969624824?text=https://raw.githubusercontent.com/238622024-web/SuperMarket-Responsiva/main/LeiteJussara.jpg%0AOlá!%20Quero%20o%20LEITE%20JUSSARA%201L%20por%20R$%205,99.%20Pode%20separar?" target="_blank" rel="noopener noreferrer" class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
                         <div class="etiqueta-promo">LÁCTEO</div>
-                        <picture>
-                            <source type="image/avif" data-srcset="thumbs/LeiteJussara-300w.avif 300w, LeiteJussara.avif 600w">
-                            <source type="image/webp" data-srcset="thumbs/LeiteJussara-300w.webp 300w, LeiteJussara.webp 600w">
-                            <img src="LeiteJussara.jpg" alt="Leite Jussara 1 Litro" class="w-full h-48 object-cover lazy-offer" loading="lazy" width="600" height="300" data-full="LeiteJussara.jpg" data-thumb="thumbs/LeiteJussara-300w.jpg">
-                        </picture>
+                        <img src="LeiteJussara.jpg" alt="Leite Jussara 1 Litro" class="w-full h-48 object-cover" loading="lazy" width="600" height="300">
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="font-extrabold text-xl mb-1 text-gray-900">LEITE JUSSARA 1L</h3>
                             <p class="text-gray-600 text-sm mb-3">Integral de qualidade</p>
@@ -1210,11 +1168,7 @@
                     <!-- 6 OVOS 20un -->
                     <a href="https://wa.me/5511969624824?text=https://raw.githubusercontent.com/238622024-web/SuperMarket-Responsiva/main/Ovos20.jpg%0AOlá!%20Quero%20a%20BANDEJA%20DE%2020%20OVOS%20por%20R$%2011,99.%20Tem%20aí?" target="_blank" rel="noopener noreferrer" class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
                         <div class="etiqueta-promo">OVOS</div>
-                        <picture>
-                            <source type="image/avif" data-srcset="thumbs/Ovos20-300w.avif 300w, Ovos20.avif 600w">
-                            <source type="image/webp" data-srcset="thumbs/Ovos20-300w.webp 300w, Ovos20.webp 600w">
-                            <img src="Ovos20.jpg" alt="Ovos 20 unidades" class="w-full h-48 object-cover lazy-offer" loading="lazy" width="600" height="300" data-full="Ovos20.jpg" data-thumb="thumbs/Ovos20-300w.jpg">
-                        </picture>
+                        <img src="Ovos20.jpg" alt="Ovos 20 unidades" class="w-full h-48 object-cover" loading="lazy" width="600" height="300">
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="font-extrabold text-xl mb-1 text-gray-900">OVOS 20 UNIDADES</h3>
                             <p class="text-gray-600 text-sm mb-3">Frescos e selecionados</p>
@@ -1227,11 +1181,7 @@
                     <!-- 7 COSTELA GAÚCHA kg -->
                     <a href="https://wa.me/5511969624824?text=https://raw.githubusercontent.com/238622024-web/SuperMarket-Responsiva/main/CostelaGaucha.jpg%0AOlá!%20Quero%20a%20COSTELA%20GAÚCHA%20KG%20por%20R$%2027,90.%20Pode%20separar?" target="_blank" rel="noopener noreferrer" class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
                         <div class="etiqueta-promo">CARNES</div>
-                        <picture>
-                            <source type="image/avif" data-srcset="thumbs/CostelaGaucha-300w.avif 300w, CostelaGaucha.avif 600w">
-                            <source type="image/webp" data-srcset="thumbs/CostelaGaucha-300w.webp 300w, CostelaGaucha.webp 600w">
-                            <img src="CostelaGaucha.jpg" alt="Costela Gaúcha kg" class="w-full h-48 object-cover lazy-offer" loading="lazy" width="600" height="300" data-full="CostelaGaucha.jpg" data-thumb="thumbs/CostelaGaucha-300w.jpg">
-                        </picture>
+                        <img src="CostelaGaucha.jpg" alt="Costela Gaúcha kg" class="w-full h-48 object-cover" loading="lazy" width="600" height="300">
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="font-extrabold text-xl mb-1 text-gray-900">COSTELA GAÚCHA KG</h3>
                             <p class="text-gray-600 text-sm mb-3">Ideal para assar lentamente</p>
@@ -1244,11 +1194,7 @@
                     <!-- 8 LAGARTO kg -->
                     <a href="https://wa.me/5511969624824?text=https://raw.githubusercontent.com/238622024-web/SuperMarket-Responsiva/main/Lagarto.jpg%0AOlá!%20Tenho%20interesse%20no%20LAGARTO%20KG%20por%20R$%2039,90.%20Está%20fresco?" target="_blank" rel="noopener noreferrer" class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
                         <div class="etiqueta-promo">CARNES</div>
-                        <picture>
-                            <source type="image/avif" data-srcset="thumbs/Lagarto-300w.avif 300w, Lagarto.avif 600w">
-                            <source type="image/webp" data-srcset="thumbs/Lagarto-300w.webp 300w, Lagarto.webp 600w">
-                            <img src="Lagarto.jpg" alt="Lagarto kg" class="w-full h-48 object-cover lazy-offer" loading="lazy" width="600" height="300" data-full="Lagarto.jpg" data-thumb="thumbs/Lagarto-300w.jpg">
-                        </picture>
+                        <img src="Lagarto.jpg" alt="Lagarto kg" class="w-full h-48 object-cover" loading="lazy" width="600" height="300">
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="font-extrabold text-xl mb-1 text-gray-900">LAGARTO KG</h3>
                             <p class="text-gray-600 text-sm mb-3">Perfeito para assados e molhos</p>
@@ -1261,11 +1207,7 @@
                     <!-- 9 MIOLO ACÉM kg -->
                     <a href="https://wa.me/5511969624824?text=https://raw.githubusercontent.com/238622024-web/SuperMarket-Responsiva/main/MioloAcem.jpeg%0AOlá!%20Quero%20o%20MIOLO%20ACÉM%20KG%20por%20R$%2034,99.%20Tem%20aí%20agora?" target="_blank" rel="noopener noreferrer" class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
                         <div class="etiqueta-promo">CARNES</div>
-                        <picture>
-                            <source type="image/avif" data-srcset="thumbs/MioloAcem-300w.avif 300w, MioloAcem.avif 600w">
-                            <source type="image/webp" data-srcset="thumbs/MioloAcem-300w.webp 300w, MioloAcem.webp 600w">
-                            <img src="MioloAcem.jpeg" alt="Miolo Acém kg" class="w-full h-48 object-cover lazy-offer" loading="lazy" width="600" height="300" data-full="MioloAcem.jpeg" data-thumb="thumbs/MioloAcem-300w.jpeg">
-                        </picture>
+                        <img src="MioloAcem.jpeg" alt="Miolo Acém kg" class="w-full h-48 object-cover" loading="lazy" width="600" height="300">
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="font-extrabold text-xl mb-1 text-gray-900">MIOLO ACÉM KG</h3>
                             <p class="text-gray-600 text-sm mb-3">Carne versátil e saborosa</p>
@@ -1278,11 +1220,7 @@
                     <!-- 10 OSSO BUCO kg -->
                     <a href="https://wa.me/5511969624824?text=https://raw.githubusercontent.com/238622024-web/SuperMarket-Responsiva/main/OssoBuco.jpg%0AOlá!%20Tenho%20interesse%20no%20OSSO%20BUCO%20KG%20por%20R$%2024,99.%20Pode%20separar?" target="_blank" rel="noopener noreferrer" class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
                         <div class="etiqueta-promo">CARNES</div>
-                        <picture>
-                            <source type="image/avif" data-srcset="thumbs/OssoBuco-300w.avif 300w, OssoBuco.avif 600w">
-                            <source type="image/webp" data-srcset="thumbs/OssoBuco-300w.webp 300w, OssoBuco.webp 600w">
-                            <img src="OssoBuco.png" alt="Osso Buco kg" class="w-full h-48 object-cover lazy-offer" loading="lazy" width="600" height="300" data-full="OssoBuco.png" data-thumb="thumbs/OssoBuco-300w.png">
-                        </picture>
+                        <img src="OssoBuco.png" alt="Osso Buco kg" class="w-full h-48 object-cover" loading="lazy" width="600" height="300">
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="font-extrabold text-xl mb-1 text-gray-900">OSSO BUCO KG</h3>
                             <p class="text-gray-600 text-sm mb-3">Ideal para cozidos e caldos</p>
@@ -1295,11 +1233,7 @@
                     <!-- 11 BATATA LAVADA kg -->
                     <a href="https://wa.me/5511969624824?text=https://raw.githubusercontent.com/238622024-web/SuperMarket-Responsiva/main/BatataLavada.jpg%0AOlá!%20Quero%20BATATA%20LAVADA%20KG%20por%20R$%203,99.%20Pode%20separar%20pra%20mim?" target="_blank" rel="noopener noreferrer" class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
                         <div class="etiqueta-promo">HORTIFRUTI</div>
-                        <picture>
-                            <source type="image/avif" data-srcset="thumbs/BatataLavada-300w.avif 300w, BatataLavada.avif 600w">
-                            <source type="image/webp" data-srcset="thumbs/BatataLavada-300w.webp 300w, BatataLavada.webp 600w">
-                            <img src="BatataLavada.jpg" alt="Batata Lavada kg" class="w-full h-48 object-cover lazy-offer" loading="lazy" width="600" height="300" data-full="BatataLavada.jpg" data-thumb="thumbs/BatataLavada-300w.jpg">
-                        </picture>
+                        <img src="BatataLavada.jpg" alt="Batata Lavada kg" class="w-full h-48 object-cover" loading="lazy" width="600" height="300">
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="font-extrabold text-xl mb-1 text-gray-900">BATATA LAVADA KG</h3>
                             <p class="text-gray-600 text-sm mb-3">Limpa e pronta para uso</p>
@@ -1312,11 +1246,7 @@
                     <!-- 12 MANDIOCA kg -->
                     <a href="https://wa.me/5511969624824?text=https://raw.githubusercontent.com/238622024-web/SuperMarket-Responsiva/main/Mandioca.jpg%0AOlá!%20Quero%20MANDIOCA%20KG%20por%20R$%203,49.%20Tem%20aí?" target="_blank" rel="noopener noreferrer" class="bg-white rounded-lg shadow-lg overflow-hidden oferta-card flex flex-col">
                         <div class="etiqueta-promo">HORTIFRUTI</div>
-                        <picture>
-                            <source type="image/avif" data-srcset="thumbs/Mandioca-300w.avif 300w, Mandioca.avif 600w">
-                            <source type="image/webp" data-srcset="thumbs/Mandioca-300w.webp 300w, Mandioca.webp 600w">
-                            <img src="Mandioca.jpg" alt="Mandioca kg" class="w-full h-48 object-cover lazy-offer" loading="lazy" width="600" height="300" data-full="Mandioca.jpg" data-thumb="thumbs/Mandioca-300w.jpg">
-                        </picture>
+                        <img src="Mandioca.jpg" alt="Mandioca kg" class="w-full h-48 object-cover" loading="lazy" width="600" height="300">
                         <div class="p-6 flex flex-col flex-grow">
                             <h3 class="font-extrabold text-xl mb-1 text-gray-900">MANDIOCA KG</h3>
                             <p class="text-gray-600 text-sm mb-3">Para fritar ou cozinhar</p>
