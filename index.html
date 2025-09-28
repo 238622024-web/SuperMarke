@@ -2341,6 +2341,7 @@ Aguardo retorno! 😊`;
         document.addEventListener('DOMContentLoaded', setupWhatsAppWithImages);
         
         // ===== Lazy Loading avançado (IntersectionObserver) =====
+        document.addEventListener('DOMContentLoaded', function(){
         (function advancedLazy(){
             const isSupported = 'IntersectionObserver' in window;
             const mobile = window.matchMedia('(max-width:640px)').matches;
@@ -2390,7 +2391,17 @@ Aguardo retorno! 😊`;
             }, { rootMargin: '120px 0px 120px 0px', threshold: 0.01 });
 
             pictures.forEach(pic => obs.observe(pic));
+
+            // Fallback de segurança: após 3s carrega qualquer que não tenha entrado ainda (evita ficar vazio se usuário não scrolla)
+            setTimeout(()=>{
+                pictures.forEach(pic => {
+                    if(!pic.dataset.loaded){
+                        hydratePicture(pic);
+                    }
+                });
+            }, 3000);
         })();
+        });
         
         // 🔄 Função para mostrar notificação de atualização
         function showUpdateNotification(newWorker) {
