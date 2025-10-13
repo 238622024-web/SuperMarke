@@ -1841,7 +1841,7 @@
         });
         }
 
-        // PWA - Install App Prompt (Otimizado para Mobile)
+    // PWA - Install App Prompt (Otimizado para Mobile)
         let deferredPrompt;
         let installButton = null;
 
@@ -1945,6 +1945,7 @@
                 }
             });
             
+            // Garante inserção no fim do body para z-index correto
             document.body.appendChild(installButton);
             console.log('PWA: Botão de instalação criado');
         }
