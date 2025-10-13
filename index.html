@@ -63,7 +63,7 @@
         }
     </style>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Mercado SuperMarket - As Melhores Ofertas! | Responsivo</title>
     
     <!-- PWA Meta Tags -->
@@ -180,6 +180,15 @@
             position: sticky;
             top: 0;
             z-index: 50;
+        }
+        /* Safe area para dispositivos com notch (PWA) */
+        @supports(padding-top: env(safe-area-inset-top)) {
+            .pwa-mode header {
+                padding-top: env(safe-area-inset-top);
+            }
+            .pwa-mode #mobile-header-alt > div:first-child {
+                padding-top: calc( env(safe-area-inset-top) / 2 );
+            }
         }
         
         /* Carrossel responsivo */
@@ -742,6 +751,10 @@
             .pwa-mode .logo-title {
                 font-size: 1.5rem !important;
             }
+        /* Esconde header desktop quando em modo PWA para evitar barras duplas e desalinhamento */
+        .pwa-mode header.hidden.lg\:block {
+            display: none !important;
+        }
             
             .pwa-mode .logo-subtitle {
                 font-size: 0.85rem !important;
@@ -858,22 +871,22 @@
     <!-- Wrapper principal para controlar largura -->
     <div class="main-wrapper w-full min-h-screen overflow-x-hidden">
     <!-- Novo Cabeçalho Mobile (Android) -->
-    <header class="lg:hidden bg-gradient-to-r from-blue-700 via-blue-600 to-green-600 shadow-md sticky top-0 z-50 border-b-4 border-green-500/60" id="mobile-header-alt">
-    <div class="pl-3 pr-0 py-2 flex items-center gap-3">
+    <header class="lg:hidden bg-gradient-to-r from-blue-700 via-blue-600 to-green-600 shadow-md sticky top-0 z-50 border-b-4 border-green-500/60" id="mobile-header-alt" style="transform: translateZ(0); -webkit-transform: translateZ(0); backface-visibility:hidden; contain:paint;">
+    <div class="pl-3 pr-2 py-2 flex items-center gap-3 w-full max-w-full overflow-hidden">
             <button id="menu-btn-mobile-alt" aria-label="Abrir menu" aria-expanded="false" class="p-2 rounded-lg bg-white/15 hover:bg-white/25 active:scale-95 transition focus:outline-none focus:ring-2 focus:ring-yellow-400 text-white">
                 <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
             </button>
-            <a href="#" class="flex items-center gap-2 flex-grow" style="min-width:0;">
+            <a href="#" class="flex items-center gap-2 flex-grow min-w-0" style="min-width:0;">
                 <div class="w-12 h-12 rounded-xl bg-white shadow flex items-center justify-center overflow-hidden ring-2 ring-white/40">
                     <img src="logo.SuperMarket.jpg" alt="Logo SuperMarket" class="w-full h-full object-cover" loading="lazy" decoding="async"
                          onerror="this.onerror=null;this.style.objectFit='contain';this.style.padding='6px';" />
                 </div>
                 <div class="flex flex-col leading-tight min-w-0">
-                    <span class="text-white font-extrabold text-[1.05rem] leading-snug tracking-tight whitespace-normal break-words">SuperMarket</span>
-                    <span class="text-green-100 text-[0.65rem] font-semibold uppercase tracking-wide">Qualidade & Economia</span>
+                    <span class="text-white font-extrabold text-[1.05rem] leading-snug tracking-tight truncate">SuperMarket</span>
+                    <span class="text-green-100 text-[0.65rem] font-semibold uppercase tracking-wide truncate">Qualidade & Economia</span>
                 </div>
             </a>
-            <a href="https://wa.me/5511969624824" class="p-2 rounded-lg bg-green-500 hover:bg-green-600 text-white shadow active:scale-95 transition" aria-label="WhatsApp">
+            <a href="https://wa.me/5511969624824" class="p-2 mr-1 rounded-lg bg-green-500 hover:bg-green-600 text-white shadow active:scale-95 transition flex-shrink-0" aria-label="WhatsApp">
                 💬
             </a>
         </div>
