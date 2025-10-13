@@ -15,18 +15,21 @@
             position: relative;
             background: linear-gradient(180deg,#ffffff 0%, #fffbea 100%);
         }
+        @media (hover:hover){
+            .oferta-card:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(255,214,0,0.3), 0 6px 12px rgba(0,0,0,0.12); transition: .2s ease; }
+        }
         /* Hover removido para versão estática solicitada */
         .etiqueta-promo {
             position: absolute;
             top: 12px;
             left: -4px;
-            background: linear-gradient(90deg,#FF3D00 60%,#FFD600 100%);
+            background: linear-gradient(90deg,#ef4444 40%,#f59e0b 100%);
             color: #fff;
             font-weight: bold;
             font-size: 1rem;
             padding: 0.25rem 1rem;
             border-radius: 0 999px 999px 0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            box-shadow: 0 4px 16px rgba(239,68,68,0.25);
             z-index: 2;
             letter-spacing: 1px;
         }
@@ -34,7 +37,16 @@
             color: #FF3D00;
             font-size: 2.2rem;
             font-weight: 900;
-            text-shadow: 0 2px 8px #FFD60099;
+            text-shadow: 0 3px 10px rgba(245, 158, 11, .6);
+        }
+        .badge-economia {
+            background: linear-gradient(90deg,#22c55e,#16a34a);
+            color:#fff;
+            font-weight:700;
+            font-size:.7rem;
+            padding:.15rem .5rem;
+            border-radius:999px;
+            box-shadow:0 2px 8px rgba(34,197,94,.35);
         }
         .preco-antigo {
             color: #888;
@@ -1118,6 +1130,16 @@
         <!-- Seção de Ofertas -->
         <section id="ofertas" class="py-12 sm:py-16 w-full">
             <div class="container mx-auto px-4">
+                <!-- Título decorativo da seção -->
+                <div class="flex items-center justify-between mb-6 sm:mb-8">
+                    <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight flex items-center gap-2">
+                        <span class="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-yellow-400 text-white shadow-md">🏷️</span>
+                        <span>Ofertas em destaque</span>
+                    </h2>
+                    <a href="#contato" class="hidden sm:inline-flex items-center gap-2 text-blue-700 hover:text-blue-900 font-semibold">
+                        Fale no WhatsApp <span>➡️</span>
+                    </a>
+                </div>
                 <h2 class="text-2xl sm:text-3xl font-bold text-center text-gray-800 mb-2">Ofertas da Semana</h2>
                 <p class="text-center text-gray-500 mb-8 sm:mb-10">Aproveite! Válidas enquanto durarem os estoques.</p>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
