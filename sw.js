@@ -1,4 +1,4 @@
-const CACHE_NAME = 'supermarket-v1.6';
+const CACHE_NAME = 'supermarket-v1.7';
 const IMG_FULL_CACHE = 'supermarket-img-full-v1';
 const IMG_THUMB_CACHE = 'supermarket-img-thumb-v1';
 
@@ -17,6 +17,7 @@ const urlsToCache = [
   BASE_URL,
   BASE_URL + 'index.html',
   BASE_URL + 'manifest.json',
+  BASE_URL + 'offline.html',
   // Logos e imagens principais (adicione aqui conforme necessidade offline)
   BASE_URL + 'logo.SuperMarket.jpg',
   BASE_URL + 'FachadaSuperMarket.jpg',
@@ -116,7 +117,9 @@ self.addEventListener('fetch', function(event) {
       .catch(()=> caches.match(req).then(match => {
         if (match) return match;
         if (req.destination === 'document') {
-          return caches.match(BASE_URL + 'index.html');
+          // Fallback document: tenta index.html e, se não houver, mostra uma página offline amigável
+          return caches.match(BASE_URL + 'index.html')
+            .then(cachedIndex => cachedIndex || caches.match(BASE_URL + 'offline.html'));
         }
       }))
   );

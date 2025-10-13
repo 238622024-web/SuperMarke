@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Você está offline • Super Market</title>
+  <link rel="icon" href="logo.SuperMarket.jpg">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    html, body { height: 100%; }
+    .bg-diag { background: repeating-linear-gradient(45deg, #f3f4f6, #f3f4f6 10px, #ffffff 10px, #ffffff 20px); }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center bg-diag p-6">
+  <main class="bg-white rounded-xl shadow-lg max-w-md w-full p-8 text-center">
+    <img src="logo.SuperMarket.jpg" alt="Logo Super Market" class="mx-auto w-20 h-20 object-cover rounded-full shadow" width="80" height="80">
+    <h1 class="mt-5 text-2xl font-bold text-gray-900">Você está offline</h1>
+    <p class="mt-2 text-gray-600">Sem conexão no momento. Algumas funções podem não estar disponíveis.</p>
+    <p class="mt-1 text-gray-500 text-sm">Assim que a internet voltar, o conteúdo será recarregado automaticamente.</p>
+    <div class="mt-6 space-x-3">
+      <a href="./" class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold px-4 py-2 rounded-lg shadow">Tentar novamente</a>
+      <button onclick="location.reload()" class="inline-block bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold px-4 py-2 rounded-lg">Recarregar</button>
+    </div>
+  </main>
+</body>
+</html>
