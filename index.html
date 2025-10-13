@@ -6,6 +6,8 @@
     <meta property="og:image" content="https://raw.githubusercontent.com/238622024-web/SuperMarket-Responsiva/main/logo.SuperMarket.jpg" />
     <meta property="og:title" content="Mercado SuperMarket - As Melhores Ofertas!" />
     <meta property="og:description" content="Confira as ofertas e atendimento especial do Mercado SuperMarket!" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
         /* Animação suave nos cards */
@@ -107,6 +109,76 @@
     
     <!-- Manifest PWA -->
     <link rel="manifest" href="manifest.json">
+    
+        <!-- SEO: Produtos em destaque (JSON-LD) -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "itemListElement": [
+                {
+                    "@type": "Product",
+                    "name": "SABÃO BRILHANTE 800g",
+                    "category": "LIMPEZA",
+                    "image": "SabaoBrilhante.jpg",
+                    "offers": {
+                        "@type": "Offer",
+                        "priceCurrency": "BRL",
+                        "price": "11.99",
+                        "availability": "http://schema.org/InStock"
+                    }
+                },
+                {
+                    "@type": "Product",
+                    "name": "CAFÉ PILÃO 500g",
+                    "category": "CAFÉ",
+                    "image": "CafePILAO.png",
+                    "offers": {
+                        "@type": "Offer",
+                        "priceCurrency": "BRL",
+                        "price": "35.99",
+                        "availability": "http://schema.org/InStock"
+                    }
+                },
+                {
+                    "@type": "Product",
+                    "name": "LEITE JUSSARA 1L",
+                    "category": "LÁCTEO",
+                    "image": "LeiteJussara.jpg",
+                    "offers": {
+                        "@type": "Offer",
+                        "priceCurrency": "BRL",
+                        "price": "5.99",
+                        "availability": "http://schema.org/InStock"
+                    }
+                },
+                {
+                    "@type": "Product",
+                    "name": "COSTELA GAÚCHA kg",
+                    "category": "CARNES",
+                    "image": "CostelaGaucha.jpg",
+                    "offers": {
+                        "@type": "Offer",
+                        "priceCurrency": "BRL",
+                        "price": "27.90",
+                        "availability": "http://schema.org/InStock"
+                    }
+                },
+                {
+                    "@type": "Product",
+                    "name": "BATATA LAVADA kg",
+                    "category": "HORTIFRUTI",
+                    "image": "BatataLavada.jpg",
+                    "offers": {
+                        "@type": "Offer",
+                        "priceCurrency": "BRL",
+                        "price": "3.99",
+                        "availability": "http://schema.org/InStock"
+                    }
+                }
+            ]
+        }
+        </script>
     
     <!-- Favicon e ícones Apple (iOS otimizado) -->
     <link rel="icon" type="image/jpeg" href="logo.SuperMarket.jpg">
