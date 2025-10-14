@@ -64,6 +64,7 @@
         }
         .f-btn:hover { background:#e2e8f0; }
         .f-btn.ativo { background:#2563eb; color:#fff; box-shadow:0 2px 8px rgba(37,99,235,.35); }
+    .f-btn:focus-visible { outline:3px solid #2563eb; outline-offset:2px; }
         .preco-antigo {
             color: #888;
             font-size: 1.1rem;
@@ -110,7 +111,7 @@
     <!-- Manifest PWA -->
     <link rel="manifest" href="manifest.json">
     
-        <!-- SEO: Produtos em destaque (JSON-LD) -->
+            <!-- SEO: Produtos em destaque (JSON-LD) -->
         <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -120,7 +121,9 @@
                     "@type": "Product",
                     "name": "SABÃO BRILHANTE 800g",
                     "category": "LIMPEZA",
-                    "image": "SabaoBrilhante.jpg",
+                        "image": "https://raw.githubusercontent.com/238622024-web/SuperMarket-Responsiva/main/SabaoBrilhante.jpg",
+                        "brand": {"@type":"Brand","name":"SuperMarket"},
+                        "url": "./",
                     "offers": {
                         "@type": "Offer",
                         "priceCurrency": "BRL",
@@ -132,7 +135,9 @@
                     "@type": "Product",
                     "name": "CAFÉ PILÃO 500g",
                     "category": "CAFÉ",
-                    "image": "CafePILAO.png",
+                        "image": "https://raw.githubusercontent.com/238622024-web/SuperMarket-Responsiva/main/CafePILAO.png",
+                        "brand": {"@type":"Brand","name":"SuperMarket"},
+                        "url": "./",
                     "offers": {
                         "@type": "Offer",
                         "priceCurrency": "BRL",
@@ -144,7 +149,9 @@
                     "@type": "Product",
                     "name": "LEITE JUSSARA 1L",
                     "category": "LÁCTEO",
-                    "image": "LeiteJussara.jpg",
+                        "image": "https://raw.githubusercontent.com/238622024-web/SuperMarket-Responsiva/main/LeiteJussara.jpg",
+                        "brand": {"@type":"Brand","name":"SuperMarket"},
+                        "url": "./",
                     "offers": {
                         "@type": "Offer",
                         "priceCurrency": "BRL",
@@ -156,7 +163,9 @@
                     "@type": "Product",
                     "name": "COSTELA GAÚCHA kg",
                     "category": "CARNES",
-                    "image": "CostelaGaucha.jpg",
+                        "image": "https://raw.githubusercontent.com/238622024-web/SuperMarket-Responsiva/main/CostelaGaucha.jpg",
+                        "brand": {"@type":"Brand","name":"SuperMarket"},
+                        "url": "./",
                     "offers": {
                         "@type": "Offer",
                         "priceCurrency": "BRL",
@@ -168,7 +177,9 @@
                     "@type": "Product",
                     "name": "BATATA LAVADA kg",
                     "category": "HORTIFRUTI",
-                    "image": "BatataLavada.jpg",
+                        "image": "https://raw.githubusercontent.com/238622024-web/SuperMarket-Responsiva/main/BatataLavada.jpg",
+                        "brand": {"@type":"Brand","name":"SuperMarket"},
+                        "url": "./",
                     "offers": {
                         "@type": "Offer",
                         "priceCurrency": "BRL",
@@ -1229,16 +1240,16 @@
                     </a>
                 </div>
                 <!-- Filtros por categoria -->
-                <div id="filtros" class="flex flex-wrap gap-2 mb-6">
-                    <button class="f-btn ativo" data-filtra="*">Todas</button>
-                    <button class="f-btn" data-filtra="LIMPEZA">Limpeza</button>
-                    <button class="f-btn" data-filtra="CAFÉ">Café</button>
-                    <button class="f-btn" data-filtra="HIGIENE">Higiene</button>
-                    <button class="f-btn" data-filtra="MOLHO">Molho</button>
-                    <button class="f-btn" data-filtra="LÁCTEO">Lácteos</button>
-                    <button class="f-btn" data-filtra="OVOS">Ovos</button>
-                    <button class="f-btn" data-filtra="CARNES">Carnes</button>
-                    <button class="f-btn" data-filtra="HORTIFRUTI">Hortifruti</button>
+                <div id="filtros" class="flex flex-wrap gap-2 mb-6" role="tablist" aria-label="Filtrar por categoria">
+                    <button class="f-btn ativo" role="tab" aria-pressed="true" data-filtra="*">Todas</button>
+                    <button class="f-btn" role="tab" aria-pressed="false" data-filtra="LIMPEZA">Limpeza</button>
+                    <button class="f-btn" role="tab" aria-pressed="false" data-filtra="CAFÉ">Café</button>
+                    <button class="f-btn" role="tab" aria-pressed="false" data-filtra="HIGIENE">Higiene</button>
+                    <button class="f-btn" role="tab" aria-pressed="false" data-filtra="MOLHO">Molho</button>
+                    <button class="f-btn" role="tab" aria-pressed="false" data-filtra="LÁCTEO">Lácteos</button>
+                    <button class="f-btn" role="tab" aria-pressed="false" data-filtra="OVOS">Ovos</button>
+                    <button class="f-btn" role="tab" aria-pressed="false" data-filtra="CARNES">Carnes</button>
+                    <button class="f-btn" role="tab" aria-pressed="false" data-filtra="HORTIFRUTI">Hortifruti</button>
                 </div>
                 <h2 class="text-2xl sm:text-3xl font-bold text-center text-gray-800 mb-2">Ofertas da Semana</h2>
                 <p class="text-center text-gray-500 mb-8 sm:mb-10">Aproveite! Válidas enquanto durarem os estoques.</p>
@@ -2428,8 +2439,9 @@ Aguardo retorno! 😊`;
             const cards = document.querySelectorAll('.oferta-card');
             botoes.forEach(btn => {
                 btn.addEventListener('click', () => {
-                    botoes.forEach(b=>b.classList.remove('ativo'));
+                    botoes.forEach(b=>{ b.classList.remove('ativo'); b.setAttribute('aria-pressed','false'); });
                     btn.classList.add('ativo');
+                    btn.setAttribute('aria-pressed','true');
                     const alvo = btn.dataset.filtra;
                     cards.forEach(card => {
                         const cat = (card.getAttribute('data-categoria')||'').toUpperCase();
