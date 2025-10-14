@@ -2465,6 +2465,23 @@ Aguardo retorno! 😊`;
                 });
             });
 
+            // Navegação por teclado nos filtros (setas, Home/End)
+            const container = document.getElementById('filtros');
+            const btnArray = Array.from(botoes);
+            if(container){
+                container.addEventListener('keydown', (e)=>{
+                    if(['ArrowLeft','ArrowRight','Home','End'].includes(e.key)){
+                        e.preventDefault();
+                        let idx = btnArray.indexOf(document.activeElement);
+                        if(e.key==='Home') idx = 0;
+                        else if(e.key==='End') idx = btnArray.length - 1;
+                        else if(e.key==='ArrowRight') idx = (idx + 1 + btnArray.length) % btnArray.length;
+                        else if(e.key==='ArrowLeft') idx = (idx - 1 + btnArray.length) % btnArray.length;
+                        btnArray[idx].focus();
+                    }
+                });
+            }
+
             // Gera badges de economia automaticamente com base em data-preco-antigo
             cards.forEach(card => {
                 const precoEl = card.querySelector('.preco-destaque .valor');
@@ -2498,6 +2515,31 @@ Aguardo retorno! 😊`;
                     localStorage.setItem('smMetrics', JSON.stringify(m));
                 } catch(err){}
             });
+
+            // Painel simples de métricas (Ctrl+M)
+            function getMetrics(){ try { return JSON.parse(localStorage.getItem('smMetrics')||'{}'); } catch(e){ return {}; } }
+            function showMetricsPanel(){
+                const m = getMetrics();
+                const overlay = document.createElement('div');
+                overlay.className = 'fixed inset-0 bg-black bg-opacity-50 z-[999] flex items-center justify-center p-4';
+                overlay.innerHTML = `
+                    <div class="bg-white rounded-lg max-w-sm w-full p-6 text-left">
+                        <h3 class="text-lg font-bold text-gray-800 mb-4">📊 Métricas locais</h3>
+                        <ul class="text-sm text-gray-700 space-y-2">
+                            <li>Filtros usados: <strong>${m.filters||0}</strong></li>
+                            <li>Cliques em ofertas: <strong>${m.ofertas||0}</strong></li>
+                            <li>Cliques WhatsApp: <strong>${m.whatsapp||0}</strong></li>
+                        </ul>
+                        <div class="mt-5 flex gap-3">
+                            <button id="metrics-reset" class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-lg">Limpar</button>
+                            <button id="metrics-close" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg">Fechar</button>
+                        </div>
+                    </div>`;
+                document.body.appendChild(overlay);
+                overlay.querySelector('#metrics-close').addEventListener('click', ()=> overlay.remove());
+                overlay.querySelector('#metrics-reset').addEventListener('click', ()=>{ localStorage.removeItem('smMetrics'); overlay.remove(); });
+            }
+            document.addEventListener('keydown', (e)=>{ if(e.ctrlKey && (e.key==='m' || e.key==='M')){ e.preventDefault(); showMetricsPanel(); } });
         });
         
         // ===== Lazy Loading avançado (IntersectionObserver) =====
